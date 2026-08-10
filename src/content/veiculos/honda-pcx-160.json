@@ -1,23 +1,8 @@
 {
-  "nome": "Honda PCX 160",
-  "marca": "Honda",
-  "modelo": "PCX 160",
-  "tipo": "moto",
-  "categoria": "Scooter 160cc",
-  "ano": 2024,
-  "anoModelo": 2024,
-  "preco": 22900,
-  "km": 3200,
-  "cambio": "Automático",
-  "combustivel": "Gasolina",
-  "cor": "Cinza",
-  "cidade": "São Paulo",
-  "uf": "SP",
   "destaque": true,
-  "lancamento": false,
-  "cilindrada": "156cc",
-  "potencia": "16 cv",
-  "descricao": "PCX 160 quase zero, a scooter premium mais vendida. Porta-objetos amplo, partida elétrica e freios CBS. Econômica.",
+  "km": 3200,
+  "ano": 2024,
+  "cidade": "São Paulo",
   "opcionais": [
     "Freio CBS",
     "Porta USB",
@@ -26,5 +11,22 @@
     "Baú incluso",
     "Garantia de fábrica"
   ],
-  "fotos": []
+  "cilindrada": "156cc",
+  "cor": "Cinza",
+  "modelo": "PCX 160",
+  "anoModelo": 2024,
+  "descricao": "PCX 160 quase zero, a scooter premium mais vendida. Porta-objetos amplo, partida elétrica e freios CBS. Econômica.",
+  "combustivel": "Gasolina",
+  "preco": 22900,
+  "fotos": [
+    "https://freedomhonda.com.br/wp-content/uploads/2023/08/honda-pcx-branco-lateral-dianteira-direita.webp"
+  ],
+  "uf": "SP",
+  "categoria": "Scooter 160cc",
+  "tipo": "moto",
+  "cambio": "Automático",
+  "nome": "Honda PCX 160",
+  "lancamento": false,
+  "marca": "Honda",
+  "potencia": "16 cv"
 }
