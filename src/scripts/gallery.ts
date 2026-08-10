@@ -31,6 +31,8 @@ function initGallery(el: HTMLElement) {
 
   const prevBtn = el.querySelector<HTMLElement>('[data-gallery-prev]');
   const nextBtn = el.querySelector<HTMLElement>('[data-gallery-next]');
+  // Só existe link ao redor do card na home/listagem/loja — na página de detalhe a galeria não é um link.
+  const parentLink = el.closest('a');
 
   prevBtn?.addEventListener('click', (e) => {
     e.preventDefault();
@@ -49,7 +51,12 @@ function initGallery(el: HTMLElement) {
     startX = e.clientX;
     dx = 0;
     dragging = true;
-    el.setPointerCapture(e.pointerId);
+    try {
+      el.setPointerCapture(e.pointerId);
+    } catch {
+      // Alguns navegadores/dispositivos não permitem capturar o ponteiro; o arraste
+      // ainda funciona normalmente sem isso, só não "segue" o dedo fora do elemento.
+    }
   });
   el.addEventListener('pointermove', (e) => {
     if (!dragging) return;
@@ -66,17 +73,23 @@ function initGallery(el: HTMLElement) {
   el.addEventListener('pointercancel', () => {
     dragging = false;
   });
-  // Evita que um arraste vire um clique (abrindo o veículo sem querer nos cards).
-  el.addEventListener(
-    'click',
-    (e) => {
-      if (Math.abs(dx) > 10) {
-        e.preventDefault();
-        e.stopPropagation();
-      }
-    },
-    true,
-  );
+
+  // Evita que um arraste vire clique e abra o card sem querer — não se aplica às
+  // setas nem às miniaturas, que têm sua própria lógica de clique.
+  if (parentLink) {
+    parentLink.addEventListener(
+      'click',
+      (e) => {
+        const target = e.target as HTMLElement;
+        if (target.closest('[data-gallery-prev],[data-gallery-next]')) return;
+        if (Math.abs(dx) > 10) {
+          e.preventDefault();
+          e.stopPropagation();
+        }
+      },
+      true,
+    );
+  }
 
   document.querySelectorAll<HTMLElement>('[data-thumb]').forEach((thumb, i) => {
     thumb.addEventListener('click', () => {
