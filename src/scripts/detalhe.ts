@@ -5,20 +5,6 @@ function brlDec(n: number): string {
   return 'R$ ' + n.toLocaleString('pt-BR', { minimumFractionDigits: 2, maximumFractionDigits: 2 });
 }
 
-export function initGaleria() {
-  const hero = document.getElementById('jf-galeria-hero') as HTMLImageElement | null;
-  const thumbs = Array.from(document.querySelectorAll<HTMLElement>('[data-thumb]'));
-  if (!hero || thumbs.length === 0) return;
-
-  thumbs.forEach((thumb) => {
-    thumb.addEventListener('click', () => {
-      const src = thumb.dataset.src;
-      if (src) hero.src = src;
-      thumbs.forEach((t) => t.classList.toggle('is-active', t === thumb));
-    });
-  });
-}
-
 export function initSimulador(preco: number) {
   const root = document.getElementById('jf-sim');
   if (!root) return;

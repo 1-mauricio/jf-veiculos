@@ -1,5 +1,6 @@
 ---
 import type { CollectionEntry } from 'astro:content';
+import Icon from './Icon.astro';
 import { brl, km as fmtKm, parcelaEstimada } from '../lib/format';
 
 interface Props {
@@ -21,9 +22,15 @@ const placeholderAngle = hashAngle(vehicle.id);
 ---
 
 <a href={href} class="jf-card">
-  <div class="jf-card-photo" style={fotos.length === 0 ? `background: repeating-linear-gradient(${placeholderAngle}deg, var(--gray-100) 0 15px, var(--gray-200) 15px 30px);` : undefined}>
+  <div
+    class="jf-card-photo"
+    data-gallery
+    data-fotos={JSON.stringify(fotos)}
+    data-idx="0"
+    style={fotos.length === 0 ? `background: repeating-linear-gradient(${placeholderAngle}deg, var(--gray-100) 0 15px, var(--gray-200) 15px 30px);` : undefined}
+  >
     {fotos.length > 0 ? (
-      <img src={fotos[0]} alt={v.nome} loading="lazy" decoding="async" />
+      <img data-gallery-img src={fotos[0]} alt={v.nome} loading="lazy" decoding="async" />
     ) : (
       <span class="jf-card-photo-label">SEM FOTO</span>
     )}
@@ -31,6 +38,16 @@ const placeholderAngle = hashAngle(vehicle.id);
       {v.destaque && <span class="jf-badge jf-badge-accent">EM ALTA</span>}
       {v.lancamento && <span class="jf-badge jf-badge-dark">NOVO</span>}
     </div>
+    {fotos.length > 1 && (
+      <>
+        <button type="button" class="jf-card-arrow jf-card-arrow-prev" data-gallery-prev aria-label="Foto anterior">
+          <Icon name="chevron-left" size={16} color="var(--text-primary)" />
+        </button>
+        <button type="button" class="jf-card-arrow jf-card-arrow-next" data-gallery-next aria-label="Próxima foto">
+          <Icon name="chevron-right" size={16} color="var(--text-primary)" />
+        </button>
+      </>
+    )}
   </div>
   <div class="jf-card-body">
     <div>
@@ -73,8 +90,18 @@ const placeholderAngle = hashAngle(vehicle.id);
     justify-content: center;
     overflow: hidden;
     background: var(--gray-100);
+    touch-action: pan-y;
+    user-select: none;
   }
-  .jf-card-photo img { width: 100%; height: 100%; object-fit: cover; }
+  .jf-card-photo img { width: 100%; height: 100%; object-fit: cover; pointer-events: none; }
+
+  .jf-card-arrow {
+    position: absolute; top: 50%; transform: translateY(-50%); width: 28px; height: 28px;
+    border-radius: var(--radius-full); background: rgba(255, 255, 255, .92); border: none;
+    display: flex; align-items: center; justify-content: center; cursor: pointer; box-shadow: var(--shadow-card);
+  }
+  .jf-card-arrow-prev { left: 8px; }
+  .jf-card-arrow-next { right: 8px; }
   .jf-card-photo-label { font: 600 11px var(--font-display); letter-spacing: 2px; color: var(--gray-500); }
 
   .jf-card-badges { position: absolute; top: 12px; left: 12px; display: flex; gap: 6px; }

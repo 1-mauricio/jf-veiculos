@@ -2,6 +2,7 @@
 import { getCollection, render } from 'astro:content';
 import BaseLayout from '../../layouts/BaseLayout.astro';
 import VehicleCard from '../../components/VehicleCard.astro';
+import Icon from '../../components/Icon.astro';
 import { brl, brlDec, km as fmtKm, whatsappLink } from '../../lib/format';
 
 export async function getStaticPaths() {
@@ -69,18 +70,34 @@ const parcelaInicial = (() => {
       <!-- LEFT -->
       <div>
         <!-- GALERIA -->
-        <div class="jf-galeria" style={!temFotos ? `background: repeating-linear-gradient(${placeholderAngle}deg, var(--gray-100) 0 20px, var(--gray-200) 20px 40px);` : undefined}>
+        <div
+          class="jf-galeria"
+          data-gallery
+          data-fotos={JSON.stringify(fotos)}
+          data-idx="0"
+          style={!temFotos ? `background: repeating-linear-gradient(${placeholderAngle}deg, var(--gray-100) 0 20px, var(--gray-200) 20px 40px);` : undefined}
+        >
           {temFotos ? (
-            <img id="jf-galeria-hero" src={fotos[0]} alt={v.nome} />
+            <img id="jf-galeria-hero" data-gallery-img src={fotos[0]} alt={v.nome} />
           ) : (
             <span class="jf-galeria-label">SEM FOTO</span>
           )}
           {v.destaque && <span class="jf-galeria-badge">EM ALTA</span>}
+          {fotos.length > 1 && (
+            <>
+              <button type="button" class="jf-galeria-arrow jf-galeria-arrow-prev" data-gallery-prev aria-label="Foto anterior">
+                <Icon name="chevron-left" size={20} color="var(--text-primary)" />
+              </button>
+              <button type="button" class="jf-galeria-arrow jf-galeria-arrow-next" data-gallery-next aria-label="Próxima foto">
+                <Icon name="chevron-right" size={20} color="var(--text-primary)" />
+              </button>
+            </>
+          )}
         </div>
         {fotos.length > 1 && (
           <div class="jf-thumbs jf-scroll">
             {fotos.map((f, i) => (
-              <div class:list={['jf-thumb', { 'is-active': i === 0 }]} data-thumb data-src={f} style={`background-image: url(${f});`} />
+              <div class:list={['jf-thumb', { 'is-active': i === 0 }]} data-thumb style={`background-image: url(${f});`} />
             ))}
           </div>
         )}
@@ -202,10 +219,9 @@ const parcelaInicial = (() => {
 </BaseLayout>
 
 <script>
-  import { initGaleria, initSimulador } from '../../scripts/detalhe';
+  import { initSimulador } from '../../scripts/detalhe';
   const simRoot = document.getElementById('jf-sim');
   const preco = Number(simRoot?.dataset.preco ?? 0);
-  initGaleria();
   initSimulador(preco);
 </script>
 
@@ -220,13 +236,21 @@ const parcelaInicial = (() => {
   .jf-galeria {
     position: relative; border-radius: var(--radius-lg); overflow: hidden; height: 420px;
     display: flex; align-items: center; justify-content: center; background: var(--gray-100);
+    touch-action: pan-y; user-select: none; cursor: grab;
   }
-  .jf-galeria img { width: 100%; height: 100%; object-fit: cover; }
+  .jf-galeria img { width: 100%; height: 100%; object-fit: cover; pointer-events: none; }
   .jf-galeria-label { font: 600 13px var(--font-display); letter-spacing: 2px; color: var(--text-tertiary); }
   .jf-galeria-badge {
     position: absolute; top: 16px; left: 16px; background: var(--accent); color: var(--white);
     font-size: 12px; font-weight: 700; padding: 6px 12px; border-radius: var(--radius-full);
   }
+  .jf-galeria-arrow {
+    position: absolute; top: 50%; transform: translateY(-50%); width: 40px; height: 40px;
+    border-radius: var(--radius-full); background: rgba(255, 255, 255, .92); border: none;
+    display: flex; align-items: center; justify-content: center; cursor: pointer; box-shadow: var(--shadow-card);
+  }
+  .jf-galeria-arrow-prev { left: 14px; }
+  .jf-galeria-arrow-next { right: 14px; }
 
   .jf-thumbs { display: flex; gap: 10px; margin-top: 12px; overflow-x: auto; }
   .jf-thumb {

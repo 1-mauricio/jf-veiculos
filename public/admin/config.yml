@@ -108,6 +108,7 @@ collections:
           - { label: "Logo", name: "logo", widget: "image", required: false, hint: "Se não enviar, o site usa as iniciais do nome em um quadrado colorido." }
           - { label: "Nome do site", name: "nomeSite", widget: "string" }
           - { label: "Frase abaixo do nome (header)", name: "tagline", widget: "string" }
+          - { label: "Selo do banner (depois do número de veículos)", name: "heroEyebrowTexto", widget: "string", hint: "Ex: seminovos revisados e com procedência (aparece como '+12 seminovos revisados...')" }
           - { label: "Título do banner (início da frase)", name: "heroTituloInicio", widget: "string", hint: "Ex: Seu próximo carro começa" }
           - { label: "Título do banner (palavra em destaque)", name: "heroTituloDestaque", widget: "string", hint: "Ex: aqui" }
           - { label: "Subtítulo do banner", name: "heroSubtitulo", widget: "text" }

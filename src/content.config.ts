@@ -64,6 +64,7 @@ const site = defineCollection({
     logo: z.string().optional(),
     nomeSite: z.string().default('JF Veículos'),
     tagline: z.string().default('seu seminovo de confiança'),
+    heroEyebrowTexto: z.string().default('seminovos revisados e com procedência'),
     heroTituloInicio: z.string(),
     heroTituloDestaque: z.string(),
     heroSubtitulo: z.string(),
