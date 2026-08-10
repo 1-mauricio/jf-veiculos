@@ -29,6 +29,14 @@ const instagramHref = loja?.instagram ? `https://instagram.com/${loja.instagram}
         <div class="jf-loja-head-text">
           <div class="jf-loja-title-row">
             <h1 class="jf-loja-title">{nomeSite}</h1>
+            <a href={whatsappHref} target="_blank" rel="noopener" class="jf-loja-whatsapp-badge" aria-label={`WhatsApp da ${nomeSite}`}>
+              <Icon name="whatsapp" size={15} color="var(--white)" />
+            </a>
+            {instagramHref && (
+              <a href={instagramHref} target="_blank" rel="noopener" class="jf-loja-instagram-handle">
+                <Icon name="instagram" size={14} color="currentColor" /> @{loja?.instagram}
+              </a>
+            )}
           </div>
           {loja && (
             <div class="jf-loja-meta">
@@ -125,6 +133,15 @@ const instagramHref = loja?.instagram ? `https://instagram.com/${loja.instagram}
   .jf-loja-head-text { flex: 1; padding-bottom: 6px; }
   .jf-loja-title-row { display: flex; align-items: center; gap: 10px; flex-wrap: wrap; }
   .jf-loja-title { font: 700 30px var(--font-display); color: var(--white); letter-spacing: -.7px; margin: 0; }
+  .jf-loja-whatsapp-badge {
+    display: flex; align-items: center; justify-content: center; width: 28px; height: 28px;
+    border-radius: var(--radius-full); background: #25D366; flex-shrink: 0;
+  }
+  .jf-loja-whatsapp-badge:hover { background: #1fb956; }
+  .jf-loja-instagram-handle {
+    display: inline-flex; align-items: center; gap: 5px; color: var(--text-on-dark-secondary); font-size: 14px; font-weight: 600;
+  }
+  .jf-loja-instagram-handle:hover { color: var(--white); }
   .jf-loja-meta { display: flex; align-items: center; gap: 16px; margin-top: 8px; flex-wrap: wrap; color: var(--text-on-dark-secondary); font-size: 14px; }
   .jf-loja-rating { color: var(--accent-on-dark); font-weight: 800; }
   .jf-loja-actions { display: flex; gap: 10px; padding-bottom: 6px; }

@@ -5,7 +5,8 @@ backend:
 # TODO: depois do primeiro deploy no Netlify, ative "Identity" e "Git Gateway"
 # em Site settings > Identity, e convide o e-mail de quem vai editar o site.
 
-local_backend: true
+local_backend:
+  url: "http://192.168.3.25:8081/api/v1"
 
 media_folder: "public/images/veiculos"
 public_folder: "/images/veiculos"

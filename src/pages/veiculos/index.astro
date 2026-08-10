@@ -8,6 +8,9 @@ import { brl } from '../../lib/format';
 const veiculos = await getCollection('veiculos');
 const marcas = [...new Set(veiculos.map((v) => v.data.marca))].sort();
 const cores = [...new Set(veiculos.map((v) => v.data.cor))].sort();
+const tipos = [...new Set(veiculos.map((v) => v.data.tipo))];
+const cambios = [...new Set(veiculos.map((v) => v.data.cambio))].sort();
+const combustiveis = [...new Set(veiculos.map((v) => v.data.combustivel))].sort();
 const siteEntries = await getCollection('site');
 const nomeSite = siteEntries[0]?.data.nomeSite ?? 'JF Veículos';
 ---
@@ -48,8 +51,8 @@ const nomeSite = siteEntries[0]?.data.nomeSite ?? 'JF Veículos';
             <div class="jf-filter-label" id="jf-tipo-label">Tipo</div>
             <div class="jf-chips" data-chip-group="tipo" role="group" aria-labelledby="jf-tipo-label">
               <button type="button" class="jf-chip-btn" data-value="todos">Todos</button>
-              <button type="button" class="jf-chip-btn" data-value="carro">Carros</button>
-              <button type="button" class="jf-chip-btn" data-value="moto">Motos</button>
+              {tipos.includes('carro') && <button type="button" class="jf-chip-btn" data-value="carro">Carros</button>}
+              {tipos.includes('moto') && <button type="button" class="jf-chip-btn" data-value="moto">Motos</button>}
             </div>
           </div>
 
@@ -80,8 +83,7 @@ const nomeSite = siteEntries[0]?.data.nomeSite ?? 'JF Veículos';
             <div class="jf-filter-label" id="jf-cambio-label">Câmbio</div>
             <div class="jf-chips" data-chip-group="cambio" role="group" aria-labelledby="jf-cambio-label">
               <button type="button" class="jf-chip-btn" data-value="todos">Todos</button>
-              <button type="button" class="jf-chip-btn" data-value="Automático">Automático</button>
-              <button type="button" class="jf-chip-btn" data-value="Manual">Manual</button>
+              {cambios.map((c) => <button type="button" class="jf-chip-btn" data-value={c}>{c}</button>)}
             </div>
           </div>
 
@@ -89,9 +91,7 @@ const nomeSite = siteEntries[0]?.data.nomeSite ?? 'JF Veículos';
             <div class="jf-filter-label" id="jf-combustivel-label">Combustível</div>
             <div class="jf-chips" data-chip-group="combustivel" role="group" aria-labelledby="jf-combustivel-label">
               <button type="button" class="jf-chip-btn" data-value="todos">Todos</button>
-              <button type="button" class="jf-chip-btn" data-value="Flex">Flex</button>
-              <button type="button" class="jf-chip-btn" data-value="Gasolina">Gasolina</button>
-              <button type="button" class="jf-chip-btn" data-value="Diesel">Diesel</button>
+              {combustiveis.map((c) => <button type="button" class="jf-chip-btn" data-value={c}>{c}</button>)}
             </div>
           </div>
 
