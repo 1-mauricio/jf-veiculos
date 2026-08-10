@@ -1,7 +1,6 @@
 ---
 import { getCollection } from 'astro:content';
 import BaseLayout from '../layouts/BaseLayout.astro';
-import VehicleCard from '../components/VehicleCard.astro';
 import Button from '../components/Button.astro';
 import Icon from '../components/Icon.astro';
 import Logo from '../components/Logo.astro';
@@ -19,10 +18,9 @@ const totalVeiculos = veiculos.length;
 const anosDeMercado = loja ? new Date().getFullYear() - loja.anoFundacao : null;
 const whatsappHref = loja ? whatsappLink(loja.whatsapp, `Olá! Vim pelo site da ${nomeSite}.`) : '#';
 const instagramHref = loja?.instagram ? `https://instagram.com/${loja.instagram}` : null;
-const estoque = veiculos.slice(0, 8);
 ---
 
-<BaseLayout title="Nossa loja" description={`Conheça a ${nomeSite}: loja verificada, seminovos revisados e as melhores condições de financiamento.`}>
+<BaseLayout title="Nossa loja" description={`Conheça a ${nomeSite}: seminovos revisados e as melhores condições de financiamento.`}>
   <!-- HERO LOJA -->
   <section class="jf-loja-hero">
     <div class="jf-loja-hero-inner">
@@ -31,7 +29,6 @@ const estoque = veiculos.slice(0, 8);
         <div class="jf-loja-head-text">
           <div class="jf-loja-title-row">
             <h1 class="jf-loja-title">{nomeSite}</h1>
-            <span class="jf-loja-verified">✓ Loja verificada</span>
           </div>
           {loja && (
             <div class="jf-loja-meta">
@@ -69,6 +66,14 @@ const estoque = veiculos.slice(0, 8);
       <div>
         <h2 class="jf-h2b">Sobre a {nomeSite}</h2>
         <p class="jf-sobre-text">{loja?.sobre}</p>
+        {loja?.historia && (
+          <>
+            <button type="button" id="jf-historia-toggle" class="jf-historia-toggle" aria-expanded="false" aria-controls="jf-historia-text">
+              Conheça nossa história →
+            </button>
+            <p class="jf-sobre-text jf-historia-text" id="jf-historia-text" hidden>{loja.historia}</p>
+          </>
+        )}
       </div>
       <div class="jf-sobre-card">
         <div class="jf-sobre-item"><span class="jf-check">✓</span> Financiamento próprio e via bancos</div>
@@ -100,23 +105,18 @@ const estoque = veiculos.slice(0, 8);
       </div>
     </section>
   )}
-
-  <!-- ESTOQUE -->
-  <section class="jf-loja-section">
-    <div class="jf-estoque-head">
-      <h2 class="jf-h2b">Estoque da loja</h2>
-      <span class="jf-estoque-count">{totalVeiculos} veículos</span>
-    </div>
-    <div class="jf-g4">
-      {estoque.map((v) => <VehicleCard vehicle={v} />)}
-    </div>
-    {totalVeiculos > estoque.length && (
-      <div class="jf-estoque-more">
-        <Button href="/veiculos" variant="outline">Ver todo o estoque →</Button>
-      </div>
-    )}
-  </section>
 </BaseLayout>
+
+<script>
+  const historiaToggle = document.getElementById('jf-historia-toggle');
+  const historiaText = document.getElementById('jf-historia-text');
+  historiaToggle?.addEventListener('click', () => {
+    const isHidden = historiaText?.hidden;
+    if (historiaText) historiaText.hidden = !isHidden;
+    historiaToggle.setAttribute('aria-expanded', String(!!isHidden));
+    historiaToggle.textContent = isHidden ? 'Conheça nossa história ↑' : 'Conheça nossa história →';
+  });
+</script>
 
 <style>
   .jf-loja-hero { position: relative; background: linear-gradient(180deg, var(--black-950), var(--black-900)); }
@@ -125,10 +125,6 @@ const estoque = veiculos.slice(0, 8);
   .jf-loja-head-text { flex: 1; padding-bottom: 6px; }
   .jf-loja-title-row { display: flex; align-items: center; gap: 10px; flex-wrap: wrap; }
   .jf-loja-title { font: 700 30px var(--font-display); color: var(--white); letter-spacing: -.7px; margin: 0; }
-  .jf-loja-verified {
-    display: inline-flex; align-items: center; gap: 5px; background: var(--accent-soft); color: var(--accent-strong);
-    font-size: 12px; font-weight: 700; padding: 4px 10px; border-radius: var(--radius-full);
-  }
   .jf-loja-meta { display: flex; align-items: center; gap: 16px; margin-top: 8px; flex-wrap: wrap; color: var(--text-on-dark-secondary); font-size: 14px; }
   .jf-loja-rating { color: var(--accent-on-dark); font-weight: 800; }
   .jf-loja-actions { display: flex; gap: 10px; padding-bottom: 6px; }
@@ -149,6 +145,12 @@ const estoque = veiculos.slice(0, 8);
 
   .jf-sobre { display: grid; grid-template-columns: 1.7fr 1fr; gap: 26px; align-items: start; }
   .jf-sobre-text { font: var(--text-body-lg); color: var(--text-secondary); line-height: 1.75; margin: 0; }
+  .jf-historia-toggle {
+    display: inline-flex; margin-top: 14px; background: none; border: none; padding: 0; cursor: pointer;
+    font-weight: 700; font-size: 15px; color: var(--accent-strong);
+  }
+  .jf-historia-toggle:hover { color: var(--accent); }
+  .jf-historia-text { margin-top: 14px; }
   .jf-sobre-card {
     background: var(--white); border: 1px solid var(--border-default); border-radius: var(--radius-lg);
     box-shadow: var(--shadow-card); padding: 22px; display: flex; flex-direction: column; gap: 14px;
@@ -165,16 +167,11 @@ const estoque = veiculos.slice(0, 8);
   .jf-avaliacao-name { font-weight: 700; font-size: 14px; }
   .jf-avaliacao-local { font-size: 12.5px; color: var(--text-tertiary); }
 
-  .jf-estoque-head { display: flex; align-items: baseline; justify-content: space-between; margin-bottom: 18px; }
-  .jf-estoque-count { font-size: 14px; color: var(--text-secondary); }
-  .jf-g4 { display: grid; grid-template-columns: repeat(4, 1fr); gap: 18px; }
-  .jf-estoque-more { display: flex; justify-content: center; margin-top: 24px; padding-bottom: 20px; }
-
   @media (max-width: 980px) {
     .jf-sobre { grid-template-columns: 1fr; }
-    .jf-g4stat, .jf-g4 { grid-template-columns: 1fr 1fr; }
+    .jf-g4stat { grid-template-columns: 1fr 1fr; }
   }
   @media (max-width: 620px) {
-    .jf-g4stat, .jf-g4, .jf-g3 { grid-template-columns: 1fr; }
+    .jf-g4stat, .jf-g3 { grid-template-columns: 1fr; }
   }
 </style>

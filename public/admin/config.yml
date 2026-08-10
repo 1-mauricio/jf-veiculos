@@ -96,6 +96,7 @@ collections:
           - { label: "Número de avaliações", name: "numAvaliacoes", widget: "number", value_type: "int", min: 0 }
           - { label: "Ano de fundação", name: "anoFundacao", widget: "number", value_type: "int" }
           - { label: "Texto 'Sobre a loja'", name: "sobre", widget: "text" }
+          - { label: "Nossa história", name: "historia", widget: "text", required: false, hint: "Texto exibido ao clicar em 'Conheça nossa história' na página Nossa loja" }
           - { label: "CNPJ", name: "cnpj", widget: "string" }
 
   - name: "site"

@@ -48,6 +48,13 @@ export function initListagem() {
   const anoVal = document.getElementById('jf-ano-val');
   const kmVal = document.getElementById('jf-km-val');
   const limparBtns = [document.getElementById('jf-limpar'), document.getElementById('jf-limpar-2')];
+  const filtersAside = document.getElementById('jf-filters');
+  const filtersToggle = document.getElementById('jf-filters-toggle');
+
+  filtersToggle?.addEventListener('click', () => {
+    const isOpen = filtersAside?.classList.toggle('is-open');
+    filtersToggle.setAttribute('aria-expanded', String(!!isOpen));
+  });
 
   const params = new URLSearchParams(window.location.search);
   const state: Filtros = {

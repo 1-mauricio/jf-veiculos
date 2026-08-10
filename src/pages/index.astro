@@ -81,7 +81,7 @@ const vendaHref = loja ? whatsappLink(loja.whatsapp, 'Olá! Quero avaliar meu ve
 
   <!-- CATEGORIAS -->
   <section class="jf-section">
-    <div class="jf-g4 jf-cat-grid">
+    <div class="jf-cat-carousel jf-scroll">
       <a href="/veiculos?tipo=carro" class="jf-cat-card">
         <div class="jf-cat-icon"><Icon name="car" size={21} color="var(--text-primary)" /></div>
         <div class="jf-cat-title">Carros</div>
@@ -94,13 +94,8 @@ const vendaHref = loja ? whatsappLink(loja.whatsapp, 'Olá! Quero avaliar meu ve
       </a>
       <a href="/veiculos" class="jf-cat-card">
         <div class="jf-cat-icon"><Icon name="check" size={21} color="var(--text-primary)" /></div>
-        <div class="jf-cat-title">Seminovos</div>
+        <div class="jf-cat-title">Estoque</div>
         <div class="jf-cat-sub">Revisados e garantidos</div>
-      </a>
-      <a href="/veiculos?sort=menor" class="jf-cat-card jf-cat-card-accent">
-        <div class="jf-cat-icon jf-cat-icon-accent"><Icon name="star" size={21} color="var(--accent-strong)" /></div>
-        <div class="jf-cat-title jf-cat-title-accent">Ofertas</div>
-        <div class="jf-cat-sub jf-cat-sub-accent">Condições da semana</div>
       </a>
     </div>
   </section>
@@ -225,7 +220,7 @@ const vendaHref = loja ? whatsappLink(loja.whatsapp, 'Olá! Quero avaliar meu ve
   .jf-quick-field input { cursor: text; }
   .jf-quick-btn {
     border: none; background: var(--black-900); color: var(--white); font-weight: 700; font-size: 15px;
-    border-radius: var(--radius-md); padding: 0 28px; cursor: pointer; display: flex; align-items: center; gap: 9px;
+    border-radius: var(--radius-md); padding: 14px 28px; cursor: pointer; display: flex; align-items: center; justify-content: center; gap: 9px;
     transition: background var(--dur-base) var(--ease-standard);
   }
   .jf-quick-btn:hover { background: var(--black-800); }
@@ -245,21 +240,18 @@ const vendaHref = loja ? whatsappLink(loja.whatsapp, 'Olá! Quero avaliar meu ve
   .jf-g4, .jf-g3 { display: grid; gap: 18px; }
   .jf-g4 { grid-template-columns: repeat(4, 1fr); }
   .jf-g3 { grid-template-columns: repeat(3, 1fr); }
-  .jf-cat-grid { gap: 16px; }
 
+  .jf-cat-carousel { display: flex; gap: 16px; overflow-x: auto; scroll-snap-type: x mandatory; padding-bottom: 4px; }
   .jf-cat-card {
+    flex: 1 1 0; scroll-snap-align: start;
     border-radius: var(--radius-lg); border: 1px solid var(--border-default); background: var(--white);
-    box-shadow: var(--shadow-card); padding: 24px; min-height: 132px; color: inherit;
+    box-shadow: var(--shadow-card); padding: 24px; min-height: 132px; min-width: 200px; color: inherit;
     transition: box-shadow var(--dur-base) var(--ease-standard);
   }
   .jf-cat-card:hover { box-shadow: var(--shadow-raised); }
-  .jf-cat-card-accent { border-color: var(--accent-soft); background: var(--accent-soft); }
   .jf-cat-icon { width: 44px; height: 44px; border-radius: var(--radius-full); background: var(--gray-100); display: flex; align-items: center; justify-content: center; }
-  .jf-cat-icon-accent { background: var(--white); }
   .jf-cat-title { font: 700 18px var(--font-display); margin-top: 14px; }
-  .jf-cat-title-accent { color: var(--accent-strong); }
   .jf-cat-sub { font-size: 13px; color: var(--text-secondary); margin-top: 3px; }
-  .jf-cat-sub-accent { color: var(--accent-strong); }
 
   .jf-vantagens { border-radius: var(--radius-xl); border: 1px solid var(--border-default); background: var(--white); box-shadow: var(--shadow-card); padding: 44px; }
   .jf-vantagem { display: flex; gap: 16px; align-items: flex-start; }

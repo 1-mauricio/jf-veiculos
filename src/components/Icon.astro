@@ -1,6 +1,6 @@
 ---
 interface Props {
-  name: 'search' | 'car' | 'gauge' | 'check' | 'star' | 'cart' | 'shield' | 'heart' | 'chevron-left' | 'chevron-right' | 'instagram';
+  name: 'search' | 'car' | 'gauge' | 'check' | 'star' | 'cart' | 'shield' | 'heart' | 'chevron-left' | 'chevron-right' | 'instagram' | 'menu' | 'x';
   size?: number;
   color?: string;
 }
@@ -19,6 +19,8 @@ const paths: Record<Props['name'], string> = {
   'chevron-left': '<path d="m14.5 5-7 7 7 7"/>',
   'chevron-right': '<path d="m9.5 5 7 7-7 7"/>',
   instagram: '<rect x="2" y="2" width="20" height="20" rx="5" ry="5"/><path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z"/><line x1="17.5" y1="6.5" x2="17.51" y2="6.5"/>',
+  menu: '<line x1="3" y1="6" x2="21" y2="6"/><line x1="3" y1="12" x2="21" y2="12"/><line x1="3" y1="18" x2="21" y2="18"/>',
+  x: '<line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/>',
 };
 ---
 

@@ -54,6 +54,7 @@ const loja = defineCollection({
     numAvaliacoes: z.number(),
     anoFundacao: z.number(),
     sobre: z.string(),
+    historia: z.string().optional(),
     cnpj: z.string(),
   }),
 });
