@@ -114,8 +114,8 @@ const placeholderAngle = hashAngle(vehicle.id);
     border-radius: var(--radius-full); background: rgba(255, 255, 255, .92); border: none;
     display: flex; align-items: center; justify-content: center; cursor: pointer; box-shadow: var(--shadow-card);
   }
-  .jf-card-fav svg { fill: none; stroke: var(--text-tertiary); transition: fill var(--dur-fast) var(--ease-standard), stroke var(--dur-fast) var(--ease-standard); }
-  .jf-card-fav.is-active svg { fill: var(--accent); stroke: var(--accent); }
+  .jf-card-fav :global(svg) { fill: none; stroke: var(--text-tertiary); transition: fill var(--dur-fast) var(--ease-standard), stroke var(--dur-fast) var(--ease-standard); }
+  .jf-card-fav.is-active :global(svg) { fill: var(--accent); stroke: var(--accent); }
   .jf-badge { font-size: 10.5px; font-weight: 700; padding: 4px 9px; border-radius: var(--radius-full); letter-spacing: .3px; color: var(--white); }
   .jf-badge-accent { background: var(--accent); }
   .jf-badge-dark { background: var(--black-900); }

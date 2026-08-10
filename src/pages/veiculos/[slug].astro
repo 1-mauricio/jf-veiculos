@@ -314,9 +314,9 @@ const parcelaInicial = (() => {
     background: var(--white); border: 1px solid var(--border-default); color: var(--text-secondary);
     font-weight: 700; font-size: 14px; padding: 12px; border-radius: var(--radius-full); cursor: pointer;
   }
-  .jf-fav-btn svg { fill: none; stroke: currentColor; transition: fill var(--dur-fast) var(--ease-standard); }
+  .jf-fav-btn :global(svg) { fill: none; stroke: currentColor; transition: fill var(--dur-fast) var(--ease-standard); }
   .jf-fav-btn.is-active { color: var(--accent); border-color: var(--accent-soft); background: var(--accent-soft); }
-  .jf-fav-btn.is-active svg { fill: var(--accent); }
+  .jf-fav-btn.is-active :global(svg) { fill: var(--accent); }
 
   .jf-sim-row { display: flex; justify-content: space-between; margin-bottom: 10px; }
   .jf-sim-row-top { margin-top: 20px; }

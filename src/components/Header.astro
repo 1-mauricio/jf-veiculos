@@ -98,8 +98,8 @@ const anunciarHref = loja
     transition: background var(--dur-base) var(--ease-standard), color var(--dur-base) var(--ease-standard);
   }
   .jf-fav-nav:hover { background: var(--gray-100); color: var(--text-primary); }
-  .jf-fav-nav svg { fill: none; stroke: currentColor; }
-  .jf-fav-nav.has-favs svg { fill: var(--accent); stroke: var(--accent); }
+  .jf-fav-nav :global(svg) { fill: none; stroke: currentColor; }
+  .jf-fav-nav.has-favs :global(svg) { fill: var(--accent); stroke: var(--accent); }
   .jf-fav-count {
     position: absolute; top: -2px; right: -2px; min-width: 16px; height: 16px; padding: 0 3px;
     border-radius: var(--radius-full); background: var(--accent); color: var(--white);
