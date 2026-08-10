@@ -2,4 +2,4 @@ User-agent: *
 Allow: /
 Disallow: /admin/
 
-Sitemap: https://jfveiculos.example.com/sitemap-index.xml
+Sitemap: https://jf-veiculos.netlify.app/sitemap-index.xml
