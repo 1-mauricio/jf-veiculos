@@ -2,7 +2,7 @@
 import { getCollection } from 'astro:content';
 import Icon from './Icon.astro';
 import Logo from './Logo.astro';
-import { whatsappLink } from '../lib/format';
+import { whatsappLink, formatPhone } from '../lib/format';
 
 const lojaEntries = await getCollection('loja');
 const loja = lojaEntries[0]?.data;
@@ -47,7 +47,7 @@ const year = new Date().getFullYear();
       <div class="jf-foot-title">Atendimento</div>
       <div class="jf-foot-links">
         {loja && <span>{loja.horarios}</span>}
-        {loja?.telefoneFixo && <span class="jf-foot-phone">{loja.telefoneFixo}</span>}
+        {loja?.whatsapp && <span class="jf-foot-phone">{formatPhone(loja.whatsapp)}</span>}
         <a href={whatsappHref} target="_blank" rel="noopener" class="jf-foot-whatsapp">WhatsApp</a>
       </div>
     </div>

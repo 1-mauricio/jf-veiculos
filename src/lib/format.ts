@@ -21,3 +21,13 @@ export function parcelaEstimada(preco: number): string {
 export function whatsappLink(numero: string, mensagem: string): string {
   return `https://wa.me/${numero}?text=${encodeURIComponent(mensagem)}`;
 }
+
+/** Formata um número (com ou sem DDI 55) como "(DDD) XXXXX-XXXX" para exibição. */
+export function formatPhone(numero: string): string {
+  const digitos = numero.replace(/\D/g, '');
+  const semDDI = digitos.startsWith('55') && digitos.length > 11 ? digitos.slice(2) : digitos;
+  const ddd = semDDI.slice(0, 2);
+  const resto = semDDI.slice(2);
+  const corte = resto.length > 8 ? 5 : 4;
+  return `(${ddd}) ${resto.slice(0, corte)}-${resto.slice(corte)}`;
+}
