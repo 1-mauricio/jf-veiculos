@@ -1,17 +1,17 @@
 {
   "nomeSite": "JF Veículos",
-  "tagline": "seu seminovo de confiança",
-  "heroTituloInicio": "Seu próximo carro começa",
-  "heroTituloDestaque": "aqui",
-  "heroSubtitulo": "Carros e motos seminovos com inspeção veicular completa, garantia e financiamento aprovado na hora. Sem pegadinha.",
-  "vantagem1Titulo": "Financiamento facilitado",
   "vantagem1Desc": "Parcelas em até 60x, aprovação em minutos e as menores taxas do mercado. Simule sem compromisso.",
-  "vantagem2Titulo": "Garantia de verdade",
   "vantagem2Desc": "Todo veículo sai com garantia de motor e câmbio. Se der problema coberto, a gente resolve.",
-  "vantagem3Titulo": "Inspeção veicular",
   "vantagem3Desc": "Laudo cautelar e checagem de 220 itens em cada carro. Você sabe exatamente o que está comprando.",
-  "ctaFinalTitulo": "Quer vender ou trocar o seu?",
-  "ctaFinalTexto": "Avaliamos seu veículo na hora e você sai daqui com o próximo.",
+  "vantagem1Titulo": "Financiamento facilitado",
+  "vantagem2Titulo": "Garantia de verdade",
+  "vantagem3Titulo": "Inspeção veicular",
+  "tagline": "seu seminovo de confiança",
+  "footerDescricao": "Seminovos revisados, com procedência garantida e as melhores condições de financiamento do mercado. Compre com segurança.",
   "ctaFinalBotao": "Anunciar meu veículo",
-  "footerDescricao": "Seminovos revisados, com procedência garantida e as melhores condições de financiamento do mercado. Compre com segurança."
+  "heroTituloDestaque": "sonhos",
+  "heroTituloInicio": "Realizando",
+  "ctaFinalTexto": "Avaliamos seu veículo na hora e você sai daqui com o próximo.",
+  "ctaFinalTitulo": "Quer vender ou trocar o seu?",
+  "heroSubtitulo": "Carros e motos seminovos com inspeção veicular completa, garantia e financiamento aprovado na hora. Sem pegadinha."
 }
