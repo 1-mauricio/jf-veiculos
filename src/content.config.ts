@@ -58,4 +58,26 @@ const loja = defineCollection({
   }),
 });
 
-export const collections = { veiculos, depoimentos, loja };
+const site = defineCollection({
+  loader: glob({ pattern: '**/*.json', base: './src/content/site' }),
+  schema: z.object({
+    logo: z.string().optional(),
+    nomeSite: z.string().default('JF Veículos'),
+    tagline: z.string().default('seu seminovo de confiança'),
+    heroTituloInicio: z.string(),
+    heroTituloDestaque: z.string(),
+    heroSubtitulo: z.string(),
+    vantagem1Titulo: z.string(),
+    vantagem1Desc: z.string(),
+    vantagem2Titulo: z.string(),
+    vantagem2Desc: z.string(),
+    vantagem3Titulo: z.string(),
+    vantagem3Desc: z.string(),
+    ctaFinalTitulo: z.string(),
+    ctaFinalTexto: z.string(),
+    ctaFinalBotao: z.string(),
+    footerDescricao: z.string(),
+  }),
+});
+
+export const collections = { veiculos, depoimentos, loja, site };

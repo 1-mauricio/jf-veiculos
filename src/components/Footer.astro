@@ -1,11 +1,15 @@
 ---
 import { getCollection } from 'astro:content';
 import Icon from './Icon.astro';
+import Logo from './Logo.astro';
 import { whatsappLink } from '../lib/format';
 
 const lojaEntries = await getCollection('loja');
 const loja = lojaEntries[0]?.data;
-const whatsappHref = loja ? whatsappLink(loja.whatsapp, 'Olá! Vim pelo site da JF Veículos.') : '#';
+const siteEntries = await getCollection('site');
+const site = siteEntries[0]?.data;
+const nomeSite = site?.nomeSite ?? 'JF Veículos';
+const whatsappHref = loja ? whatsappLink(loja.whatsapp, `Olá! Vim pelo site da ${nomeSite}.`) : '#';
 const instagramHref = loja?.instagram ? `https://instagram.com/${loja.instagram}` : null;
 const year = new Date().getFullYear();
 ---
@@ -14,12 +18,12 @@ const year = new Date().getFullYear();
   <div class="jf-foot">
     <div>
       <div class="jf-foot-brand">
-        <div class="jf-foot-mark">JF</div>
-        <span class="jf-foot-name">JF Veículos</span>
+        <Logo size={34} radius="var(--radius-sm)" />
+        <span class="jf-foot-name">{nomeSite}</span>
       </div>
-      <p class="jf-foot-desc">Seminovos revisados, com procedência garantida e as melhores condições de financiamento do mercado. Compre com segurança.</p>
+      <p class="jf-foot-desc">{site?.footerDescricao}</p>
       {instagramHref && (
-        <a href={instagramHref} target="_blank" rel="noopener" class="jf-foot-social" aria-label="Instagram da JF Veículos">
+        <a href={instagramHref} target="_blank" rel="noopener" class="jf-foot-social" aria-label={`Instagram da ${nomeSite}`}>
           <Icon name="instagram" size={18} />
           <span>@{loja?.instagram}</span>
         </a>
@@ -54,7 +58,7 @@ const year = new Date().getFullYear();
   </div>
   <div class="jf-foot-bottom-wrap">
     <div class="jf-foot-bottom">
-      <span>© {year} JF Veículos. Todos os direitos reservados. {loja && `CNPJ ${loja.cnpj}.`}</span>
+      <span>© {year} {nomeSite}. Todos os direitos reservados. {loja && `CNPJ ${loja.cnpj}.`}</span>
       <span>Termos de uso · Política de privacidade</span>
     </div>
   </div>
@@ -75,11 +79,6 @@ const year = new Date().getFullYear();
     gap: 40px;
   }
   .jf-foot-brand { display: flex; align-items: center; gap: 10px; margin-bottom: 16px; }
-  .jf-foot-mark {
-    width: 34px; height: 34px; border-radius: var(--radius-sm); background: var(--accent);
-    display: flex; align-items: center; justify-content: center;
-    font: 700 15px var(--font-display); color: var(--white);
-  }
   .jf-foot-name { font: 700 17px var(--font-display); color: var(--white); }
   .jf-foot-desc { color: var(--gray-400); font-size: 14px; line-height: 1.7; max-width: 300px; margin: 0 0 16px; }
   .jf-foot-social {

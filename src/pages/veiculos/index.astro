@@ -8,9 +8,11 @@ import { brl } from '../../lib/format';
 const veiculos = await getCollection('veiculos');
 const marcas = [...new Set(veiculos.map((v) => v.data.marca))].sort();
 const cores = [...new Set(veiculos.map((v) => v.data.cor))].sort();
+const siteEntries = await getCollection('site');
+const nomeSite = siteEntries[0]?.data.nomeSite ?? 'JF Veículos';
 ---
 
-<BaseLayout title="Veículos" description="Todos os carros e motos seminovos disponíveis na JF Veículos, com filtros por marca, preço, ano, km, câmbio e combustível.">
+<BaseLayout title="Veículos" description={`Todos os carros e motos seminovos disponíveis na ${nomeSite}, com filtros por marca, preço, ano, km, câmbio e combustível.`}>
   <div class="jf-listagem-wrap">
     <div class="jf-breadcrumb"><a href="/">Início</a> <span>›</span> <span id="jf-titulo-crumb">Todos os veículos</span></div>
 

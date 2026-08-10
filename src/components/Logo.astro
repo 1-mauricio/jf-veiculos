@@ -1,0 +1,31 @@
+---
+import { getCollection } from 'astro:content';
+
+interface Props {
+  size?: number;
+  radius?: string;
+}
+
+const { size = 40, radius = 'var(--radius-md)' } = Astro.props;
+
+const siteEntries = await getCollection('site');
+const site = siteEntries[0]?.data;
+const nomeSite = site?.nomeSite ?? 'JF Veículos';
+const primeiraPalavra = nomeSite.split(' ')[0] ?? 'JF';
+const iniciais = (primeiraPalavra.length <= 3 ? primeiraPalavra : primeiraPalavra.slice(0, 2)).toUpperCase();
+const fontSize = Math.round(size * 0.475);
+---
+
+{site?.logo ? (
+  <img
+    src={site.logo}
+    alt={nomeSite}
+    width={size}
+    height={size}
+    style={`width:${size}px;height:${size}px;border-radius:${radius};object-fit:cover;flex-shrink:0;`}
+  />
+) : (
+  <div
+    style={`width:${size}px;height:${size}px;border-radius:${radius};background:var(--accent);display:flex;align-items:center;justify-content:center;font:700 ${fontSize}px var(--font-display);color:var(--white);letter-spacing:-1px;flex-shrink:0;`}
+  >{iniciais}</div>
+)}

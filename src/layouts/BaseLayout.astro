@@ -1,4 +1,5 @@
 ---
+import { getCollection } from 'astro:content';
 import Header from '../components/Header.astro';
 import Footer from '../components/Footer.astro';
 import '../styles/global.css';
@@ -15,7 +16,9 @@ const {
   image,
 } = Astro.props;
 
-const fullTitle = title === 'JF Veículos' ? title : `${title} · JF Veículos`;
+const siteEntries = await getCollection('site');
+const nomeSite = siteEntries[0]?.data.nomeSite ?? 'JF Veículos';
+const fullTitle = title === nomeSite ? title : `${title} · ${nomeSite}`;
 const canonicalURL = new URL(Astro.url.pathname, Astro.site);
 ---
 

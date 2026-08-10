@@ -10,6 +10,8 @@ const veiculos = await getCollection('veiculos');
 const depoimentos = await getCollection('depoimentos');
 const lojaEntries = await getCollection('loja');
 const loja = lojaEntries[0]?.data;
+const siteEntries = await getCollection('site');
+const site = siteEntries[0]?.data;
 
 const totalVeiculos = veiculos.length;
 const catCarros = veiculos.filter((v) => v.data.tipo === 'carro').length;
@@ -20,7 +22,7 @@ const marcas = [...new Set(veiculos.map((v) => v.data.marca))].sort();
 const vendaHref = loja ? whatsappLink(loja.whatsapp, 'Olá! Quero avaliar meu veículo para venda ou troca.') : '/loja';
 ---
 
-<BaseLayout title="JF Veículos">
+<BaseLayout title={site?.nomeSite ?? 'JF Veículos'}>
   <!-- HERO -->
   <section class="jf-hero">
     <div class="jf-hero-inner">
@@ -29,8 +31,8 @@ const vendaHref = loja ? whatsappLink(loja.whatsapp, 'Olá! Quero avaliar meu ve
           <span class="jf-hero-dot"></span>
           <span>+{totalVeiculos} seminovos revisados e com procedência</span>
         </div>
-        <h1 class="jf-h1 jf-hero-title">Seu próximo carro<br />começa <span class="jf-accent-text">aqui</span>.</h1>
-        <p class="jf-hero-sub">Carros e motos seminovos com inspeção veicular completa, garantia e financiamento aprovado na hora. Sem pegadinha.</p>
+        <h1 class="jf-h1 jf-hero-title">{site?.heroTituloInicio} <span class="jf-accent-text">{site?.heroTituloDestaque}</span>.</h1>
+        <p class="jf-hero-sub">{site?.heroSubtitulo}</p>
       </div>
 
       <form class="jf-quick" method="GET" action="/veiculos">
@@ -125,22 +127,22 @@ const vendaHref = loja ? whatsappLink(loja.whatsapp, 'Olá! Quero avaliar meu ve
       <div class="jf-vantagem">
         <div class="jf-vantagem-icon"><Icon name="cart" size={23} color="var(--text-primary)" /></div>
         <div>
-          <h3 class="jf-h3">Financiamento facilitado</h3>
-          <p class="jf-p">Parcelas em até 60x, aprovação em minutos e as menores taxas do mercado. Simule sem compromisso.</p>
+          <h3 class="jf-h3">{site?.vantagem1Titulo}</h3>
+          <p class="jf-p">{site?.vantagem1Desc}</p>
         </div>
       </div>
       <div class="jf-vantagem">
         <div class="jf-vantagem-icon"><Icon name="shield" size={23} color="var(--text-primary)" /></div>
         <div>
-          <h3 class="jf-h3">Garantia de verdade</h3>
-          <p class="jf-p">Todo veículo sai com garantia de motor e câmbio. Se der problema coberto, a gente resolve.</p>
+          <h3 class="jf-h3">{site?.vantagem2Titulo}</h3>
+          <p class="jf-p">{site?.vantagem2Desc}</p>
         </div>
       </div>
       <div class="jf-vantagem">
         <div class="jf-vantagem-icon"><Icon name="gauge" size={23} color="var(--text-primary)" /></div>
         <div>
-          <h3 class="jf-h3">Inspeção veicular</h3>
-          <p class="jf-p">Laudo cautelar e checagem de 220 itens em cada carro. Você sabe exatamente o que está comprando.</p>
+          <h3 class="jf-h3">{site?.vantagem3Titulo}</h3>
+          <p class="jf-p">{site?.vantagem3Desc}</p>
         </div>
       </div>
     </div>
@@ -177,10 +179,10 @@ const vendaHref = loja ? whatsappLink(loja.whatsapp, 'Olá! Quero avaliar meu ve
   <section class="jf-section jf-section-cta">
     <div class="jf-cta">
       <div>
-        <h2 class="jf-cta-title">Quer vender ou trocar o seu?</h2>
-        <p class="jf-cta-sub">Avaliamos seu veículo na hora e você sai daqui com o próximo.</p>
+        <h2 class="jf-cta-title">{site?.ctaFinalTitulo}</h2>
+        <p class="jf-cta-sub">{site?.ctaFinalTexto}</p>
       </div>
-      <Button href={vendaHref} target="_blank" variant="white">Anunciar meu veículo</Button>
+      <Button href={vendaHref} target="_blank" variant="white">{site?.ctaFinalBotao}</Button>
     </div>
   </section>
 </BaseLayout>

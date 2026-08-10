@@ -97,3 +97,27 @@ collections:
           - { label: "Ano de fundação", name: "anoFundacao", widget: "number", value_type: "int" }
           - { label: "Texto 'Sobre a loja'", name: "sobre", widget: "text" }
           - { label: "CNPJ", name: "cnpj", widget: "string" }
+
+  - name: "site"
+    label: "Site"
+    files:
+      - name: "site"
+        label: "Textos e logo do site"
+        file: "src/content/site/site.json"
+        fields:
+          - { label: "Logo", name: "logo", widget: "image", required: false, hint: "Se não enviar, o site usa as iniciais do nome em um quadrado colorido." }
+          - { label: "Nome do site", name: "nomeSite", widget: "string" }
+          - { label: "Frase abaixo do nome (header)", name: "tagline", widget: "string" }
+          - { label: "Título do banner (início da frase)", name: "heroTituloInicio", widget: "string", hint: "Ex: Seu próximo carro começa" }
+          - { label: "Título do banner (palavra em destaque)", name: "heroTituloDestaque", widget: "string", hint: "Ex: aqui" }
+          - { label: "Subtítulo do banner", name: "heroSubtitulo", widget: "text" }
+          - { label: "Vantagem 1 — título", name: "vantagem1Titulo", widget: "string" }
+          - { label: "Vantagem 1 — descrição", name: "vantagem1Desc", widget: "text" }
+          - { label: "Vantagem 2 — título", name: "vantagem2Titulo", widget: "string" }
+          - { label: "Vantagem 2 — descrição", name: "vantagem2Desc", widget: "text" }
+          - { label: "Vantagem 3 — título", name: "vantagem3Titulo", widget: "string" }
+          - { label: "Vantagem 3 — descrição", name: "vantagem3Desc", widget: "text" }
+          - { label: "CTA final — título", name: "ctaFinalTitulo", widget: "string" }
+          - { label: "CTA final — texto", name: "ctaFinalTexto", widget: "text" }
+          - { label: "CTA final — texto do botão", name: "ctaFinalBotao", widget: "string" }
+          - { label: "Descrição no rodapé", name: "footerDescricao", widget: "text" }

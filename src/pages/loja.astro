@@ -4,29 +4,33 @@ import BaseLayout from '../layouts/BaseLayout.astro';
 import VehicleCard from '../components/VehicleCard.astro';
 import Button from '../components/Button.astro';
 import Icon from '../components/Icon.astro';
+import Logo from '../components/Logo.astro';
 import { whatsappLink } from '../lib/format';
 
 const veiculos = await getCollection('veiculos');
 const depoimentos = await getCollection('depoimentos');
 const lojaEntries = await getCollection('loja');
 const loja = lojaEntries[0]?.data;
+const siteEntries = await getCollection('site');
+const site = siteEntries[0]?.data;
+const nomeSite = site?.nomeSite ?? 'JF Veículos';
 
 const totalVeiculos = veiculos.length;
 const anosDeMercado = loja ? new Date().getFullYear() - loja.anoFundacao : null;
-const whatsappHref = loja ? whatsappLink(loja.whatsapp, 'Olá! Vim pelo site da JF Veículos.') : '#';
+const whatsappHref = loja ? whatsappLink(loja.whatsapp, `Olá! Vim pelo site da ${nomeSite}.`) : '#';
 const instagramHref = loja?.instagram ? `https://instagram.com/${loja.instagram}` : null;
 const estoque = veiculos.slice(0, 8);
 ---
 
-<BaseLayout title="Nossa loja" description="Conheça a JF Veículos: loja verificada, seminovos revisados e as melhores condições de financiamento.">
+<BaseLayout title="Nossa loja" description={`Conheça a ${nomeSite}: loja verificada, seminovos revisados e as melhores condições de financiamento.`}>
   <!-- HERO LOJA -->
   <section class="jf-loja-hero">
     <div class="jf-loja-hero-inner">
       <div class="jf-loja-head">
-        <div class="jf-loja-mark">JF</div>
+        <Logo size={110} radius="var(--radius-lg)" />
         <div class="jf-loja-head-text">
           <div class="jf-loja-title-row">
-            <h1 class="jf-loja-title">JF Veículos</h1>
+            <h1 class="jf-loja-title">{nomeSite}</h1>
             <span class="jf-loja-verified">✓ Loja verificada</span>
           </div>
           {loja && (
@@ -43,7 +47,7 @@ const estoque = veiculos.slice(0, 8);
         <div class="jf-loja-actions">
           <Button href={whatsappHref} target="_blank" variant="whatsapp">WhatsApp</Button>
           {instagramHref && (
-            <a href={instagramHref} target="_blank" rel="noopener" class="jf-loja-instagram" aria-label="Instagram da JF Veículos">
+            <a href={instagramHref} target="_blank" rel="noopener" class="jf-loja-instagram" aria-label={`Instagram da ${nomeSite}`}>
               <Icon name="instagram" size={18} color="var(--white)" />
             </a>
           )}
@@ -64,7 +68,7 @@ const estoque = veiculos.slice(0, 8);
   <section class="jf-loja-section">
     <div class="jf-sobre">
       <div>
-        <h2 class="jf-h2b">Sobre a JF Veículos</h2>
+        <h2 class="jf-h2b">Sobre a {nomeSite}</h2>
         <p class="jf-sobre-text">{loja?.sobre}</p>
       </div>
       <div class="jf-sobre-card">
@@ -119,11 +123,6 @@ const estoque = veiculos.slice(0, 8);
   .jf-loja-hero { position: relative; background: linear-gradient(180deg, var(--black-950), var(--black-900)); }
   .jf-loja-hero-inner { max-width: 1240px; margin: 0 auto; padding: 48px 24px 0; }
   .jf-loja-head { display: flex; gap: 24px; align-items: flex-end; flex-wrap: wrap; }
-  .jf-loja-mark {
-    width: 110px; height: 110px; border-radius: var(--radius-lg); background: var(--accent);
-    display: flex; align-items: center; justify-content: center; flex-shrink: 0;
-    font: 700 42px var(--font-display); color: var(--white); letter-spacing: -1.5px;
-  }
   .jf-loja-head-text { flex: 1; padding-bottom: 6px; }
   .jf-loja-title-row { display: flex; align-items: center; gap: 10px; flex-wrap: wrap; }
   .jf-loja-title { font: 700 30px var(--font-display); color: var(--white); letter-spacing: -.7px; margin: 0; }

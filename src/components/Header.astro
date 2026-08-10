@@ -1,21 +1,24 @@
 ---
 import { getCollection } from 'astro:content';
+import Logo from './Logo.astro';
 import { whatsappLink } from '../lib/format';
 
 const lojaEntries = await getCollection('loja');
 const loja = lojaEntries[0]?.data;
+const siteEntries = await getCollection('site');
+const site = siteEntries[0]?.data;
 const anunciarHref = loja
-  ? whatsappLink(loja.whatsapp, 'Olá! Quero anunciar meu veículo na JF Veículos.')
+  ? whatsappLink(loja.whatsapp, `Olá! Quero anunciar meu veículo na ${site?.nomeSite ?? 'JF Veículos'}.`)
   : '/loja';
 ---
 
 <header class="jf-header">
   <div class="jf-header-inner">
     <a href="/" class="jf-brand">
-      <div class="jf-brand-mark">JF</div>
+      <Logo size={40} />
       <div class="jf-brand-text">
-        <div class="jf-brand-name">JF Veículos</div>
-        <div class="jf-brand-tag">seu seminovo de confiança</div>
+        <div class="jf-brand-name">{site?.nomeSite ?? 'JF Veículos'}</div>
+        <div class="jf-brand-tag">{site?.tagline ?? 'seu seminovo de confiança'}</div>
       </div>
     </a>
 
