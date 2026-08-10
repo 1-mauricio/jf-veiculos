@@ -1,0 +1,31 @@
+{
+  "nome": "Hyundai HB20 Comfort",
+  "marca": "Hyundai",
+  "modelo": "HB20",
+  "tipo": "carro",
+  "categoria": "Hatch",
+  "ano": 2023,
+  "anoModelo": 2023,
+  "preco": 79900,
+  "km": 22100,
+  "cambio": "Automático",
+  "combustivel": "Flex",
+  "cor": "Branco",
+  "cidade": "São Paulo",
+  "uf": "SP",
+  "destaque": true,
+  "lancamento": false,
+  "motor": "1.0 Turbo",
+  "potencia": "120 cv",
+  "portas": 4,
+  "descricao": "HB20 Comfort automático, design renovado e completo. Multimídia com espelhamento e ótimo espaço interno.",
+  "opcionais": [
+    "Multimídia 8\"",
+    "Ar digital",
+    "Câmera de ré",
+    "Chave presencial",
+    "Rodas de liga 15\"",
+    "6 airbags"
+  ],
+  "fotos": []
+}

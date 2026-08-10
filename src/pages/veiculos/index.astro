@@ -1,0 +1,201 @@
+---
+import { getCollection } from 'astro:content';
+import BaseLayout from '../../layouts/BaseLayout.astro';
+import VehicleCard from '../../components/VehicleCard.astro';
+import Icon from '../../components/Icon.astro';
+import { brl } from '../../lib/format';
+
+const veiculos = await getCollection('veiculos');
+const marcas = [...new Set(veiculos.map((v) => v.data.marca))].sort();
+const cores = [...new Set(veiculos.map((v) => v.data.cor))].sort();
+---
+
+<BaseLayout title="Veículos" description="Todos os carros e motos seminovos disponíveis na JF Veículos, com filtros por marca, preço, ano, km, câmbio e combustível.">
+  <div class="jf-listagem-wrap">
+    <div class="jf-breadcrumb"><a href="/">Início</a> <span>›</span> <span id="jf-titulo-crumb">Todos os veículos</span></div>
+
+    <div class="jf-listagem-head">
+      <div>
+        <h1 class="jf-h1" id="jf-titulo">Todos os veículos</h1>
+        <div class="jf-count" id="jf-count">{veiculos.length} veículos encontrados</div>
+      </div>
+      <div class="jf-sort-wrap">
+        <span class="jf-sort-label">Ordenar por</span>
+        <select id="jf-sort">
+          <option value="recentes">Mais recentes</option>
+          <option value="menor">Menor preço</option>
+          <option value="maior">Maior preço</option>
+          <option value="km">Menor km</option>
+        </select>
+      </div>
+    </div>
+
+    <div class="jf-list">
+      <!-- FILTROS -->
+      <aside class="jf-filters">
+        <div class="jf-filters-head">
+          <span class="jf-filters-title">Filtros</span>
+          <button type="button" id="jf-limpar" class="jf-limpar">Limpar</button>
+        </div>
+
+        <div class="jf-filter-group">
+          <div class="jf-filter-label" id="jf-tipo-label">Tipo</div>
+          <div class="jf-chips" data-chip-group="tipo" role="group" aria-labelledby="jf-tipo-label">
+            <button type="button" class="jf-chip-btn" data-value="todos">Todos</button>
+            <button type="button" class="jf-chip-btn" data-value="carro">Carros</button>
+            <button type="button" class="jf-chip-btn" data-value="moto">Motos</button>
+          </div>
+        </div>
+
+        <div class="jf-filter-group">
+          <label class="jf-filter-label" for="jf-marca">Marca</label>
+          <select id="jf-marca" class="jf-select">
+            <option value="todas">Todas as marcas</option>
+            {marcas.map((m) => <option value={m}>{m}</option>)}
+          </select>
+        </div>
+
+        <div class="jf-filter-group">
+          <div class="jf-filter-row"><label class="jf-filter-label" for="jf-preco">Preço até</label><span class="jf-filter-value" id="jf-preco-val">{brl(200000)}</span></div>
+          <input type="range" id="jf-preco" min="20000" max="200000" step="5000" value="200000" aria-describedby="jf-preco-val" />
+        </div>
+
+        <div class="jf-filter-group">
+          <div class="jf-filter-row"><label class="jf-filter-label" for="jf-ano">Ano mínimo</label><span class="jf-filter-value" id="jf-ano-val">2016</span></div>
+          <input type="range" id="jf-ano" min="2016" max="2024" step="1" value="2016" aria-describedby="jf-ano-val" />
+        </div>
+
+        <div class="jf-filter-group">
+          <div class="jf-filter-row"><label class="jf-filter-label" for="jf-km">Km até</label><span class="jf-filter-value" id="jf-km-val">120.000 km</span></div>
+          <input type="range" id="jf-km" min="0" max="120000" step="5000" value="120000" aria-describedby="jf-km-val" />
+        </div>
+
+        <div class="jf-filter-group">
+          <div class="jf-filter-label" id="jf-cambio-label">Câmbio</div>
+          <div class="jf-chips" data-chip-group="cambio" role="group" aria-labelledby="jf-cambio-label">
+            <button type="button" class="jf-chip-btn" data-value="todos">Todos</button>
+            <button type="button" class="jf-chip-btn" data-value="Automático">Automático</button>
+            <button type="button" class="jf-chip-btn" data-value="Manual">Manual</button>
+          </div>
+        </div>
+
+        <div class="jf-filter-group">
+          <div class="jf-filter-label" id="jf-combustivel-label">Combustível</div>
+          <div class="jf-chips" data-chip-group="combustivel" role="group" aria-labelledby="jf-combustivel-label">
+            <button type="button" class="jf-chip-btn" data-value="todos">Todos</button>
+            <button type="button" class="jf-chip-btn" data-value="Flex">Flex</button>
+            <button type="button" class="jf-chip-btn" data-value="Gasolina">Gasolina</button>
+            <button type="button" class="jf-chip-btn" data-value="Diesel">Diesel</button>
+          </div>
+        </div>
+
+        <div class="jf-filter-group">
+          <label class="jf-filter-label" for="jf-cor">Cor</label>
+          <select id="jf-cor" class="jf-select">
+            <option value="todas">Todas as cores</option>
+            {cores.map((c) => <option value={c}>{c}</option>)}
+          </select>
+        </div>
+      </aside>
+
+      <!-- GRID -->
+      <div>
+        <div class="jf-g3" id="jf-grid">
+          {veiculos.map((v) => (
+            <div
+              class="jf-grid-item"
+              data-vehicle-card
+              data-tipo={v.data.tipo}
+              data-marca={v.data.marca}
+              data-preco={v.data.preco}
+              data-ano={v.data.ano}
+              data-km={v.data.km}
+              data-cambio={v.data.cambio}
+              data-combustivel={v.data.combustivel}
+              data-cor={v.data.cor}
+              data-busca={`${v.data.nome} ${v.data.marca}`.toLowerCase()}
+            >
+              <VehicleCard vehicle={v} />
+            </div>
+          ))}
+        </div>
+        <div id="jf-empty" class="jf-empty" hidden>
+          <div class="jf-empty-icon"><Icon name="search" size={34} color="var(--text-tertiary)" /></div>
+          <div class="jf-empty-title">Nenhum veículo com esses filtros</div>
+          <div class="jf-empty-sub">Tente ampliar a faixa de preço ou limpar os filtros.</div>
+          <button type="button" id="jf-limpar-2" class="jf-empty-btn">Limpar filtros</button>
+        </div>
+      </div>
+    </div>
+  </div>
+</BaseLayout>
+
+<script>
+  import { initListagem } from '../../scripts/listagem';
+  initListagem();
+</script>
+
+<style>
+  .jf-listagem-wrap { max-width: 1240px; margin: 0 auto; padding: 30px 24px 20px; }
+  .jf-breadcrumb { font-size: 13px; color: var(--text-tertiary); margin-bottom: 18px; }
+  .jf-breadcrumb a { color: var(--text-tertiary); }
+  .jf-breadcrumb span:last-child { color: var(--text-secondary); }
+
+  .jf-listagem-head { display: flex; align-items: flex-end; justify-content: space-between; gap: 16px; flex-wrap: wrap; margin-bottom: 24px; }
+  .jf-h1 { font: 700 28px var(--font-display); letter-spacing: -.6px; margin: 0 0 4px; }
+  .jf-count { font-size: 14px; color: var(--text-secondary); }
+  .jf-sort-wrap { display: flex; align-items: center; gap: 10px; }
+  .jf-sort-label { font-size: 13px; color: var(--text-secondary); }
+  #jf-sort {
+    background: var(--white); border: 1px solid var(--border-default); color: var(--text-primary);
+    font-size: 14px; font-weight: 600; padding: 10px 14px; border-radius: var(--radius-md); cursor: pointer; outline: none;
+  }
+
+  .jf-list { display: grid; grid-template-columns: 278px 1fr; gap: 26px; align-items: start; }
+  .jf-filters {
+    position: sticky; top: 92px; background: var(--white); border: 1px solid var(--border-default);
+    border-radius: var(--radius-lg); box-shadow: var(--shadow-card); padding: 22px;
+  }
+  .jf-filters-head { display: flex; align-items: center; justify-content: space-between; margin-bottom: 20px; }
+  .jf-filters-title { font: 700 16px var(--font-display); }
+  .jf-limpar { background: none; border: none; font-size: 12.5px; color: var(--accent-strong); cursor: pointer; font-weight: 700; padding: 0; }
+
+  .jf-filter-group { margin-bottom: 22px; }
+  .jf-filter-group:last-child { margin-bottom: 0; }
+  .jf-filter-label { font: var(--text-caption); color: var(--text-tertiary); text-transform: uppercase; letter-spacing: .5px; margin-bottom: 10px; }
+  .jf-filter-row { display: flex; justify-content: space-between; margin-bottom: 10px; }
+  .jf-filter-value { font-size: 13px; font-weight: 800; color: var(--accent-strong); }
+
+  .jf-chips { display: flex; gap: 7px; flex-wrap: wrap; }
+  .jf-chip-btn {
+    padding: 7px 13px; border-radius: var(--radius-md); font-size: 13px; font-weight: 700; cursor: pointer;
+    background: var(--gray-100); border: 1px solid var(--gray-200); color: var(--text-secondary);
+  }
+  .jf-chip-btn.is-active { background: var(--black-900); border-color: var(--black-900); color: var(--white); }
+
+  .jf-select {
+    width: 100%; background: var(--gray-50); border: 1px solid var(--border-default); color: var(--text-primary);
+    font-size: 14px; font-weight: 600; padding: 11px 12px; border-radius: var(--radius-md); cursor: pointer; outline: none;
+  }
+
+  .jf-g3 { display: grid; grid-template-columns: repeat(3, 1fr); gap: 18px; }
+  .jf-grid-item { display: contents; }
+  .jf-grid-item[hidden] { display: none; }
+
+  .jf-empty { text-align: center; padding: 80px 20px; background: var(--white); border: 1px dashed var(--border-strong); border-radius: var(--radius-lg); }
+  .jf-empty-icon { display: flex; justify-content: center; margin-bottom: 14px; }
+  .jf-empty-title { font: 700 18px var(--font-display); margin-bottom: 6px; }
+  .jf-empty-sub { font-size: 14px; color: var(--text-secondary); margin-bottom: 18px; }
+  .jf-empty-btn {
+    border: none; background: var(--accent); color: var(--white); font-weight: 700; font-size: 14px;
+    padding: 12px 22px; border-radius: var(--radius-full); cursor: pointer;
+  }
+
+  @media (max-width: 980px) {
+    .jf-list { grid-template-columns: 1fr; }
+    .jf-filters { position: static; }
+  }
+  @media (max-width: 620px) {
+    .jf-g3 { grid-template-columns: 1fr; }
+  }
+</style>

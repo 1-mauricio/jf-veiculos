@@ -1,0 +1,22 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+import Button from '../components/Button.astro';
+---
+
+<BaseLayout title="Página não encontrada">
+  <section class="jf-404">
+    <div class="jf-404-code">404</div>
+    <h1 class="jf-404-title">Página não encontrada</h1>
+    <p class="jf-404-sub">O veículo ou a página que você procura não existe mais ou mudou de endereço.</p>
+    <Button href="/">Voltar para a home</Button>
+  </section>
+</BaseLayout>
+
+<style>
+  .jf-404 {
+    max-width: 640px; margin: 0 auto; padding: 120px 24px; text-align: center;
+  }
+  .jf-404-code { font: 700 64px var(--font-display); color: var(--accent); letter-spacing: -2px; }
+  .jf-404-title { font: 700 26px var(--font-display); margin: 8px 0 12px; }
+  .jf-404-sub { font: var(--text-body-lg); color: var(--text-secondary); margin: 0 0 28px; }
+</style>

@@ -1,0 +1,30 @@
+{
+  "nome": "Honda CB 500F",
+  "marca": "Honda",
+  "modelo": "CB 500F",
+  "tipo": "moto",
+  "categoria": "Naked 500cc",
+  "ano": 2023,
+  "anoModelo": 2023,
+  "preco": 38900,
+  "km": 8700,
+  "cambio": "Manual",
+  "combustivel": "Gasolina",
+  "cor": "Vermelho",
+  "cidade": "São Paulo",
+  "uf": "SP",
+  "destaque": true,
+  "lancamento": false,
+  "cilindrada": "471cc",
+  "potencia": "48 cv",
+  "descricao": "CB 500F seminova, ideal para quem sai da categoria de entrada. ABS nas duas rodas, revisada e com todos os documentos em dia.",
+  "opcionais": [
+    "ABS 2 canais",
+    "Painel digital",
+    "Faróis LED",
+    "Manoplas originais",
+    "Único dono",
+    "IPVA pago"
+  ],
+  "fotos": []
+}

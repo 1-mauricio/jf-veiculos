@@ -1,0 +1,289 @@
+---
+import { getCollection } from 'astro:content';
+import BaseLayout from '../layouts/BaseLayout.astro';
+import VehicleCard from '../components/VehicleCard.astro';
+import Icon from '../components/Icon.astro';
+import Button from '../components/Button.astro';
+import { whatsappLink } from '../lib/format';
+
+const veiculos = await getCollection('veiculos');
+const depoimentos = await getCollection('depoimentos');
+const lojaEntries = await getCollection('loja');
+const loja = lojaEntries[0]?.data;
+
+const totalVeiculos = veiculos.length;
+const catCarros = veiculos.filter((v) => v.data.tipo === 'carro').length;
+const catMotos = veiculos.filter((v) => v.data.tipo === 'moto').length;
+const destaques = veiculos.filter((v) => v.data.destaque).slice(0, 4);
+const marcas = [...new Set(veiculos.map((v) => v.data.marca))].sort();
+
+const vendaHref = loja ? whatsappLink(loja.whatsapp, 'Olá! Quero avaliar meu veículo para venda ou troca.') : '/loja';
+---
+
+<BaseLayout title="JF Veículos">
+  <!-- HERO -->
+  <section class="jf-hero">
+    <div class="jf-hero-inner">
+      <div class="jf-hero-copy">
+        <div class="jf-hero-eyebrow">
+          <span class="jf-hero-dot"></span>
+          <span>+{totalVeiculos} seminovos revisados e com procedência</span>
+        </div>
+        <h1 class="jf-h1 jf-hero-title">Seu próximo carro<br />começa <span class="jf-accent-text">aqui</span>.</h1>
+        <p class="jf-hero-sub">Carros e motos seminovos com inspeção veicular completa, garantia e financiamento aprovado na hora. Sem pegadinha.</p>
+      </div>
+
+      <form class="jf-quick" method="GET" action="/veiculos">
+        <div class="jf-quick-field">
+          <label for="qs-tipo">Tipo</label>
+          <select id="qs-tipo" name="tipo">
+            <option value="todos">Carros e motos</option>
+            <option value="carro">Carros</option>
+            <option value="moto">Motos</option>
+          </select>
+        </div>
+        <div class="jf-quick-field jf-quick-sep">
+          <label for="qs-marca">Marca</label>
+          <select id="qs-marca" name="marca">
+            <option value="todas">Todas as marcas</option>
+            {marcas.map((m) => <option value={m}>{m}</option>)}
+          </select>
+        </div>
+        <div class="jf-quick-field jf-quick-sep">
+          <label for="qs-preco">Até</label>
+          <select id="qs-preco" name="precoMax">
+            <option value="200000">Qualquer preço</option>
+            <option value="40000">Até R$ 40 mil</option>
+            <option value="70000">Até R$ 70 mil</option>
+            <option value="100000">Até R$ 100 mil</option>
+            <option value="150000">Até R$ 150 mil</option>
+          </select>
+        </div>
+        <div class="jf-quick-field jf-quick-sep">
+          <label for="qs-busca">Busca livre</label>
+          <input id="qs-busca" name="busca" placeholder="Ex: Corolla, HB20, CB 500..." />
+        </div>
+        <button type="submit" class="jf-quick-btn">
+          <Icon name="search" size={17} color="var(--white)" />
+          Buscar
+        </button>
+      </form>
+
+      <div class="jf-hero-bullets">
+        <div>✓ Inspeção de 220 itens</div>
+        <div>✓ Garantia de motor e câmbio</div>
+        <div>✓ Financiamento em até 60x</div>
+      </div>
+    </div>
+  </section>
+
+  <!-- CATEGORIAS -->
+  <section class="jf-section">
+    <div class="jf-g4 jf-cat-grid">
+      <a href="/veiculos?tipo=carro" class="jf-cat-card">
+        <div class="jf-cat-icon"><Icon name="car" size={21} color="var(--text-primary)" /></div>
+        <div class="jf-cat-title">Carros</div>
+        <div class="jf-cat-sub">{catCarros} disponíveis</div>
+      </a>
+      <a href="/veiculos?tipo=moto" class="jf-cat-card">
+        <div class="jf-cat-icon"><Icon name="gauge" size={21} color="var(--text-primary)" /></div>
+        <div class="jf-cat-title">Motos</div>
+        <div class="jf-cat-sub">{catMotos} disponíveis</div>
+      </a>
+      <a href="/veiculos" class="jf-cat-card">
+        <div class="jf-cat-icon"><Icon name="check" size={21} color="var(--text-primary)" /></div>
+        <div class="jf-cat-title">Seminovos</div>
+        <div class="jf-cat-sub">Revisados e garantidos</div>
+      </a>
+      <a href="/veiculos?sort=menor" class="jf-cat-card jf-cat-card-accent">
+        <div class="jf-cat-icon jf-cat-icon-accent"><Icon name="star" size={21} color="var(--accent-strong)" /></div>
+        <div class="jf-cat-title jf-cat-title-accent">Ofertas</div>
+        <div class="jf-cat-sub jf-cat-sub-accent">Condições da semana</div>
+      </a>
+    </div>
+  </section>
+
+  <!-- DESTAQUES -->
+  {destaques.length > 0 && (
+    <section class="jf-section">
+      <div class="jf-section-head">
+        <div>
+          <div class="jf-eyebrow">Veículos em alta</div>
+          <h2 class="jf-h2">Os mais procurados da semana</h2>
+        </div>
+        <Button href="/veiculos" variant="outline">Ver todos →</Button>
+      </div>
+      <div class="jf-g4">
+        {destaques.map((v) => <VehicleCard vehicle={v} />)}
+      </div>
+    </section>
+  )}
+
+  <!-- VANTAGENS -->
+  <section class="jf-section">
+    <div class="jf-g3 jf-vantagens">
+      <div class="jf-vantagem">
+        <div class="jf-vantagem-icon"><Icon name="cart" size={23} color="var(--text-primary)" /></div>
+        <div>
+          <h3 class="jf-h3">Financiamento facilitado</h3>
+          <p class="jf-p">Parcelas em até 60x, aprovação em minutos e as menores taxas do mercado. Simule sem compromisso.</p>
+        </div>
+      </div>
+      <div class="jf-vantagem">
+        <div class="jf-vantagem-icon"><Icon name="shield" size={23} color="var(--text-primary)" /></div>
+        <div>
+          <h3 class="jf-h3">Garantia de verdade</h3>
+          <p class="jf-p">Todo veículo sai com garantia de motor e câmbio. Se der problema coberto, a gente resolve.</p>
+        </div>
+      </div>
+      <div class="jf-vantagem">
+        <div class="jf-vantagem-icon"><Icon name="gauge" size={23} color="var(--text-primary)" /></div>
+        <div>
+          <h3 class="jf-h3">Inspeção veicular</h3>
+          <p class="jf-p">Laudo cautelar e checagem de 220 itens em cada carro. Você sabe exatamente o que está comprando.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- DEPOIMENTOS -->
+  {depoimentos.length > 0 && (
+    <section class="jf-section">
+      <div class="jf-section-head jf-section-head-center">
+        <div class="jf-eyebrow">Quem comprou, aprova</div>
+        <h2 class="jf-h2">
+          {loja ? `${loja.avaliacaoMedia.toString().replace('.', ',')} de 5 em mais de ${loja.numAvaliacoes.toLocaleString('pt-BR')} avaliações` : 'Quem comprou, aprova'}
+        </h2>
+      </div>
+      <div class="jf-g3">
+        {depoimentos.map((d) => (
+          <div class="jf-testimonial">
+            <div class="jf-stars">★★★★★</div>
+            <p class="jf-testimonial-text">"{d.data.texto}"</p>
+            <div class="jf-testimonial-author">
+              <div class="jf-testimonial-avatar">{d.data.nome[0]}</div>
+              <div>
+                <div class="jf-testimonial-name">{d.data.nome}</div>
+                <div class="jf-testimonial-local">{d.data.local}</div>
+              </div>
+            </div>
+          </div>
+        ))}
+      </div>
+    </section>
+  )}
+
+  <!-- CTA FINAL -->
+  <section class="jf-section jf-section-cta">
+    <div class="jf-cta">
+      <div>
+        <h2 class="jf-cta-title">Quer vender ou trocar o seu?</h2>
+        <p class="jf-cta-sub">Avaliamos seu veículo na hora e você sai daqui com o próximo.</p>
+      </div>
+      <Button href={vendaHref} target="_blank" variant="white">Anunciar meu veículo</Button>
+    </div>
+  </section>
+</BaseLayout>
+
+<style>
+  .jf-hero {
+    position: relative;
+    overflow: hidden;
+    background:
+      radial-gradient(1100px 480px at 78% -10%, rgba(200, 134, 43, .22), transparent 60%),
+      linear-gradient(180deg, var(--black-950), var(--black-900));
+  }
+  .jf-hero-inner { max-width: 1240px; margin: 0 auto; padding: 76px 24px 70px; }
+  .jf-hero-copy { max-width: 720px; animation: jfrise .6s ease both; }
+  .jf-hero-eyebrow {
+    display: inline-flex; align-items: center; gap: 8px;
+    padding: 7px 14px; border-radius: var(--radius-full);
+    background: rgba(200, 134, 43, .16); border: 1px solid rgba(200, 134, 43, .4);
+    margin-bottom: 22px; font-size: 13px; font-weight: 700; color: var(--amber-500); letter-spacing: .3px;
+  }
+  .jf-hero-dot { width: 7px; height: 7px; border-radius: 50%; background: var(--amber-500); }
+  .jf-hero-title {
+    font: 700 54px var(--font-display); line-height: 1.05; letter-spacing: -1.6px;
+    margin: 0 0 18px; color: var(--white);
+  }
+  .jf-accent-text { color: var(--amber-500); }
+  .jf-hero-sub { font: var(--text-body-lg); color: var(--text-on-dark-secondary); margin: 0; max-width: 560px; }
+
+  .jf-quick {
+    margin-top: 40px; background: var(--white); border-radius: var(--radius-lg); padding: 10px;
+    display: grid; grid-template-columns: 1.3fr 1.1fr 1.1fr 1.4fr auto; gap: 8px;
+    box-shadow: var(--shadow-raised); animation: jfrise .7s .1s ease both;
+  }
+  .jf-quick-field { display: flex; flex-direction: column; gap: 5px; padding: 10px 12px; }
+  .jf-quick-sep { border-left: 1px solid var(--border-default); }
+  .jf-quick-field label { font: var(--text-caption); color: var(--text-tertiary); text-transform: uppercase; letter-spacing: .5px; }
+  .jf-quick-field select, .jf-quick-field input {
+    background: transparent; border: none; color: var(--text-primary); font-size: 15px; font-weight: 600; outline: none; cursor: pointer;
+  }
+  .jf-quick-field input { cursor: text; }
+  .jf-quick-btn {
+    border: none; background: var(--black-900); color: var(--white); font-weight: 700; font-size: 15px;
+    border-radius: var(--radius-md); padding: 0 28px; cursor: pointer; display: flex; align-items: center; gap: 9px;
+    transition: background var(--dur-base) var(--ease-standard);
+  }
+  .jf-quick-btn:hover { background: var(--black-800); }
+
+  .jf-hero-bullets { display: flex; gap: 24px; margin-top: 20px; flex-wrap: wrap; }
+  .jf-hero-bullets div { font-size: 13.5px; color: var(--text-on-dark-secondary); }
+
+  .jf-section { max-width: 1240px; margin: 0 auto; padding: 58px 24px 10px; }
+  .jf-section-cta { padding-top: 40px; padding-bottom: 20px; }
+  .jf-section-head { display: flex; align-items: flex-end; justify-content: space-between; margin-bottom: 24px; gap: 16px; }
+  .jf-section-head-center { flex-direction: column; align-items: center; text-align: center; margin-bottom: 30px; }
+  .jf-eyebrow { font-size: 13px; font-weight: 700; color: var(--accent-strong); letter-spacing: 1.2px; text-transform: uppercase; margin-bottom: 8px; }
+  .jf-h2 { font: 700 30px var(--font-display); letter-spacing: -.8px; margin: 0; }
+  .jf-h3 { font: 700 18px var(--font-display); margin: 4px 0 6px; }
+  .jf-p { font: var(--text-body); color: var(--text-secondary); margin: 0; }
+
+  .jf-g4, .jf-g3 { display: grid; gap: 18px; }
+  .jf-g4 { grid-template-columns: repeat(4, 1fr); }
+  .jf-g3 { grid-template-columns: repeat(3, 1fr); }
+  .jf-cat-grid { gap: 16px; }
+
+  .jf-cat-card {
+    border-radius: var(--radius-lg); border: 1px solid var(--border-default); background: var(--white);
+    box-shadow: var(--shadow-card); padding: 24px; min-height: 132px; color: inherit;
+    transition: box-shadow var(--dur-base) var(--ease-standard);
+  }
+  .jf-cat-card:hover { box-shadow: var(--shadow-raised); }
+  .jf-cat-card-accent { border-color: var(--amber-100); background: var(--amber-100); }
+  .jf-cat-icon { width: 44px; height: 44px; border-radius: var(--radius-full); background: var(--gray-100); display: flex; align-items: center; justify-content: center; }
+  .jf-cat-icon-accent { background: var(--white); }
+  .jf-cat-title { font: 700 18px var(--font-display); margin-top: 14px; }
+  .jf-cat-title-accent { color: var(--accent-strong); }
+  .jf-cat-sub { font-size: 13px; color: var(--text-secondary); margin-top: 3px; }
+  .jf-cat-sub-accent { color: var(--accent-strong); }
+
+  .jf-vantagens { border-radius: var(--radius-xl); border: 1px solid var(--border-default); background: var(--white); box-shadow: var(--shadow-card); padding: 44px; }
+  .jf-vantagem { display: flex; gap: 16px; align-items: flex-start; }
+  .jf-vantagem-icon { width: 52px; height: 52px; border-radius: var(--radius-md); background: var(--gray-100); display: flex; align-items: center; justify-content: center; flex-shrink: 0; }
+
+  .jf-testimonial { background: var(--white); border: 1px solid var(--border-default); border-radius: var(--radius-lg); box-shadow: var(--shadow-card); padding: 26px; }
+  .jf-stars { color: var(--accent); font-size: 16px; letter-spacing: 2px; margin-bottom: 14px; }
+  .jf-testimonial-text { font: var(--text-body); color: var(--text-secondary); line-height: 1.7; margin: 0 0 20px; }
+  .jf-testimonial-author { display: flex; align-items: center; gap: 12px; }
+  .jf-testimonial-avatar { width: 42px; height: 42px; border-radius: 50%; background: var(--gray-100); display: flex; align-items: center; justify-content: center; font-weight: 800; color: var(--text-secondary); }
+  .jf-testimonial-name { font-weight: 700; font-size: 14.5px; }
+  .jf-testimonial-local { font-size: 12.5px; color: var(--text-tertiary); }
+
+  .jf-cta {
+    border-radius: var(--radius-xl); background: linear-gradient(120deg, var(--accent), var(--accent-strong));
+    padding: 46px; display: flex; align-items: center; justify-content: space-between; gap: 24px; flex-wrap: wrap;
+  }
+  .jf-cta-title { font: 700 28px var(--font-display); color: var(--white); letter-spacing: -.6px; margin: 0 0 8px; }
+  .jf-cta-sub { font: var(--text-body-lg); color: rgba(255, 255, 255, .85); margin: 0; font-weight: 500; }
+
+  @media (max-width: 980px) {
+    .jf-g4 { grid-template-columns: 1fr 1fr; }
+    .jf-quick { grid-template-columns: 1fr 1fr; }
+  }
+  @media (max-width: 620px) {
+    .jf-g4, .jf-g3, .jf-quick { grid-template-columns: 1fr; }
+    .jf-hero-title { font-size: 36px; }
+  }
+</style>

@@ -1,0 +1,322 @@
+---
+import { getCollection, render } from 'astro:content';
+import BaseLayout from '../../layouts/BaseLayout.astro';
+import VehicleCard from '../../components/VehicleCard.astro';
+import Icon from '../../components/Icon.astro';
+import { brl, brlDec, km as fmtKm, whatsappLink } from '../../lib/format';
+
+export async function getStaticPaths() {
+  const veiculos = await getCollection('veiculos');
+  return veiculos.map((v) => ({ params: { slug: v.id }, props: { vehicleId: v.id } }));
+}
+
+const { vehicleId } = Astro.props;
+const veiculos = await getCollection('veiculos');
+const vehicle = veiculos.find((v) => v.id === vehicleId)!;
+const v = vehicle.data;
+
+const lojaEntries = await getCollection('loja');
+const loja = lojaEntries[0]?.data;
+
+const fotos = v.fotos ?? [];
+const temFotos = fotos.length > 0;
+
+function hashAngle(id: string): number {
+  let h = 0;
+  for (let i = 0; i < id.length; i++) h = (h * 31 + id.charCodeAt(i)) % 360;
+  return 128 + (h % 8) * 8;
+}
+const placeholderAngle = hashAngle(vehicle.id);
+
+const fichas: [string, string][] = v.tipo === 'moto'
+  ? [
+      ['Marca', v.marca], ['Modelo', v.modelo], ['Ano/Modelo', `${v.ano}/${v.anoModelo}`],
+      ['Quilometragem', fmtKm(v.km)], ['Cilindrada', v.cilindrada ?? '—'], ['Potência', v.potencia ?? '—'],
+      ['Câmbio', v.cambio], ['Combustível', v.combustivel], ['Cor', v.cor], ['Cidade', `${v.cidade} · ${v.uf}`],
+    ]
+  : [
+      ['Marca', v.marca], ['Modelo', v.modelo], ['Ano/Modelo', `${v.ano}/${v.anoModelo}`],
+      ['Quilometragem', fmtKm(v.km)], ['Câmbio', v.cambio], ['Combustível', v.combustivel],
+      ['Motor', v.motor ?? '—'], ['Potência', v.potencia ?? '—'], ['Portas', v.portas ? `${v.portas} portas` : '—'],
+      ['Cor', v.cor], ['Cidade', `${v.cidade} · ${v.uf}`],
+    ];
+
+const similares = veiculos.filter((x) => x.data.tipo === v.tipo && x.id !== vehicle.id).slice(0, 4);
+
+const whatsappHref = loja
+  ? whatsappLink(loja.whatsapp, `Olá! Tenho interesse no ${v.nome} ${v.ano} anunciado por ${brl(v.preco)}.`)
+  : '#';
+
+const parcelaInicial = (() => {
+  const i = 0.0159;
+  const n = 48;
+  const entradaValor = v.preco * 0.2;
+  const fin = v.preco - entradaValor;
+  return (fin * (i * Math.pow(1 + i, n))) / (Math.pow(1 + i, n) - 1);
+})();
+---
+
+<BaseLayout title={v.nome} description={v.descricao} image={fotos[0]}>
+  <div class="jf-det-wrap">
+    <div class="jf-breadcrumb">
+      <a href="/">Início</a> <span>›</span> <a href="/veiculos">Veículos</a> <span>›</span>
+      <span class="jf-breadcrumb-current">{v.nome}</span>
+    </div>
+
+    <div class="jf-det">
+      <!-- LEFT -->
+      <div>
+        <!-- GALERIA -->
+        <div class="jf-galeria" style={!temFotos ? `background: repeating-linear-gradient(${placeholderAngle}deg, var(--gray-100) 0 20px, var(--gray-200) 20px 40px);` : undefined}>
+          {temFotos ? (
+            <img id="jf-galeria-hero" src={fotos[0]} alt={v.nome} />
+          ) : (
+            <span class="jf-galeria-label">SEM FOTO</span>
+          )}
+          {v.destaque && <span class="jf-galeria-badge">EM ALTA</span>}
+        </div>
+        {fotos.length > 1 && (
+          <div class="jf-thumbs jf-scroll">
+            {fotos.map((f, i) => (
+              <div class:list={['jf-thumb', { 'is-active': i === 0 }]} data-thumb data-src={f} style={`background-image: url(${f});`} />
+            ))}
+          </div>
+        )}
+
+        <div class="jf-det-title-block">
+          <div class="jf-det-eyebrow">{v.marca} · {v.categoria}</div>
+          <h1 class="jf-det-title">{v.nome}</h1>
+          <div class="jf-det-chips">
+            <span class="jf-chip">{v.ano}/{v.anoModelo}</span>
+            <span class="jf-chip">{fmtKm(v.km)}</span>
+            <span class="jf-chip">{v.cambio}</span>
+            <span class="jf-chip">{v.combustivel}</span>
+            <span class="jf-chip">{v.cidade} · {v.uf}</span>
+          </div>
+        </div>
+
+        <div class="jf-det-block">
+          <h2 class="jf-det-h2">Sobre o veículo</h2>
+          <p class="jf-det-desc">{v.descricao}</p>
+        </div>
+
+        <div class="jf-det-block">
+          <h2 class="jf-det-h2">Ficha técnica</h2>
+          <div class="jf-ficha-grid">
+            {fichas.map(([label, value]) => (
+              <div class="jf-ficha-item">
+                <span class="jf-ficha-label">{label}</span>
+                <span class="jf-ficha-value">{value}</span>
+              </div>
+            ))}
+          </div>
+        </div>
+
+        {v.opcionais.length > 0 && (
+          <div class="jf-det-block">
+            <h2 class="jf-det-h2">Itens e opcionais</h2>
+            <div class="jf-opcionais-grid">
+              {v.opcionais.map((op) => (
+                <div class="jf-opcional"><span class="jf-opcional-check">✓</span> {op}</div>
+              ))}
+            </div>
+          </div>
+        )}
+
+        <div class="jf-procedencia">
+          <h2 class="jf-det-h3">Histórico e procedência</h2>
+          <div class="jf-procedencia-grid">
+            <div class="jf-procedencia-item">
+              <span class="jf-procedencia-icon">✓</span>
+              <div><div class="jf-procedencia-title">Laudo cautelar aprovado</div><div class="jf-procedencia-sub">Sem indícios de sinistro ou colisão grave.</div></div>
+            </div>
+            <div class="jf-procedencia-item">
+              <span class="jf-procedencia-icon">✓</span>
+              <div><div class="jf-procedencia-title">Revisões em dia</div><div class="jf-procedencia-sub">Manutenção documentada e comprovada.</div></div>
+            </div>
+            <div class="jf-procedencia-item">
+              <span class="jf-procedencia-icon">✓</span>
+              <div><div class="jf-procedencia-title">Sem débitos ou multas</div><div class="jf-procedencia-sub">IPVA e licenciamento quitados.</div></div>
+            </div>
+            <div class="jf-procedencia-item">
+              <span class="jf-procedencia-icon">✓</span>
+              <div><div class="jf-procedencia-title">Inspeção de 220 itens</div><div class="jf-procedencia-sub">Checagem completa antes do anúncio.</div></div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- RIGHT STICKY -->
+      <aside class="jf-det-aside">
+        <div class="jf-price-card">
+          <div class="jf-price-label">Valor à vista</div>
+          <div class="jf-price-value">{brl(v.preco)}</div>
+          <div class="jf-price-parcela" id="jf-price-parcela">ou {brlDec(parcelaInicial)} em 48x</div>
+          <a href={whatsappHref} target="_blank" rel="noopener" class="jf-whatsapp-btn">Falar no WhatsApp</a>
+          <button type="button" class="jf-fav-btn" data-fav-btn data-vehicle-id={vehicle.id}>
+            <Icon name="heart" size={16} />
+            <span>Favoritar</span>
+          </button>
+        </div>
+
+        <!-- SIMULADOR -->
+        <div class="jf-sim-card" id="jf-sim" data-preco={v.preco}>
+          <h3 class="jf-det-h3">Simule seu financiamento</h3>
+          <div class="jf-sim-row">
+            <label class="jf-filter-label" for="jf-sim-entrada">Entrada</label>
+            <span class="jf-filter-value" id="jf-sim-entrada-pct">20%</span>
+          </div>
+          <input type="range" id="jf-sim-entrada" min="0" max="50" step="5" value="20" aria-describedby="jf-sim-entrada-pct" />
+          <div class="jf-sim-sub">Valor de entrada: <strong id="jf-sim-entrada-valor">{brl(v.preco * 0.2)}</strong></div>
+
+          <div class="jf-sim-row jf-sim-row-top">
+            <span class="jf-filter-label" id="jf-parcelas-label">Parcelas</span>
+          </div>
+          <div class="jf-chips" role="group" aria-labelledby="jf-parcelas-label">
+            <button type="button" class="jf-chip-btn" data-parcelas="12">12x</button>
+            <button type="button" class="jf-chip-btn" data-parcelas="24">24x</button>
+            <button type="button" class="jf-chip-btn" data-parcelas="36">36x</button>
+            <button type="button" class="jf-chip-btn is-active" data-parcelas="48">48x</button>
+            <button type="button" class="jf-chip-btn" data-parcelas="60">60x</button>
+          </div>
+
+          <div class="jf-sim-result">
+            <div class="jf-sim-result-row"><span>Parcela estimada</span><strong id="jf-sim-parcela-valor">{brlDec(parcelaInicial)} em 48x</strong></div>
+            <div class="jf-sim-result-row"><span>Total financiado</span><strong id="jf-sim-total">{brl(v.preco * 0.2 + parcelaInicial * 48)}</strong></div>
+          </div>
+          <p class="jf-sim-disclaimer">Simulação estimada (taxa de 1,59% a.m.). Sujeita a análise de crédito.</p>
+        </div>
+      </aside>
+    </div>
+
+    <!-- SIMILARES -->
+    {similares.length > 0 && (
+      <div class="jf-similares">
+        <h2 class="jf-similares-h2">Veículos similares</h2>
+        <div class="jf-g4">
+          {similares.map((s) => <VehicleCard vehicle={s} />)}
+        </div>
+      </div>
+    )}
+  </div>
+</BaseLayout>
+
+<script>
+  import { initGaleria, initSimulador } from '../../scripts/detalhe';
+  const simRoot = document.getElementById('jf-sim');
+  const preco = Number(simRoot?.dataset.preco ?? 0);
+  initGaleria();
+  initSimulador(preco);
+</script>
+
+<style>
+  .jf-det-wrap { max-width: 1240px; margin: 0 auto; padding: 26px 24px 20px; }
+  .jf-breadcrumb { font-size: 13px; color: var(--text-tertiary); margin-bottom: 20px; }
+  .jf-breadcrumb a { color: var(--text-tertiary); }
+  .jf-breadcrumb-current { color: var(--text-secondary); }
+
+  .jf-det { display: grid; grid-template-columns: 1fr 372px; gap: 30px; align-items: start; }
+
+  .jf-galeria {
+    position: relative; border-radius: var(--radius-lg); overflow: hidden; height: 420px;
+    display: flex; align-items: center; justify-content: center; background: var(--gray-100);
+  }
+  .jf-galeria img { width: 100%; height: 100%; object-fit: cover; }
+  .jf-galeria-label { font: 600 13px var(--font-display); letter-spacing: 2px; color: var(--text-tertiary); }
+  .jf-galeria-badge {
+    position: absolute; top: 16px; left: 16px; background: var(--accent); color: var(--white);
+    font-size: 12px; font-weight: 700; padding: 6px 12px; border-radius: var(--radius-full);
+  }
+
+  .jf-thumbs { display: flex; gap: 10px; margin-top: 12px; overflow-x: auto; }
+  .jf-thumb {
+    flex: 0 0 92px; height: 66px; border-radius: var(--radius-sm); cursor: pointer;
+    background-size: cover; background-position: center; border: 2px solid transparent;
+  }
+  .jf-thumb.is-active { border-color: var(--accent); }
+
+  .jf-det-title-block { margin-top: 28px; }
+  .jf-det-eyebrow { font-size: 13px; color: var(--text-tertiary); font-weight: 700; text-transform: uppercase; letter-spacing: .5px; }
+  .jf-det-title { font: 700 32px var(--font-display); letter-spacing: -.8px; margin: 6px 0 14px; }
+  .jf-det-chips { display: flex; gap: 8px; flex-wrap: wrap; }
+  .jf-chip { font-size: 13px; color: var(--text-secondary); background: var(--gray-100); padding: 7px 13px; border-radius: var(--radius-md); }
+
+  .jf-det-block { margin-top: 30px; }
+  .jf-det-h2 { font: 700 20px var(--font-display); margin: 0 0 12px; }
+  .jf-det-h3 { font: 700 18px var(--font-display); margin: 0 0 16px; }
+  .jf-det-desc { font: var(--text-body-lg); color: var(--text-secondary); line-height: 1.75; margin: 0; }
+
+  .jf-ficha-grid {
+    display: grid; grid-template-columns: 1fr 1fr; gap: 1px; background: var(--border-default);
+    border: 1px solid var(--border-default); border-radius: var(--radius-md); overflow: hidden;
+  }
+  .jf-ficha-item { background: var(--white); padding: 14px 18px; display: flex; justify-content: space-between; gap: 12px; }
+  .jf-ficha-label { font-size: 14px; color: var(--text-secondary); }
+  .jf-ficha-value { font-size: 14px; font-weight: 700; text-align: right; }
+
+  .jf-opcionais-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 10px; }
+  .jf-opcional { display: flex; align-items: center; gap: 10px; font-size: 14.5px; color: var(--text-secondary); }
+  .jf-opcional-check { color: var(--accent-strong); font-weight: 800; }
+
+  .jf-procedencia {
+    margin-top: 30px; background: var(--white); border: 1px solid var(--border-default);
+    border-radius: var(--radius-lg); box-shadow: var(--shadow-card); padding: 24px;
+  }
+  .jf-procedencia-grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: 16px; }
+  .jf-procedencia-item { display: flex; gap: 11px; align-items: flex-start; }
+  .jf-procedencia-icon { color: var(--success); font-size: 18px; }
+  .jf-procedencia-title { font-weight: 700; font-size: 14px; }
+  .jf-procedencia-sub { font-size: 13px; color: var(--text-secondary); margin-top: 2px; }
+
+  .jf-det-aside { position: sticky; top: 92px; display: flex; flex-direction: column; gap: 16px; }
+  .jf-price-card, .jf-sim-card {
+    background: var(--white); border: 1px solid var(--border-default); border-radius: var(--radius-lg);
+    box-shadow: var(--shadow-card); padding: 24px;
+  }
+  .jf-price-label { font-size: 13px; color: var(--text-secondary); }
+  .jf-price-value { font: 700 32px var(--font-display); letter-spacing: -.6px; margin: 4px 0 3px; }
+  .jf-price-parcela { font-size: 13.5px; color: var(--text-secondary); margin-bottom: 18px; }
+  .jf-whatsapp-btn {
+    display: flex; align-items: center; justify-content: center; gap: 10px; background: #25D366; color: var(--white);
+    font-weight: 700; font-size: 16px; padding: 15px; border-radius: var(--radius-full); margin-bottom: 10px;
+  }
+  .jf-whatsapp-btn:hover { background: #1fb956; color: var(--white); }
+  .jf-fav-btn {
+    width: 100%; display: flex; align-items: center; justify-content: center; gap: 8px;
+    background: var(--white); border: 1px solid var(--border-default); color: var(--text-secondary);
+    font-weight: 700; font-size: 14px; padding: 12px; border-radius: var(--radius-full); cursor: pointer;
+  }
+  .jf-fav-btn.is-active { color: var(--accent); border-color: var(--accent-soft); background: var(--accent-soft); }
+
+  .jf-sim-row { display: flex; justify-content: space-between; margin-bottom: 10px; }
+  .jf-sim-row-top { margin-top: 20px; }
+  .jf-filter-label { font: var(--text-caption); color: var(--text-tertiary); text-transform: uppercase; letter-spacing: .5px; }
+  .jf-filter-value { font-size: 13px; font-weight: 800; color: var(--accent-strong); }
+  .jf-sim-sub { font-size: 13px; color: var(--text-secondary); margin-top: 10px; }
+  .jf-sim-sub strong { color: var(--text-primary); }
+
+  .jf-chips { display: flex; gap: 7px; flex-wrap: wrap; }
+  .jf-chip-btn {
+    padding: 7px 13px; border-radius: var(--radius-md); font-size: 13px; font-weight: 700; cursor: pointer;
+    background: var(--gray-100); border: 1px solid var(--gray-200); color: var(--text-secondary);
+  }
+  .jf-chip-btn.is-active { background: var(--black-900); border-color: var(--black-900); color: var(--white); }
+
+  .jf-sim-result { margin-top: 20px; padding-top: 16px; border-top: 1px solid var(--border-default); display: flex; flex-direction: column; gap: 10px; }
+  .jf-sim-result-row { display: flex; justify-content: space-between; font-size: 14px; color: var(--text-secondary); }
+  .jf-sim-result-row strong { color: var(--text-primary); }
+  .jf-sim-disclaimer { font-size: 12px; color: var(--text-tertiary); margin: 14px 0 0; line-height: 1.5; }
+
+  .jf-similares { margin-top: 50px; }
+  .jf-similares-h2 { font: 700 24px var(--font-display); letter-spacing: -.6px; margin: 0 0 20px; }
+  .jf-g4 { display: grid; grid-template-columns: repeat(4, 1fr); gap: 18px; }
+
+  @media (max-width: 980px) {
+    .jf-det { grid-template-columns: 1fr; }
+    .jf-det-aside { position: static; }
+    .jf-g4 { grid-template-columns: 1fr 1fr; }
+  }
+  @media (max-width: 620px) {
+    .jf-ficha-grid, .jf-opcionais-grid, .jf-procedencia-grid, .jf-g4 { grid-template-columns: 1fr; }
+  }
+</style>

@@ -1,0 +1,31 @@
+{
+  "nome": "Renault Kwid Zen",
+  "marca": "Renault",
+  "modelo": "Kwid",
+  "tipo": "carro",
+  "categoria": "Hatch",
+  "ano": 2024,
+  "anoModelo": 2024,
+  "preco": 62900,
+  "km": 9300,
+  "cambio": "Manual",
+  "combustivel": "Flex",
+  "cor": "Azul",
+  "cidade": "São Paulo",
+  "uf": "SP",
+  "destaque": false,
+  "lancamento": true,
+  "motor": "1.0 SCe",
+  "potencia": "71 cv",
+  "portas": 4,
+  "descricao": "Kwid Zen praticamente zero, o mais econômico da categoria. Ideal para o primeiro carro. Garantia de fábrica.",
+  "opcionais": [
+    "Central multimídia",
+    "Ar-condicionado",
+    "Vidros elétricos",
+    "Direção elétrica",
+    "Computador de bordo",
+    "Airbags"
+  ],
+  "fotos": []
+}

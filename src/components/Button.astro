@@ -1,0 +1,51 @@
+---
+interface Props {
+  href?: string;
+  variant?: 'accent' | 'dark' | 'outline' | 'white' | 'whatsapp';
+  target?: string;
+  class?: string;
+}
+
+const { href, variant = 'accent', target, class: className } = Astro.props;
+const Tag = href ? 'a' : 'button';
+---
+
+<Tag
+  href={href}
+  target={target}
+  rel={target === '_blank' ? 'noopener' : undefined}
+  class:list={['jf-btn', `jf-btn-${variant}`, className]}
+>
+  <slot />
+</Tag>
+
+<style>
+  .jf-btn {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: 9px;
+    border: none;
+    border-radius: var(--radius-full);
+    font-weight: 700;
+    font-size: 15px;
+    padding: 13px 26px;
+    cursor: pointer;
+    white-space: nowrap;
+    transition: background var(--dur-base) var(--ease-standard), border-color var(--dur-base) var(--ease-standard);
+  }
+  .jf-btn-accent { background: var(--accent); color: var(--white); }
+  .jf-btn-accent:hover { background: var(--accent-strong); color: var(--white); }
+
+  .jf-btn-dark { background: var(--black-900); color: var(--white); }
+  .jf-btn-dark:hover { background: var(--black-800); color: var(--white); }
+
+  .jf-btn-outline { background: transparent; color: var(--text-primary); border: 1px solid var(--border-default); }
+  .jf-btn-outline:hover { border-color: var(--border-strong); }
+
+  .jf-btn-white { background: var(--white); color: var(--black-900); }
+  .jf-btn-white:hover { background: var(--gray-100); color: var(--black-900); }
+
+  .jf-btn-whatsapp { background: #25D366; color: var(--white); }
+  .jf-btn-whatsapp:hover { background: #1fb956; color: var(--white); }
+</style>

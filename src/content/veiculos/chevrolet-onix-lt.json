@@ -1,0 +1,31 @@
+{
+  "nome": "Chevrolet Onix LT",
+  "marca": "Chevrolet",
+  "modelo": "Onix",
+  "tipo": "carro",
+  "categoria": "Hatch",
+  "ano": 2021,
+  "anoModelo": 2021,
+  "preco": 72900,
+  "km": 53900,
+  "cambio": "Manual",
+  "combustivel": "Flex",
+  "cor": "Prata",
+  "cidade": "Guarulhos",
+  "uf": "SP",
+  "destaque": false,
+  "lancamento": false,
+  "motor": "1.0 Turbo",
+  "potencia": "116 cv",
+  "portas": 4,
+  "descricao": "Onix LT 1.0 Turbo, o hatch mais vendido do país. Econômico, revisado e com pneus novos. Excelente custo-benefício.",
+  "opcionais": [
+    "MyLink com Wi-Fi",
+    "Ar-condicionado",
+    "Direção elétrica",
+    "Sensor de ré",
+    "Vidros elétricos",
+    "Airbags duplos"
+  ],
+  "fotos": []
+}

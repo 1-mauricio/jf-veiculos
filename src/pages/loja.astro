@@ -1,0 +1,174 @@
+---
+import { getCollection } from 'astro:content';
+import BaseLayout from '../layouts/BaseLayout.astro';
+import VehicleCard from '../components/VehicleCard.astro';
+import Button from '../components/Button.astro';
+import { whatsappLink } from '../lib/format';
+
+const veiculos = await getCollection('veiculos');
+const depoimentos = await getCollection('depoimentos');
+const lojaEntries = await getCollection('loja');
+const loja = lojaEntries[0]?.data;
+
+const totalVeiculos = veiculos.length;
+const anosDeMercado = loja ? new Date().getFullYear() - loja.anoFundacao : null;
+const whatsappHref = loja ? whatsappLink(loja.whatsapp, 'Olá! Vim pelo site da JF Veículos.') : '#';
+const estoque = veiculos.slice(0, 8);
+---
+
+<BaseLayout title="Nossa loja" description="Conheça a JF Veículos: loja verificada, seminovos revisados e as melhores condições de financiamento.">
+  <!-- HERO LOJA -->
+  <section class="jf-loja-hero">
+    <div class="jf-loja-hero-inner">
+      <div class="jf-loja-head">
+        <div class="jf-loja-mark">JF</div>
+        <div class="jf-loja-head-text">
+          <div class="jf-loja-title-row">
+            <h1 class="jf-loja-title">JF Veículos</h1>
+            <span class="jf-loja-verified">✓ Loja verificada</span>
+          </div>
+          {loja && (
+            <div class="jf-loja-meta">
+              <span class="jf-loja-rating">★ {loja.avaliacaoMedia.toString().replace('.', ',')}</span>
+              <span>{loja.numAvaliacoes.toLocaleString('pt-BR')} avaliações</span>
+              <span>·</span>
+              <span>{loja.cidade} · {loja.uf}</span>
+              <span>·</span>
+              <span>Desde {loja.anoFundacao}</span>
+            </div>
+          )}
+        </div>
+        <div class="jf-loja-actions">
+          <Button href={whatsappHref} target="_blank" variant="whatsapp">WhatsApp</Button>
+          <button type="button" class="jf-loja-follow">Seguir loja</button>
+        </div>
+      </div>
+
+      <div class="jf-g4stat">
+        <div class="jf-stat"><div class="jf-stat-value">{totalVeiculos}</div><div class="jf-stat-label">anúncios ativos</div></div>
+        <div class="jf-stat"><div class="jf-stat-value">3.200+</div><div class="jf-stat-label">veículos vendidos</div></div>
+        <div class="jf-stat"><div class="jf-stat-value">{anosDeMercado ?? 17} anos</div><div class="jf-stat-label">de mercado</div></div>
+        <div class="jf-stat"><div class="jf-stat-value jf-stat-value-accent">&lt; 10min</div><div class="jf-stat-label">tempo de resposta</div></div>
+      </div>
+    </div>
+  </section>
+
+  <!-- SOBRE -->
+  <section class="jf-loja-section">
+    <div class="jf-sobre">
+      <div>
+        <h2 class="jf-h2b">Sobre a JF Veículos</h2>
+        <p class="jf-sobre-text">{loja?.sobre}</p>
+      </div>
+      <div class="jf-sobre-card">
+        <div class="jf-sobre-item"><span class="jf-check">✓</span> Financiamento próprio e via bancos</div>
+        <div class="jf-sobre-item"><span class="jf-check">✓</span> Aceitamos seu usado na troca</div>
+        <div class="jf-sobre-item"><span class="jf-check">✓</span> Garantia de motor e câmbio</div>
+        <div class="jf-sobre-item"><span class="jf-check">✓</span> Entrega em todo o estado</div>
+      </div>
+    </div>
+  </section>
+
+  <!-- AVALIACOES -->
+  {depoimentos.length > 0 && (
+    <section class="jf-loja-section">
+      <h2 class="jf-h2b">O que dizem os clientes</h2>
+      <div class="jf-g3">
+        {depoimentos.map((d) => (
+          <div class="jf-avaliacao">
+            <div class="jf-stars">★★★★★</div>
+            <p class="jf-avaliacao-text">"{d.data.texto}"</p>
+            <div class="jf-avaliacao-author">
+              <div class="jf-avaliacao-avatar">{d.data.nome[0]}</div>
+              <div>
+                <div class="jf-avaliacao-name">{d.data.nome}</div>
+                <div class="jf-avaliacao-local">{d.data.local}</div>
+              </div>
+            </div>
+          </div>
+        ))}
+      </div>
+    </section>
+  )}
+
+  <!-- ESTOQUE -->
+  <section class="jf-loja-section">
+    <div class="jf-estoque-head">
+      <h2 class="jf-h2b">Estoque da loja</h2>
+      <span class="jf-estoque-count">{totalVeiculos} veículos</span>
+    </div>
+    <div class="jf-g4">
+      {estoque.map((v) => <VehicleCard vehicle={v} />)}
+    </div>
+    {totalVeiculos > estoque.length && (
+      <div class="jf-estoque-more">
+        <Button href="/veiculos" variant="outline">Ver todo o estoque →</Button>
+      </div>
+    )}
+  </section>
+</BaseLayout>
+
+<style>
+  .jf-loja-hero { position: relative; background: linear-gradient(180deg, var(--black-950), var(--black-900)); }
+  .jf-loja-hero-inner { max-width: 1240px; margin: 0 auto; padding: 48px 24px 0; }
+  .jf-loja-head { display: flex; gap: 24px; align-items: flex-end; flex-wrap: wrap; }
+  .jf-loja-mark {
+    width: 110px; height: 110px; border-radius: var(--radius-lg); background: var(--accent);
+    display: flex; align-items: center; justify-content: center; flex-shrink: 0;
+    font: 700 42px var(--font-display); color: var(--white); letter-spacing: -1.5px;
+  }
+  .jf-loja-head-text { flex: 1; padding-bottom: 6px; }
+  .jf-loja-title-row { display: flex; align-items: center; gap: 10px; flex-wrap: wrap; }
+  .jf-loja-title { font: 700 30px var(--font-display); color: var(--white); letter-spacing: -.7px; margin: 0; }
+  .jf-loja-verified {
+    display: inline-flex; align-items: center; gap: 5px; background: var(--amber-100); color: var(--accent-strong);
+    font-size: 12px; font-weight: 700; padding: 4px 10px; border-radius: var(--radius-full);
+  }
+  .jf-loja-meta { display: flex; align-items: center; gap: 16px; margin-top: 8px; flex-wrap: wrap; color: var(--text-on-dark-secondary); font-size: 14px; }
+  .jf-loja-rating { color: var(--amber-500); font-weight: 800; }
+  .jf-loja-actions { display: flex; gap: 10px; padding-bottom: 6px; }
+  .jf-loja-follow {
+    background: transparent; border: 1px solid rgba(255, 255, 255, .24); color: var(--white);
+    font-weight: 700; font-size: 14px; padding: 12px 20px; border-radius: var(--radius-full); cursor: pointer;
+  }
+
+  .jf-g4stat { display: grid; grid-template-columns: repeat(4, 1fr); gap: 14px; margin: 34px 0 0; padding-bottom: 34px; }
+  .jf-stat { background: rgba(255, 255, 255, .06); border-radius: var(--radius-md); padding: 18px; }
+  .jf-stat-value { font: 700 24px var(--font-display); color: var(--white); }
+  .jf-stat-value-accent { color: var(--amber-500); }
+  .jf-stat-label { font-size: 13px; color: var(--text-on-dark-secondary); margin-top: 2px; }
+
+  .jf-loja-section { max-width: 1240px; margin: 0 auto; padding: 40px 24px 0; }
+  .jf-h2b { font: 700 21px var(--font-display); margin: 0 0 18px; }
+
+  .jf-sobre { display: grid; grid-template-columns: 1.7fr 1fr; gap: 26px; align-items: start; }
+  .jf-sobre-text { font: var(--text-body-lg); color: var(--text-secondary); line-height: 1.75; margin: 0; }
+  .jf-sobre-card {
+    background: var(--white); border: 1px solid var(--border-default); border-radius: var(--radius-lg);
+    box-shadow: var(--shadow-card); padding: 22px; display: flex; flex-direction: column; gap: 14px;
+  }
+  .jf-sobre-item { display: flex; gap: 10px; align-items: center; font-size: 14px; color: var(--text-secondary); }
+  .jf-check { color: var(--success); }
+
+  .jf-g3 { display: grid; grid-template-columns: repeat(3, 1fr); gap: 18px; }
+  .jf-avaliacao { background: var(--white); border: 1px solid var(--border-default); border-radius: var(--radius-lg); box-shadow: var(--shadow-card); padding: 24px; }
+  .jf-stars { color: var(--accent); font-size: 15px; letter-spacing: 2px; margin-bottom: 12px; }
+  .jf-avaliacao-text { font: var(--text-body); color: var(--text-secondary); line-height: 1.7; margin: 0 0 18px; }
+  .jf-avaliacao-author { display: flex; align-items: center; gap: 11px; }
+  .jf-avaliacao-avatar { width: 40px; height: 40px; border-radius: 50%; background: var(--gray-100); display: flex; align-items: center; justify-content: center; font-weight: 800; color: var(--text-secondary); }
+  .jf-avaliacao-name { font-weight: 700; font-size: 14px; }
+  .jf-avaliacao-local { font-size: 12.5px; color: var(--text-tertiary); }
+
+  .jf-estoque-head { display: flex; align-items: baseline; justify-content: space-between; margin-bottom: 18px; }
+  .jf-estoque-count { font-size: 14px; color: var(--text-secondary); }
+  .jf-g4 { display: grid; grid-template-columns: repeat(4, 1fr); gap: 18px; }
+  .jf-estoque-more { display: flex; justify-content: center; margin-top: 24px; padding-bottom: 20px; }
+
+  @media (max-width: 980px) {
+    .jf-sobre { grid-template-columns: 1fr; }
+    .jf-g4stat, .jf-g4 { grid-template-columns: 1fr 1fr; }
+  }
+  @media (max-width: 620px) {
+    .jf-g4stat, .jf-g4, .jf-g3 { grid-template-columns: 1fr; }
+  }
+</style>

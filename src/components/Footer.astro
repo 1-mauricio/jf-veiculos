@@ -1,0 +1,97 @@
+---
+import { getCollection } from 'astro:content';
+import { whatsappLink } from '../lib/format';
+
+const lojaEntries = await getCollection('loja');
+const loja = lojaEntries[0]?.data;
+const whatsappHref = loja ? whatsappLink(loja.whatsapp, 'Olá! Vim pelo site da JF Veículos.') : '#';
+const year = new Date().getFullYear();
+---
+
+<footer class="jf-footer">
+  <div class="jf-foot">
+    <div>
+      <div class="jf-foot-brand">
+        <div class="jf-foot-mark">JF</div>
+        <span class="jf-foot-name">JF Veículos</span>
+      </div>
+      <p class="jf-foot-desc">Seminovos revisados, com procedência garantida e as melhores condições de financiamento do mercado. Compre com segurança.</p>
+    </div>
+    <div>
+      <div class="jf-foot-title">Comprar</div>
+      <div class="jf-foot-links">
+        <a href="/veiculos?tipo=carro">Carros usados</a>
+        <a href="/veiculos?tipo=moto">Motos</a>
+        <a href="/veiculos">SUVs e picapes</a>
+        <a href="/veiculos">Ofertas da semana</a>
+      </div>
+    </div>
+    <div>
+      <div class="jf-foot-title">Institucional</div>
+      <div class="jf-foot-links">
+        <a href="/loja">Sobre a loja</a>
+        <span>Financiamento</span>
+        <span>Garantia</span>
+        <span>Trabalhe conosco</span>
+      </div>
+    </div>
+    <div>
+      <div class="jf-foot-title">Atendimento</div>
+      <div class="jf-foot-links">
+        {loja && <span>{loja.horarios}</span>}
+        {loja?.telefoneFixo && <span class="jf-foot-phone">{loja.telefoneFixo}</span>}
+        <a href={whatsappHref} target="_blank" rel="noopener" class="jf-foot-whatsapp">WhatsApp</a>
+      </div>
+    </div>
+  </div>
+  <div class="jf-foot-bottom-wrap">
+    <div class="jf-foot-bottom">
+      <span>© {year} JF Veículos. Todos os direitos reservados. {loja && `CNPJ ${loja.cnpj}.`}</span>
+      <span>Termos de uso · Política de privacidade</span>
+    </div>
+  </div>
+</footer>
+
+<style>
+  .jf-footer {
+    border-top: 1px solid var(--black-700);
+    background: var(--black-900);
+    margin-top: 40px;
+  }
+  .jf-foot {
+    max-width: 1240px;
+    margin: 0 auto;
+    padding: 52px 24px 30px;
+    display: grid;
+    grid-template-columns: 1.6fr 1fr 1fr 1fr;
+    gap: 40px;
+  }
+  .jf-foot-brand { display: flex; align-items: center; gap: 10px; margin-bottom: 16px; }
+  .jf-foot-mark {
+    width: 34px; height: 34px; border-radius: var(--radius-sm); background: var(--accent);
+    display: flex; align-items: center; justify-content: center;
+    font: 700 15px var(--font-display); color: var(--white);
+  }
+  .jf-foot-name { font: 700 17px var(--font-display); color: var(--white); }
+  .jf-foot-desc { color: var(--gray-400); font-size: 14px; line-height: 1.7; max-width: 300px; margin: 0; }
+  .jf-foot-title { font: 700 14px var(--font-display); color: var(--white); margin-bottom: 16px; }
+  .jf-foot-links { display: flex; flex-direction: column; gap: 11px; font-size: 14px; color: var(--gray-400); }
+  .jf-foot-links a { color: var(--gray-400); }
+  .jf-foot-links a:hover { color: var(--white); }
+  .jf-foot-phone { color: var(--white); font-weight: 700; font-size: 16px; }
+  .jf-foot-whatsapp { color: var(--amber-500) !important; font-weight: 700; }
+
+  .jf-foot-bottom-wrap { border-top: 1px solid var(--black-700); }
+  .jf-foot-bottom {
+    max-width: 1240px; margin: 0 auto; padding: 20px 24px;
+    display: flex; justify-content: space-between; flex-wrap: wrap; gap: 12px;
+    font-size: 12.5px; color: var(--gray-500);
+  }
+
+  @media (max-width: 980px) {
+    .jf-foot { grid-template-columns: 1fr 1fr; }
+  }
+  @media (max-width: 620px) {
+    .jf-foot { grid-template-columns: 1fr; }
+  }
+</style>

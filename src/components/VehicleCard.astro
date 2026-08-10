@@ -1,0 +1,126 @@
+---
+import type { CollectionEntry } from 'astro:content';
+import { brl, km as fmtKm, parcelaEstimada } from '../lib/format';
+
+interface Props {
+  vehicle: CollectionEntry<'veiculos'>;
+}
+
+const { vehicle } = Astro.props;
+const v = vehicle.data;
+const href = `/veiculos/${vehicle.id}`;
+
+function hashAngle(id: string): number {
+  let h = 0;
+  for (let i = 0; i < id.length; i++) h = (h * 31 + id.charCodeAt(i)) % 360;
+  return 128 + (h % 8) * 8;
+}
+
+const fotos = v.fotos ?? [];
+const placeholderAngle = hashAngle(vehicle.id);
+---
+
+<a href={href} class="jf-card">
+  <div class="jf-card-photo" style={fotos.length === 0 ? `background: repeating-linear-gradient(${placeholderAngle}deg, var(--gray-100) 0 15px, var(--gray-200) 15px 30px);` : undefined}>
+    {fotos.length > 0 ? (
+      <img src={fotos[0]} alt={v.nome} loading="lazy" decoding="async" />
+    ) : (
+      <span class="jf-card-photo-label">SEM FOTO</span>
+    )}
+    <div class="jf-card-badges">
+      {v.destaque && <span class="jf-badge jf-badge-accent">EM ALTA</span>}
+      {v.lancamento && <span class="jf-badge jf-badge-dark">NOVO</span>}
+    </div>
+    <button
+      type="button"
+      class="jf-card-fav"
+      data-fav-btn
+      data-vehicle-id={vehicle.id}
+      aria-label="Favoritar veículo"
+    >
+      <svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 20.5s-7.5-4.6-9.8-9.3A5 5 0 0 1 12 6a5 5 0 0 1 9.8 5.2C19.5 15.9 12 20.5 12 20.5z"/></svg>
+    </button>
+  </div>
+  <div class="jf-card-body">
+    <div>
+      <span class="jf-card-eyebrow">{v.marca} · {v.categoria}</span>
+      <h3 class="jf-card-title">{v.nome}</h3>
+    </div>
+    <div class="jf-card-chips">
+      <span class="jf-chip">{v.ano}/{v.anoModelo}</span>
+      <span class="jf-chip">{fmtKm(v.km)}</span>
+      <span class="jf-chip">{v.cambio}</span>
+      <span class="jf-chip">{v.combustivel}</span>
+    </div>
+    <div class="jf-card-price-wrap">
+      <div class="jf-card-price">{brl(v.preco)}</div>
+      <div class="jf-card-sub">ou {parcelaEstimada(v.preco)}/mês · {v.cidade} · {v.uf}</div>
+    </div>
+  </div>
+</a>
+
+<style>
+  .jf-card {
+    background: var(--white);
+    border: 1px solid var(--border-default);
+    border-radius: var(--radius-lg);
+    box-shadow: var(--shadow-card);
+    overflow: hidden;
+    cursor: pointer;
+    display: flex;
+    flex-direction: column;
+    color: inherit;
+    transition: box-shadow var(--dur-base) var(--ease-standard), transform var(--dur-base) var(--ease-standard);
+  }
+  .jf-card:hover { box-shadow: var(--shadow-raised); transform: translateY(-3px); }
+
+  .jf-card-photo {
+    position: relative;
+    height: 190px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    overflow: hidden;
+    background: var(--gray-100);
+  }
+  .jf-card-photo img { width: 100%; height: 100%; object-fit: cover; }
+  .jf-card-photo-label { font: 600 11px var(--font-display); letter-spacing: 2px; color: var(--gray-500); }
+
+  .jf-card-badges { position: absolute; top: 12px; left: 12px; display: flex; gap: 6px; }
+  .jf-badge { font-size: 10.5px; font-weight: 700; padding: 4px 9px; border-radius: var(--radius-full); letter-spacing: .3px; color: var(--white); }
+  .jf-badge-accent { background: var(--accent); }
+  .jf-badge-dark { background: var(--black-900); }
+
+  .jf-card-fav {
+    position: absolute;
+    top: 10px;
+    right: 10px;
+    width: 34px;
+    height: 34px;
+    border: none;
+    border-radius: var(--radius-full);
+    background: rgba(255, 255, 255, .92);
+    box-shadow: var(--shadow-card);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    color: var(--text-tertiary);
+  }
+  .jf-card-fav.is-active { color: var(--accent); }
+
+  .jf-card-body {
+    padding: 16px 17px 18px;
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+    flex: 1;
+  }
+  .jf-card-eyebrow { font: var(--text-caption); color: var(--text-tertiary); text-transform: uppercase; letter-spacing: .4px; }
+  .jf-card-title { font: 700 18px var(--font-display); margin: 5px 0 0; letter-spacing: -.2px; color: var(--text-primary); }
+  .jf-card-chips { display: flex; flex-wrap: wrap; gap: 6px; }
+  .jf-chip { font-size: 12px; color: var(--text-secondary); background: var(--gray-100); padding: 4px 9px; border-radius: var(--radius-md); }
+  .jf-card-price-wrap { margin-top: auto; padding-top: 6px; border-top: 1px solid var(--border-default); }
+  .jf-card-price { font: 700 22px var(--font-display); color: var(--text-primary); letter-spacing: -.3px; margin-top: 10px; }
+  .jf-card-sub { font-size: 12.5px; color: var(--text-secondary); margin-top: 3px; }
+</style>

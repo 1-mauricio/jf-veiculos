@@ -1,0 +1,98 @@
+backend:
+  name: git-gateway
+  branch: main
+
+# TODO: depois do primeiro deploy no Netlify, ative "Identity" e "Git Gateway"
+# em Site settings > Identity, e convide o e-mail de quem vai editar o site.
+
+local_backend: true
+
+media_folder: "public/images/veiculos"
+public_folder: "/images/veiculos"
+
+collections:
+  - name: "veiculos"
+    label: "Veículos"
+    label_singular: "Veículo"
+    folder: "src/content/veiculos"
+    create: true
+    delete: true
+    slug: "{{slug}}"
+    summary: "{{nome}} · {{marca}} · R$ {{preco}}"
+    format: "json"
+    fields:
+      - { label: "Nome do anúncio", name: "nome", widget: "string", hint: "Ex: VW Nivus Highline" }
+      - { label: "Marca", name: "marca", widget: "string" }
+      - { label: "Modelo", name: "modelo", widget: "string" }
+      - label: "Tipo"
+        name: "tipo"
+        widget: "select"
+        options: [{ label: "Carro", value: "carro" }, { label: "Moto", value: "moto" }]
+      - { label: "Categoria", name: "categoria", widget: "string", hint: "Ex: SUV, Hatch, Sedan, Naked 500cc..." }
+      - { label: "Ano de fabricação", name: "ano", widget: "number", value_type: "int", min: 1990, max: 2100 }
+      - { label: "Ano do modelo", name: "anoModelo", widget: "number", value_type: "int", min: 1990, max: 2100 }
+      - { label: "Preço (R$)", name: "preco", widget: "number", value_type: "int", min: 0 }
+      - { label: "Quilometragem", name: "km", widget: "number", value_type: "int", min: 0 }
+      - label: "Câmbio"
+        name: "cambio"
+        widget: "select"
+        options: ["Automático", "Manual"]
+      - label: "Combustível"
+        name: "combustivel"
+        widget: "select"
+        options: ["Flex", "Gasolina", "Diesel", "Elétrico"]
+      - { label: "Cor", name: "cor", widget: "string" }
+      - { label: "Cidade", name: "cidade", widget: "string" }
+      - { label: "UF", name: "uf", widget: "string", pattern: ["^[A-Za-z]{2}$", "Use a sigla do estado, ex: SP"] }
+      - { label: "Destaque na home?", name: "destaque", widget: "boolean", default: false, hint: "Aparece na seção 'Veículos em alta'" }
+      - { label: "É lançamento/novo?", name: "lancamento", widget: "boolean", default: false }
+      - label: "Fotos"
+        name: "fotos"
+        widget: "list"
+        field: { label: "Foto", name: "foto", widget: "image" }
+        default: []
+        hint: "A primeira foto é a capa do anúncio. Arraste para reordenar."
+      - { label: "Descrição", name: "descricao", widget: "text" }
+      - label: "Itens e opcionais"
+        name: "opcionais"
+        widget: "list"
+        field: { label: "Item", name: "item", widget: "string" }
+        default: []
+      - { label: "Motor (carro)", name: "motor", widget: "string", required: false }
+      - { label: "Potência", name: "potencia", widget: "string", required: false, hint: "Ex: 116 cv" }
+      - { label: "Portas (carro)", name: "portas", widget: "number", value_type: "int", required: false }
+      - { label: "Cilindrada (moto)", name: "cilindrada", widget: "string", required: false, hint: "Ex: 471cc" }
+
+  - name: "depoimentos"
+    label: "Depoimentos"
+    label_singular: "Depoimento"
+    folder: "src/content/depoimentos"
+    create: true
+    delete: true
+    slug: "{{fields.nome}}"
+    summary: "{{nome}} · {{local}}"
+    format: "json"
+    fields:
+      - { label: "Nome do cliente", name: "nome", widget: "string" }
+      - { label: "Cidade/UF", name: "local", widget: "string", hint: "Ex: São Paulo · SP" }
+      - { label: "Depoimento", name: "texto", widget: "text" }
+      - { label: "Nota (1 a 5)", name: "nota", widget: "number", value_type: "int", min: 1, max: 5, default: 5 }
+
+  - name: "loja"
+    label: "Loja"
+    files:
+      - name: "loja"
+        label: "Informações da loja"
+        file: "src/content/loja/loja.json"
+        fields:
+          - { label: "WhatsApp (só números, com DDI+DDD)", name: "whatsapp", widget: "string", hint: "Ex: 5511999999999" }
+          - { label: "Telefone fixo", name: "telefoneFixo", widget: "string", required: false }
+          - { label: "Endereço", name: "endereco", widget: "string" }
+          - { label: "Cidade", name: "cidade", widget: "string" }
+          - { label: "UF", name: "uf", widget: "string" }
+          - { label: "Horários de atendimento", name: "horarios", widget: "string" }
+          - { label: "Avaliação média (0 a 5)", name: "avaliacaoMedia", widget: "number", value_type: "float", min: 0, max: 5 }
+          - { label: "Número de avaliações", name: "numAvaliacoes", widget: "number", value_type: "int", min: 0 }
+          - { label: "Ano de fundação", name: "anoFundacao", widget: "number", value_type: "int" }
+          - { label: "Texto 'Sobre a loja'", name: "sobre", widget: "text" }
+          - { label: "CNPJ", name: "cnpj", widget: "string" }
