@@ -1,6 +1,7 @@
 const STORAGE_KEY = 'jf-favoritos';
+export const FAVORITES_CHANGED_EVENT = 'jf:favorites-changed';
 
-function readFavorites(): Set<string> {
+export function readFavorites(): Set<string> {
   try {
     const raw = localStorage.getItem(STORAGE_KEY);
     return new Set(raw ? (JSON.parse(raw) as string[]) : []);
@@ -22,8 +23,17 @@ function syncButton(btn: HTMLElement, favs: Set<string>) {
   if (label) label.textContent = isFav ? 'Salvo' : 'Favoritar';
 }
 
+function syncCountBadges(favs: Set<string>) {
+  document.querySelectorAll<HTMLElement>('[data-fav-count]').forEach((el) => {
+    el.textContent = String(favs.size);
+    el.closest<HTMLElement>('[data-fav-nav]')?.classList.toggle('has-favs', favs.size > 0);
+  });
+}
+
 export function initFavorites() {
   const favs = readFavorites();
+  syncCountBadges(favs);
+
   const buttons = document.querySelectorAll<HTMLElement>('[data-fav-btn]');
   buttons.forEach((btn) => {
     if (btn.dataset.favInit === 'true') return;
@@ -41,6 +51,8 @@ export function initFavorites() {
       document
         .querySelectorAll<HTMLElement>(`[data-fav-btn][data-vehicle-id="${id}"]`)
         .forEach((el) => syncButton(el, current));
+      syncCountBadges(current);
+      document.dispatchEvent(new CustomEvent(FAVORITES_CHANGED_EVENT, { detail: current }));
     });
   });
 }

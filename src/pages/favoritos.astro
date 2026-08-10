@@ -1,0 +1,65 @@
+---
+import { getCollection } from 'astro:content';
+import BaseLayout from '../layouts/BaseLayout.astro';
+import VehicleCard from '../components/VehicleCard.astro';
+import Icon from '../components/Icon.astro';
+import Button from '../components/Button.astro';
+
+const veiculos = await getCollection('veiculos');
+---
+
+<BaseLayout title="Meus favoritos" description="Os veículos que você salvou como favoritos.">
+  <div class="jf-fav-wrap">
+    <div class="jf-breadcrumb"><a href="/">Início</a> <span>›</span> <span>Meus favoritos</span></div>
+
+    <div class="jf-fav-head">
+      <h1 class="jf-h1">Meus favoritos</h1>
+      <div class="jf-fav-count" id="jf-fav-count-label">Carregando...</div>
+    </div>
+
+    <div class="jf-g3" id="jf-fav-grid" hidden>
+      {veiculos.map((v) => (
+        <div class="jf-grid-item" data-vehicle-card data-id={v.id} hidden>
+          <VehicleCard vehicle={v} />
+        </div>
+      ))}
+    </div>
+
+    <div id="jf-fav-empty" class="jf-empty" hidden>
+      <div class="jf-empty-icon"><Icon name="heart" size={34} color="var(--text-tertiary)" /></div>
+      <div class="jf-empty-title">Você ainda não favoritou nenhum veículo</div>
+      <div class="jf-empty-sub">Clique no coração de um anúncio pra salvá-lo aqui e comparar depois.</div>
+      <Button href="/veiculos">Ver todos os veículos</Button>
+    </div>
+  </div>
+</BaseLayout>
+
+<script>
+  import { initFavoritosPage } from '../scripts/favoritos-page';
+  initFavoritosPage();
+</script>
+
+<style>
+  .jf-fav-wrap { max-width: 1240px; margin: 0 auto; padding: 30px 24px 40px; }
+  .jf-breadcrumb { font-size: 13px; color: var(--text-tertiary); margin-bottom: 18px; }
+  .jf-breadcrumb a { color: var(--text-tertiary); }
+
+  .jf-fav-head { margin-bottom: 24px; }
+  .jf-h1 { font: 700 28px var(--font-display); letter-spacing: -.6px; margin: 0 0 4px; }
+  .jf-fav-count { font-size: 14px; color: var(--text-secondary); }
+
+  .jf-g3 { display: grid; grid-template-columns: repeat(3, 1fr); gap: 18px; }
+  .jf-grid-item[hidden] { display: none; }
+
+  .jf-empty {
+    text-align: center; padding: 80px 20px; background: var(--white);
+    border: 1px dashed var(--border-strong); border-radius: var(--radius-lg);
+  }
+  .jf-empty-icon { display: flex; justify-content: center; margin-bottom: 14px; }
+  .jf-empty-title { font: 700 18px var(--font-display); margin-bottom: 6px; }
+  .jf-empty-sub { font-size: 14px; color: var(--text-secondary); margin-bottom: 18px; }
+
+  @media (max-width: 620px) {
+    .jf-g3 { grid-template-columns: 1fr; }
+  }
+</style>

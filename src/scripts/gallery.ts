@@ -51,7 +51,7 @@ function initGallery(el: HTMLElement) {
     // Capturar o ponteiro ao pressionar numa seta retargeta o click resultante para
     // `el`, então o clique nunca chega no botão — por isso as setas ficam sem efeito.
     const target = e.target as HTMLElement;
-    if (target.closest('[data-gallery-prev],[data-gallery-next]')) return;
+    if (target.closest('[data-gallery-prev],[data-gallery-next],[data-fav-btn]')) return;
 
     startX = e.clientX;
     dx = 0;
@@ -86,7 +86,7 @@ function initGallery(el: HTMLElement) {
       'click',
       (e) => {
         const target = e.target as HTMLElement;
-        if (target.closest('[data-gallery-prev],[data-gallery-next]')) return;
+        if (target.closest('[data-gallery-prev],[data-gallery-next],[data-fav-btn]')) return;
         if (Math.abs(dx) > 10) {
           e.preventDefault();
           e.stopPropagation();
