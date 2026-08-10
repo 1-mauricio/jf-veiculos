@@ -86,6 +86,7 @@ collections:
         file: "src/content/loja/loja.json"
         fields:
           - { label: "WhatsApp (só números, com DDI+DDD)", name: "whatsapp", widget: "string", hint: "Ex: 5511999999999" }
+          - { label: "Instagram (usuário, sem @)", name: "instagram", widget: "string", required: false, hint: "Ex: jf_veiculo_" }
           - { label: "Telefone fixo", name: "telefoneFixo", widget: "string", required: false }
           - { label: "Endereço", name: "endereco", widget: "string" }
           - { label: "Cidade", name: "cidade", widget: "string" }

@@ -44,6 +44,7 @@ const loja = defineCollection({
   loader: glob({ pattern: '**/*.json', base: './src/content/loja' }),
   schema: z.object({
     whatsapp: z.string(),
+    instagram: z.string().optional(),
     telefoneFixo: z.string().optional(),
     endereco: z.string(),
     cidade: z.string(),

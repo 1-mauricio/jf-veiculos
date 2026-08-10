@@ -3,6 +3,7 @@ import { getCollection } from 'astro:content';
 import BaseLayout from '../layouts/BaseLayout.astro';
 import VehicleCard from '../components/VehicleCard.astro';
 import Button from '../components/Button.astro';
+import Icon from '../components/Icon.astro';
 import { whatsappLink } from '../lib/format';
 
 const veiculos = await getCollection('veiculos');
@@ -13,6 +14,7 @@ const loja = lojaEntries[0]?.data;
 const totalVeiculos = veiculos.length;
 const anosDeMercado = loja ? new Date().getFullYear() - loja.anoFundacao : null;
 const whatsappHref = loja ? whatsappLink(loja.whatsapp, 'Olá! Vim pelo site da JF Veículos.') : '#';
+const instagramHref = loja?.instagram ? `https://instagram.com/${loja.instagram}` : null;
 const estoque = veiculos.slice(0, 8);
 ---
 
@@ -40,6 +42,11 @@ const estoque = veiculos.slice(0, 8);
         </div>
         <div class="jf-loja-actions">
           <Button href={whatsappHref} target="_blank" variant="whatsapp">WhatsApp</Button>
+          {instagramHref && (
+            <a href={instagramHref} target="_blank" rel="noopener" class="jf-loja-instagram" aria-label="Instagram da JF Veículos">
+              <Icon name="instagram" size={18} color="var(--white)" />
+            </a>
+          )}
           <button type="button" class="jf-loja-follow">Seguir loja</button>
         </div>
       </div>
@@ -131,6 +138,11 @@ const estoque = veiculos.slice(0, 8);
     background: transparent; border: 1px solid rgba(255, 255, 255, .24); color: var(--white);
     font-weight: 700; font-size: 14px; padding: 12px 20px; border-radius: var(--radius-full); cursor: pointer;
   }
+  .jf-loja-instagram {
+    display: flex; align-items: center; justify-content: center; width: 42px; height: 42px;
+    background: transparent; border: 1px solid rgba(255, 255, 255, .24); border-radius: var(--radius-full);
+  }
+  .jf-loja-instagram:hover { border-color: rgba(255, 255, 255, .5); }
 
   .jf-g4stat { display: grid; grid-template-columns: repeat(4, 1fr); gap: 14px; margin: 34px 0 0; padding-bottom: 34px; }
   .jf-stat { background: rgba(255, 255, 255, .06); border-radius: var(--radius-md); padding: 18px; }
