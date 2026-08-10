@@ -54,7 +54,7 @@ const placeholderAngle = hashAngle(vehicle.id);
   </div>
   <div class="jf-card-body">
     <div>
-      <span class="jf-card-eyebrow">{v.marca} · {v.categoria}</span>
+      <span class="jf-card-eyebrow">{v.categoria ? `${v.marca} · ${v.categoria}` : v.marca}</span>
       <h3 class="jf-card-title">{v.nome}</h3>
     </div>
     <div class="jf-card-chips">

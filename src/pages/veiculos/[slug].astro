@@ -103,7 +103,7 @@ const parcelaInicial = (() => {
         )}
 
         <div class="jf-det-title-block">
-          <div class="jf-det-eyebrow">{v.marca} · {v.categoria}</div>
+          <div class="jf-det-eyebrow">{v.categoria ? `${v.marca} · ${v.categoria}` : v.marca}</div>
           <h1 class="jf-det-title">{v.nome}</h1>
           <div class="jf-det-chips">
             <span class="jf-chip">{v.ano}/{v.anoModelo}</span>
@@ -170,7 +170,6 @@ const parcelaInicial = (() => {
         <div class="jf-price-card">
           <div class="jf-price-label">Valor à vista</div>
           <div class="jf-price-value">{brl(v.preco)}</div>
-          <div class="jf-price-parcela" id="jf-price-parcela">ou {brlDec(parcelaInicial)} em 48x</div>
           <a href={whatsappHref} target="_blank" rel="noopener" class="jf-whatsapp-btn">Falar no WhatsApp</a>
           <button type="button" class="jf-fav-btn" data-fav-btn data-vehicle-id={vehicle.id}>
             <Icon name="heart" size={16} />

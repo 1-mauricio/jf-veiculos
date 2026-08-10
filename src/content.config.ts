@@ -8,7 +8,7 @@ const veiculos = defineCollection({
     marca: z.string(),
     modelo: z.string(),
     tipo: z.enum(['carro', 'moto']),
-    categoria: z.string(),
+    categoria: z.string().optional(),
     ano: z.number(),
     anoModelo: z.number(),
     preco: z.number(),
