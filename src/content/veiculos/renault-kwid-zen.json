@@ -27,5 +27,9 @@
     "Computador de bordo",
     "Airbags"
   ],
-  "fotos": []
+  "fotos": [
+    "https://placehold.co/800x600/2874A6/FFFFFF/png?text=Renault%20Kwid%20Zen%0AFoto%201/3&font=roboto",
+    "https://placehold.co/800x600/2874A6/FFFFFF/png?text=Renault%20Kwid%20Zen%0AFoto%202/3&font=roboto",
+    "https://placehold.co/800x600/2874A6/FFFFFF/png?text=Renault%20Kwid%20Zen%0AFoto%203/3&font=roboto"
+  ]
 }

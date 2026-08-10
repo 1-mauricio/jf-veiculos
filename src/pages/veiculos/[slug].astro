@@ -172,6 +172,10 @@ const parcelaInicial = (() => {
           <div class="jf-price-value">{brl(v.preco)}</div>
           <div class="jf-price-parcela" id="jf-price-parcela">ou {brlDec(parcelaInicial)} em 48x</div>
           <a href={whatsappHref} target="_blank" rel="noopener" class="jf-whatsapp-btn">Falar no WhatsApp</a>
+          <button type="button" class="jf-fav-btn" data-fav-btn data-vehicle-id={vehicle.id}>
+            <Icon name="heart" size={16} />
+            <span data-fav-label>Favoritar</span>
+          </button>
         </div>
 
         <!-- SIMULADOR -->
@@ -305,6 +309,14 @@ const parcelaInicial = (() => {
     font-weight: 700; font-size: 16px; padding: 15px; border-radius: var(--radius-full); margin-bottom: 10px;
   }
   .jf-whatsapp-btn:hover { background: #1fb956; color: var(--white); }
+  .jf-fav-btn {
+    width: 100%; display: flex; align-items: center; justify-content: center; gap: 8px;
+    background: var(--white); border: 1px solid var(--border-default); color: var(--text-secondary);
+    font-weight: 700; font-size: 14px; padding: 12px; border-radius: var(--radius-full); cursor: pointer;
+  }
+  .jf-fav-btn svg { fill: none; stroke: currentColor; transition: fill var(--dur-fast) var(--ease-standard); }
+  .jf-fav-btn.is-active { color: var(--accent); border-color: var(--accent-soft); background: var(--accent-soft); }
+  .jf-fav-btn.is-active svg { fill: var(--accent); }
 
   .jf-sim-row { display: flex; justify-content: space-between; margin-bottom: 10px; }
   .jf-sim-row-top { margin-top: 20px; }

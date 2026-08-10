@@ -27,5 +27,9 @@
     "Partida por botão",
     "Som premium"
   ],
-  "fotos": []
+  "fotos": [
+    "https://placehold.co/800x600/8A8A8E/FFFFFF/png?text=Honda%20Civic%20Touring%0AFoto%201/3&font=roboto",
+    "https://placehold.co/800x600/8A8A8E/FFFFFF/png?text=Honda%20Civic%20Touring%0AFoto%202/3&font=roboto",
+    "https://placehold.co/800x600/8A8A8E/FFFFFF/png?text=Honda%20Civic%20Touring%0AFoto%203/3&font=roboto"
+  ]
 }

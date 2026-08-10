@@ -17,7 +17,11 @@
   "descricao": "Onix LT 1.0 Turbo, o hatch mais vendido do país. Econômico, revisado e com pneus novos. Excelente custo-benefício.",
   "combustivel": "Flex",
   "preco": 72900,
-  "fotos": [],
+  "fotos": [
+    "https://placehold.co/800x600/C4C4C4/1A1A1A/png?text=Chevrolet%20Onix%20LT%0AFoto%201/3&font=roboto",
+    "https://placehold.co/800x600/C4C4C4/1A1A1A/png?text=Chevrolet%20Onix%20LT%0AFoto%202/3&font=roboto",
+    "https://placehold.co/800x600/C4C4C4/1A1A1A/png?text=Chevrolet%20Onix%20LT%0AFoto%203/3&font=roboto"
+  ],
   "uf": "SP",
   "portas": 4,
   "categoria": "Hatch",

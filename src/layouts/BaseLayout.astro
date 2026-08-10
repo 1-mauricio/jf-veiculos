@@ -58,7 +58,9 @@ const fontTheme = FONT_THEMES[aparencia?.fonteTema ?? DEFAULT_FONT_THEME];
 
   <script>
     import { initGalleries } from '../scripts/gallery';
+    import { initFavorites } from '../scripts/favorites';
     initGalleries();
+    initFavorites();
   </script>
 
   <!-- Redireciona para /admin depois que a pessoa confirma o convite/login do painel de edição. -->

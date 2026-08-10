@@ -27,5 +27,9 @@
     "Sensor de estacionamento",
     "Faróis full LED"
   ],
-  "fotos": []
+  "fotos": [
+    "https://placehold.co/800x600/EDEDED/1A1A1A/png?text=VW%20Nivus%20Highline%0AFoto%201/3&font=roboto",
+    "https://placehold.co/800x600/EDEDED/1A1A1A/png?text=VW%20Nivus%20Highline%0AFoto%202/3&font=roboto",
+    "https://placehold.co/800x600/EDEDED/1A1A1A/png?text=VW%20Nivus%20Highline%0AFoto%203/3&font=roboto"
+  ]
 }

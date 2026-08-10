@@ -27,5 +27,9 @@
     "7 airbags",
     "Faróis LED"
   ],
-  "fotos": []
+  "fotos": [
+    "https://placehold.co/800x600/1A1A1A/FFFFFF/png?text=Toyota%20Corolla%20XEI%0AFoto%201/3&font=roboto",
+    "https://placehold.co/800x600/1A1A1A/FFFFFF/png?text=Toyota%20Corolla%20XEI%0AFoto%202/3&font=roboto",
+    "https://placehold.co/800x600/1A1A1A/FFFFFF/png?text=Toyota%20Corolla%20XEI%0AFoto%203/3&font=roboto"
+  ]
 }
