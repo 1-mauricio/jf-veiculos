@@ -48,6 +48,11 @@ function initGallery(el: HTMLElement) {
   });
 
   el.addEventListener('pointerdown', (e) => {
+    // Capturar o ponteiro ao pressionar numa seta retargeta o click resultante para
+    // `el`, então o clique nunca chega no botão — por isso as setas ficam sem efeito.
+    const target = e.target as HTMLElement;
+    if (target.closest('[data-gallery-prev],[data-gallery-next]')) return;
+
     startX = e.clientX;
     dx = 0;
     dragging = true;
