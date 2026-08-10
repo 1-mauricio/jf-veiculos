@@ -13,7 +13,6 @@ const loja = lojaEntries[0]?.data;
 const siteEntries = await getCollection('site');
 const site = siteEntries[0]?.data;
 
-const totalVeiculos = veiculos.length;
 const catCarros = veiculos.filter((v) => v.data.tipo === 'carro').length;
 const catMotos = veiculos.filter((v) => v.data.tipo === 'moto').length;
 const destaques = veiculos.filter((v) => v.data.destaque).slice(0, 4);
@@ -27,10 +26,6 @@ const vendaHref = loja ? whatsappLink(loja.whatsapp, 'Olá! Quero avaliar meu ve
   <section class="jf-hero">
     <div class="jf-hero-inner">
       <div class="jf-hero-copy">
-        <div class="jf-hero-eyebrow">
-          <span class="jf-hero-dot"></span>
-          <span>+{totalVeiculos} {site?.heroEyebrowTexto}</span>
-        </div>
         <h1 class="jf-h1 jf-hero-title">{site?.heroTituloInicio} <span class="jf-accent-text">{site?.heroTituloDestaque}</span>.</h1>
         <p class="jf-hero-sub">{site?.heroSubtitulo}</p>
       </div>
@@ -189,13 +184,6 @@ const vendaHref = loja ? whatsappLink(loja.whatsapp, 'Olá! Quero avaliar meu ve
   }
   .jf-hero-inner { max-width: 1240px; margin: 0 auto; padding: 76px 24px 70px; }
   .jf-hero-copy { max-width: 720px; animation: jfrise .6s ease both; }
-  .jf-hero-eyebrow {
-    display: inline-flex; align-items: center; gap: 8px;
-    padding: 7px 14px; border-radius: var(--radius-full);
-    background: rgba(200, 134, 43, .16); border: 1px solid rgba(200, 134, 43, .4);
-    margin-bottom: 22px; font-size: 13px; font-weight: 700; color: var(--accent-on-dark); letter-spacing: .3px;
-  }
-  .jf-hero-dot { width: 7px; height: 7px; border-radius: 50%; background: var(--accent-on-dark); }
   .jf-hero-title {
     font: 700 54px var(--font-display); line-height: 1.05; letter-spacing: -1.6px;
     margin: 0 0 18px; color: var(--white);
