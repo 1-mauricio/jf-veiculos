@@ -15,7 +15,6 @@ const site = siteEntries[0]?.data;
 const nomeSite = site?.nomeSite ?? 'JF Veículos';
 
 const totalVeiculos = veiculos.length;
-const anosDeMercado = loja ? new Date().getFullYear() - loja.anoFundacao : null;
 const whatsappHref = loja ? whatsappLink(loja.whatsapp, `Olá! Vim pelo site da ${nomeSite}.`) : '#';
 const instagramHref = loja?.instagram ? `https://instagram.com/${loja.instagram}` : null;
 ---
@@ -56,8 +55,6 @@ const instagramHref = loja?.instagram ? `https://instagram.com/${loja.instagram}
       <div class="jf-g4stat">
         <div class="jf-stat"><div class="jf-stat-value">{totalVeiculos}</div><div class="jf-stat-label">anúncios ativos</div></div>
         <div class="jf-stat"><div class="jf-stat-value">3.200+</div><div class="jf-stat-label">veículos vendidos</div></div>
-        <div class="jf-stat"><div class="jf-stat-value">{anosDeMercado ?? 17} anos</div><div class="jf-stat-label">de mercado</div></div>
-        <div class="jf-stat"><div class="jf-stat-value jf-stat-value-accent">&lt; 10min</div><div class="jf-stat-label">tempo de resposta</div></div>
       </div>
     </div>
   </section>
@@ -137,10 +134,9 @@ const instagramHref = loja?.instagram ? `https://instagram.com/${loja.instagram}
   }
   .jf-loja-instagram:hover { border-color: rgba(255, 255, 255, .5); color: var(--white); }
 
-  .jf-g4stat { display: grid; grid-template-columns: repeat(4, 1fr); gap: 14px; margin: 34px 0 0; padding-bottom: 34px; }
+  .jf-g4stat { display: grid; grid-template-columns: repeat(2, 1fr); gap: 14px; margin: 34px 0 0; padding-bottom: 34px; max-width: 460px; }
   .jf-stat { background: rgba(255, 255, 255, .06); border-radius: var(--radius-md); padding: 18px; }
   .jf-stat-value { font: 700 24px var(--font-display); color: var(--white); }
-  .jf-stat-value-accent { color: var(--accent-on-dark); }
   .jf-stat-label { font-size: 13px; color: var(--text-on-dark-secondary); margin-top: 2px; }
 
   .jf-loja-section { max-width: 1240px; margin: 0 auto; padding: 40px 24px 0; }
@@ -172,7 +168,6 @@ const instagramHref = loja?.instagram ? `https://instagram.com/${loja.instagram}
 
   @media (max-width: 980px) {
     .jf-sobre { grid-template-columns: 1fr; }
-    .jf-g4stat { grid-template-columns: 1fr 1fr; }
   }
   @media (max-width: 620px) {
     .jf-g4stat, .jf-g3 { grid-template-columns: 1fr; }

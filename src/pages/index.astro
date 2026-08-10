@@ -147,10 +147,7 @@ const vendaHref = loja ? whatsappLink(loja.whatsapp, 'Olá! Quero avaliar meu ve
   {depoimentos.length > 0 && (
     <section class="jf-section">
       <div class="jf-section-head jf-section-head-center">
-        <div class="jf-eyebrow">Quem comprou, aprova</div>
-        <h2 class="jf-h2">
-          {loja ? `${loja.avaliacaoMedia.toString().replace('.', ',')} de 5 em mais de ${loja.numAvaliacoes.toLocaleString('pt-BR')} avaliações` : 'Quem comprou, aprova'}
-        </h2>
+        <h2 class="jf-h2">Quem comprou, aprova</h2>
       </div>
       <div class="jf-g3">
         {depoimentos.map((d) => (

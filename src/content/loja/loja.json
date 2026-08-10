@@ -1,14 +1,14 @@
 {
+  "cidade": " Recife",
+  "cnpj": "00.000.000/0001-00",
+  "endereco": "Av. Chapada do Araripe - Dois Carneiros",
+  "avaliacaoMedia": 5,
+  "horarios": "Seg a Sab · 8h às 18h",
+  "uf": "PE",
   "whatsapp": "558181944936",
   "instagram": "jf_veiculo_",
-  "endereco": "Av. Exemplo, 1000",
-  "cidade": "São Paulo",
-  "uf": "SP",
-  "horarios": "Seg a Sex · 9h às 19h · Sábado · 9h às 14h",
-  "avaliacaoMedia": 4.9,
-  "numAvaliacoes": 1247,
-  "anoFundacao": 2009,
+  "anoFundacao": 2002,
+  "numAvaliacoes": 10,
   "sobre": "Há mais de 17 anos ajudando famílias a comprar com segurança. Trabalhamos exclusivamente com seminovos revisados, laudo cautelar e garantia real. Nossa equipe cuida de toda a documentação, financiamento e transferência para você sair de carro novo sem dor de cabeça.",
-  "historia": "Começamos em 2009 em um pequeno pátio, revisando cada carro pessoalmente antes de colocar à venda. Esse cuidado virou nossa marca registrada: hoje seguimos com a mesma equipe fundadora e o mesmo compromisso, agora com uma estrutura maior para inspecionar, financiar e entregar veículos em todo o estado.",
-  "cnpj": "00.000.000/0001-00"
+  "historia": "Começamos em 2009 em um pequeno pátio, revisando cada carro pessoalmente antes de colocar à venda. Esse cuidado virou nossa marca registrada: hoje seguimos com a mesma equipe fundadora e o mesmo compromisso, agora com uma estrutura maior para inspecionar, financiar e entregar veículos em todo o estado."
 }
