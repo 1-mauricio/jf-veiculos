@@ -121,3 +121,27 @@ collections:
           - { label: "CTA final — texto", name: "ctaFinalTexto", widget: "text" }
           - { label: "CTA final — texto do botão", name: "ctaFinalBotao", widget: "string" }
           - { label: "Descrição no rodapé", name: "footerDescricao", widget: "text" }
+
+  - name: "aparencia"
+    label: "Aparência"
+    files:
+      - name: "aparencia"
+        label: "Cores e fontes do site"
+        file: "src/content/aparencia/aparencia.json"
+        fields:
+          - label: "Cor de destaque"
+            name: "corTema"
+            widget: "select"
+            options:
+              - { label: "Âmbar (padrão)", value: "ambar" }
+              - { label: "Azul", value: "azul" }
+              - { label: "Verde", value: "verde" }
+              - { label: "Vermelho", value: "vermelho" }
+              - { label: "Roxo", value: "roxo" }
+          - label: "Fontes"
+            name: "fonteTema"
+            widget: "select"
+            options:
+              - { label: "Moderno (Space Grotesk + Inter)", value: "moderno" }
+              - { label: "Amigável (Poppins + Inter)", value: "amigavel" }
+              - { label: "Clássico (Playfair Display + Source Sans 3)", value: "classico" }

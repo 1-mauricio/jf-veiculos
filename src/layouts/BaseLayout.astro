@@ -3,6 +3,7 @@ import { getCollection } from 'astro:content';
 import Header from '../components/Header.astro';
 import Footer from '../components/Footer.astro';
 import '../styles/global.css';
+import { COLOR_THEMES, FONT_THEMES, DEFAULT_COLOR_THEME, DEFAULT_FONT_THEME } from '../lib/themes';
 
 interface Props {
   title: string;
@@ -20,6 +21,11 @@ const siteEntries = await getCollection('site');
 const nomeSite = siteEntries[0]?.data.nomeSite ?? 'JF Veículos';
 const fullTitle = title === nomeSite ? title : `${title} · ${nomeSite}`;
 const canonicalURL = new URL(Astro.url.pathname, Astro.site);
+
+const aparenciaEntries = await getCollection('aparencia');
+const aparencia = aparenciaEntries[0]?.data;
+const colorTheme = COLOR_THEMES[aparencia?.corTema ?? DEFAULT_COLOR_THEME];
+const fontTheme = FONT_THEMES[aparencia?.fonteTema ?? DEFAULT_FONT_THEME];
 ---
 
 <!doctype html>
@@ -38,6 +44,17 @@ const canonicalURL = new URL(Astro.url.pathname, Astro.site);
   <meta property="og:url" content={canonicalURL} />
   {image && <meta property="og:image" content={new URL(image, Astro.site)} />}
   <meta name="twitter:card" content="summary_large_image" />
+
+  <link rel="stylesheet" href={fontTheme.googleFontsUrl} />
+  <style set:html={`html:root {
+    --accent: ${colorTheme.accent};
+    --accent-strong: ${colorTheme.accentStrong};
+    --accent-soft: ${colorTheme.accentSoft};
+    --accent-on-dark: ${colorTheme.accentOnDark};
+    --focus-ring: ${colorTheme.accent};
+    --font-display: ${fontTheme.display};
+    --font-body: ${fontTheme.body};
+  }`} />
 
   <!-- Redireciona para /admin depois que a pessoa confirma o convite/login do painel de edição. -->
   <script is:inline src="https://identity.netlify.com/v1/netlify-identity-widget.js"></script>

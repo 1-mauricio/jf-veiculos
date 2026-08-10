@@ -1,5 +1,4 @@
-@import url('https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@500;600;700&family=Inter:wght@400;500;600;700&display=swap');
-
+/* A fonte é carregada dinamicamente pelo BaseLayout, conforme o tema escolhido em /admin > Aparência. */
 :root {
   --font-display: 'Space Grotesk', ui-sans-serif, sans-serif;
   --font-body: 'Inter', ui-sans-serif, sans-serif;

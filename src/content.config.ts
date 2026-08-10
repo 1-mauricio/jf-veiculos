@@ -80,4 +80,12 @@ const site = defineCollection({
   }),
 });
 
-export const collections = { veiculos, depoimentos, loja, site };
+const aparencia = defineCollection({
+  loader: glob({ pattern: '**/*.json', base: './src/content/aparencia' }),
+  schema: z.object({
+    corTema: z.enum(['ambar', 'azul', 'verde', 'vermelho', 'roxo']).default('ambar'),
+    fonteTema: z.enum(['moderno', 'amigavel', 'classico']).default('moderno'),
+  }),
+});
+
+export const collections = { veiculos, depoimentos, loja, site, aparencia };

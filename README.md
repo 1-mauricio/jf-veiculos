@@ -1,6 +1,6 @@
 # JF Veículos
 
-Site da JF Veículos: catálogo de carros e motos seminovos, com painel de edição visual (sem precisar mexer em código) para cadastrar veículos, depoimentos e dados da loja.
+Site da JF Veículos: catálogo de carros e motos seminovos, com painel de edição visual (sem precisar mexer em código) para cadastrar veículos, depoimentos, dados da loja, textos/logo do site e até trocar o tema de cores e fontes.
 
 ## Stack
 
@@ -36,9 +36,13 @@ src/
     veiculos/         → um arquivo .json por veículo
     depoimentos/       → um arquivo .json por depoimento
     loja/loja.json     → dados da loja (WhatsApp, endereço, horários...)
+    site/site.json      → logo e textos gerais do site (banner, vantagens, CTA, rodapé)
+    aparencia/aparencia.json → tema de cores e fontes
   content.config.ts   → define os campos (schema) de cada tipo de conteúdo
-  layouts/            → layout base (head, header, footer)
-  lib/                → funções auxiliares (formatação de preço, km, link do WhatsApp)
+  layouts/            → layout base (head, header, footer, injeta o tema escolhido)
+  lib/
+    format.ts           → funções de formatação (preço, km, link do WhatsApp)
+    themes.ts            → paletas de cor e combinações de fonte disponíveis
   pages/
     index.astro           → home
     veiculos/index.astro  → listagem com filtros

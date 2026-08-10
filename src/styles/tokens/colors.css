@@ -40,6 +40,7 @@
   --accent: var(--amber-600);
   --accent-strong: var(--amber-700);
   --accent-soft: var(--amber-100);
+  --accent-on-dark: var(--amber-500);
   --focus-ring: var(--amber-600);
 
   --danger: var(--red-600);
