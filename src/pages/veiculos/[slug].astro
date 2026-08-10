@@ -2,7 +2,6 @@
 import { getCollection, render } from 'astro:content';
 import BaseLayout from '../../layouts/BaseLayout.astro';
 import VehicleCard from '../../components/VehicleCard.astro';
-import Icon from '../../components/Icon.astro';
 import { brl, brlDec, km as fmtKm, whatsappLink } from '../../lib/format';
 
 export async function getStaticPaths() {
@@ -46,6 +45,9 @@ const similares = veiculos.filter((x) => x.data.tipo === v.tipo && x.id !== vehi
 const whatsappHref = loja
   ? whatsappLink(loja.whatsapp, `Olá! Tenho interesse no ${v.nome} ${v.ano} anunciado por ${brl(v.preco)}.`)
   : '#';
+
+// Simulador de financiamento desativado temporariamente. Para reativar, troque para `true`.
+const SHOW_FINANCING_SIMULATOR = false;
 
 const parcelaInicial = (() => {
   const i = 0.0159;
@@ -153,39 +155,37 @@ const parcelaInicial = (() => {
           <div class="jf-price-value">{brl(v.preco)}</div>
           <div class="jf-price-parcela" id="jf-price-parcela">ou {brlDec(parcelaInicial)} em 48x</div>
           <a href={whatsappHref} target="_blank" rel="noopener" class="jf-whatsapp-btn">Falar no WhatsApp</a>
-          <button type="button" class="jf-fav-btn" data-fav-btn data-vehicle-id={vehicle.id}>
-            <Icon name="heart" size={16} />
-            <span>Favoritar</span>
-          </button>
         </div>
 
         <!-- SIMULADOR -->
-        <div class="jf-sim-card" id="jf-sim" data-preco={v.preco}>
-          <h3 class="jf-det-h3">Simule seu financiamento</h3>
-          <div class="jf-sim-row">
-            <label class="jf-filter-label" for="jf-sim-entrada">Entrada</label>
-            <span class="jf-filter-value" id="jf-sim-entrada-pct">20%</span>
-          </div>
-          <input type="range" id="jf-sim-entrada" min="0" max="50" step="5" value="20" aria-describedby="jf-sim-entrada-pct" />
-          <div class="jf-sim-sub">Valor de entrada: <strong id="jf-sim-entrada-valor">{brl(v.preco * 0.2)}</strong></div>
+        {SHOW_FINANCING_SIMULATOR && (
+          <div class="jf-sim-card" id="jf-sim" data-preco={v.preco}>
+            <h3 class="jf-det-h3">Simule seu financiamento</h3>
+            <div class="jf-sim-row">
+              <label class="jf-filter-label" for="jf-sim-entrada">Entrada</label>
+              <span class="jf-filter-value" id="jf-sim-entrada-pct">20%</span>
+            </div>
+            <input type="range" id="jf-sim-entrada" min="0" max="50" step="5" value="20" aria-describedby="jf-sim-entrada-pct" />
+            <div class="jf-sim-sub">Valor de entrada: <strong id="jf-sim-entrada-valor">{brl(v.preco * 0.2)}</strong></div>
 
-          <div class="jf-sim-row jf-sim-row-top">
-            <span class="jf-filter-label" id="jf-parcelas-label">Parcelas</span>
-          </div>
-          <div class="jf-chips" role="group" aria-labelledby="jf-parcelas-label">
-            <button type="button" class="jf-chip-btn" data-parcelas="12">12x</button>
-            <button type="button" class="jf-chip-btn" data-parcelas="24">24x</button>
-            <button type="button" class="jf-chip-btn" data-parcelas="36">36x</button>
-            <button type="button" class="jf-chip-btn is-active" data-parcelas="48">48x</button>
-            <button type="button" class="jf-chip-btn" data-parcelas="60">60x</button>
-          </div>
+            <div class="jf-sim-row jf-sim-row-top">
+              <span class="jf-filter-label" id="jf-parcelas-label">Parcelas</span>
+            </div>
+            <div class="jf-chips" role="group" aria-labelledby="jf-parcelas-label">
+              <button type="button" class="jf-chip-btn" data-parcelas="12">12x</button>
+              <button type="button" class="jf-chip-btn" data-parcelas="24">24x</button>
+              <button type="button" class="jf-chip-btn" data-parcelas="36">36x</button>
+              <button type="button" class="jf-chip-btn is-active" data-parcelas="48">48x</button>
+              <button type="button" class="jf-chip-btn" data-parcelas="60">60x</button>
+            </div>
 
-          <div class="jf-sim-result">
-            <div class="jf-sim-result-row"><span>Parcela estimada</span><strong id="jf-sim-parcela-valor">{brlDec(parcelaInicial)} em 48x</strong></div>
-            <div class="jf-sim-result-row"><span>Total financiado</span><strong id="jf-sim-total">{brl(v.preco * 0.2 + parcelaInicial * 48)}</strong></div>
+            <div class="jf-sim-result">
+              <div class="jf-sim-result-row"><span>Parcela estimada</span><strong id="jf-sim-parcela-valor">{brlDec(parcelaInicial)} em 48x</strong></div>
+              <div class="jf-sim-result-row"><span>Total financiado</span><strong id="jf-sim-total">{brl(v.preco * 0.2 + parcelaInicial * 48)}</strong></div>
+            </div>
+            <p class="jf-sim-disclaimer">Simulação estimada (taxa de 1,59% a.m.). Sujeita a análise de crédito.</p>
           </div>
-          <p class="jf-sim-disclaimer">Simulação estimada (taxa de 1,59% a.m.). Sujeita a análise de crédito.</p>
-        </div>
+        )}
       </aside>
     </div>
 
@@ -281,12 +281,6 @@ const parcelaInicial = (() => {
     font-weight: 700; font-size: 16px; padding: 15px; border-radius: var(--radius-full); margin-bottom: 10px;
   }
   .jf-whatsapp-btn:hover { background: #1fb956; color: var(--white); }
-  .jf-fav-btn {
-    width: 100%; display: flex; align-items: center; justify-content: center; gap: 8px;
-    background: var(--white); border: 1px solid var(--border-default); color: var(--text-secondary);
-    font-weight: 700; font-size: 14px; padding: 12px; border-radius: var(--radius-full); cursor: pointer;
-  }
-  .jf-fav-btn.is-active { color: var(--accent); border-color: var(--accent-soft); background: var(--accent-soft); }
 
   .jf-sim-row { display: flex; justify-content: space-between; margin-bottom: 10px; }
   .jf-sim-row-top { margin-top: 20px; }
