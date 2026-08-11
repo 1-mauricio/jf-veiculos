@@ -20,7 +20,7 @@ collections:
     folder: "src/content/veiculos"
     create: true
     delete: true
-    slug: "{{slug}}"
+    slug: "{{fields.marca}}-{{fields.modelo}}-{{fields.anoModelo}}"
     summary: "{{nome}} · {{marca}} · R$ {{preco}}"
     format: "json"
     fields:
