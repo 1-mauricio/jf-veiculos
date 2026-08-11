@@ -179,7 +179,10 @@ const vendaHref = loja ? whatsappLink(loja.whatsapp, 'Olá! Quero avaliar meu ve
     overflow: hidden;
     background:
       radial-gradient(1100px 480px at 78% -10%, rgba(200, 134, 43, .22), transparent 60%),
-      linear-gradient(180deg, var(--black-950), var(--black-900));
+      linear-gradient(180deg, rgba(10, 10, 10, .82), rgba(10, 10, 10, .92)),
+      url('/images/site/background.jpeg');
+    background-size: cover;
+    background-position: center 30%;
   }
   .jf-hero-inner { max-width: 1240px; margin: 0 auto; padding: 76px 24px 70px; }
   .jf-hero-copy { max-width: 720px; animation: jfrise .6s ease both; }
