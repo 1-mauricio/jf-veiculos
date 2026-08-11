@@ -30,6 +30,18 @@ function syncCountBadges(favs: Set<string>) {
   });
 }
 
+export function pruneFavorites(validIds: Iterable<string>): Set<string> {
+  const valid = new Set(validIds);
+  const current = readFavorites();
+  const pruned = new Set([...current].filter((id) => valid.has(id)));
+  if (pruned.size !== current.size) {
+    writeFavorites(pruned);
+    syncCountBadges(pruned);
+    document.dispatchEvent(new CustomEvent(FAVORITES_CHANGED_EVENT, { detail: pruned }));
+  }
+  return pruned;
+}
+
 export function initFavorites() {
   const favs = readFavorites();
   syncCountBadges(favs);

@@ -245,7 +245,7 @@ const parcelaInicial = (() => {
     display: flex; align-items: center; justify-content: center; background: var(--gray-100);
     touch-action: pan-y; user-select: none; cursor: grab;
   }
-  .jf-galeria img { width: 100%; height: 100%; object-fit: cover; pointer-events: none; }
+  .jf-galeria img { width: 100%; height: 100%; object-fit: contain; pointer-events: none; }
   .jf-galeria-label { font: 600 13px var(--font-display); letter-spacing: 2px; color: var(--text-tertiary); }
   .jf-galeria-badge {
     position: absolute; top: 16px; left: 16px; background: var(--accent); color: var(--white);
@@ -262,7 +262,8 @@ const parcelaInicial = (() => {
   .jf-thumbs { display: flex; gap: 10px; margin-top: 12px; overflow-x: auto; }
   .jf-thumb {
     flex: 0 0 92px; height: 66px; border-radius: var(--radius-sm); cursor: pointer;
-    background-size: cover; background-position: center; border: 2px solid transparent;
+    background-size: contain; background-repeat: no-repeat; background-position: center;
+    background-color: var(--gray-100); border: 2px solid transparent;
   }
   .jf-thumb.is-active { border-color: var(--accent); }
 

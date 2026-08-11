@@ -1,8 +1,9 @@
-import { readFavorites, FAVORITES_CHANGED_EVENT } from './favorites';
+import { pruneFavorites, FAVORITES_CHANGED_EVENT } from './favorites';
 
 function applyFilter() {
-  const favs = readFavorites();
   const cards = document.querySelectorAll<HTMLElement>('[data-vehicle-card]');
+  const validIds = [...cards].map((card) => card.dataset.id).filter((id): id is string => !!id);
+  const favs = pruneFavorites(validIds);
   const grid = document.getElementById('jf-fav-grid');
   const empty = document.getElementById('jf-fav-empty');
   const count = document.getElementById('jf-fav-count-label');
