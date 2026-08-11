@@ -11,6 +11,9 @@ const cores = [...new Set(veiculos.map((v) => v.data.cor))].sort();
 const tipos = [...new Set(veiculos.map((v) => v.data.tipo))];
 const cambios = [...new Set(veiculos.map((v) => v.data.cambio))].sort();
 const combustiveis = [...new Set(veiculos.map((v) => v.data.combustivel))].sort();
+const anos = veiculos.map((v) => v.data.ano);
+const anoMinData = anos.length ? Math.min(...anos) : 2016;
+const anoMaxData = anos.length ? Math.max(...anos) : 2024;
 const siteEntries = await getCollection('site');
 const nomeSite = siteEntries[0]?.data.nomeSite ?? 'JF Veículos';
 ---
@@ -70,8 +73,8 @@ const nomeSite = siteEntries[0]?.data.nomeSite ?? 'JF Veículos';
           </div>
 
           <div class="jf-filter-group">
-            <div class="jf-filter-row"><label class="jf-filter-label" for="jf-ano">Ano mínimo</label><span class="jf-filter-value" id="jf-ano-val">2016</span></div>
-            <input type="range" id="jf-ano" min="2016" max="2024" step="1" value="2016" aria-describedby="jf-ano-val" />
+            <div class="jf-filter-row"><label class="jf-filter-label" for="jf-ano">Ano mínimo</label><span class="jf-filter-value" id="jf-ano-val">{anoMinData}</span></div>
+            <input type="range" id="jf-ano" min={anoMinData} max={anoMaxData} step="1" value={anoMinData} aria-describedby="jf-ano-val" />
           </div>
 
           <div class="jf-filter-group">
@@ -116,7 +119,7 @@ const nomeSite = siteEntries[0]?.data.nomeSite ?? 'JF Veículos';
               data-marca={v.data.marca}
               data-preco={v.data.preco}
               data-ano={v.data.ano}
-              data-km={v.data.km}
+              data-km={v.data.km ?? 0}
               data-cambio={v.data.cambio}
               data-combustivel={v.data.combustivel}
               data-cor={v.data.cor}

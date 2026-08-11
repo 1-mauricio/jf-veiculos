@@ -19,6 +19,8 @@ function hashAngle(id: string): number {
 
 const fotos = v.fotos ?? [];
 const placeholderAngle = hashAngle(vehicle.id);
+const cidade = v.cidade || 'Recife';
+const uf = v.uf || 'PE';
 ---
 
 <a href={href} class="jf-card">
@@ -59,13 +61,13 @@ const placeholderAngle = hashAngle(vehicle.id);
     </div>
     <div class="jf-card-chips">
       <span class="jf-chip">{v.ano}/{v.anoModelo}</span>
-      <span class="jf-chip">{fmtKm(v.km)}</span>
+      <span class="jf-chip">{v.km != null ? fmtKm(v.km) : '—'}</span>
       <span class="jf-chip">{v.cambio}</span>
       <span class="jf-chip">{v.combustivel}</span>
     </div>
     <div class="jf-card-price-wrap">
       <div class="jf-card-price">{brl(v.preco)}</div>
-      <div class="jf-card-sub">ou {parcelaEstimada(v.preco)}/mês · {v.cidade} · {v.uf}</div>
+      <div class="jf-card-sub">{cidade} · {uf}</div>
     </div>
   </div>
 </a>

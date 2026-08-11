@@ -1,0 +1,28 @@
+{
+  "destaque": true,
+  "km": 78153,
+  "ano": 2023,
+  "cidade": "Recife",
+  "opcionais": [],
+  "cilindrada": "160cc",
+  "cor": "Vermelho",
+  "modelo": "Start",
+  "anoModelo": 2024,
+  "descricao": "A Honda CG 160 Start é a motocicleta de entrada mais popular do Brasil, focada em economia e praticidade urbana. Ela traz motor OHC de 162,7 cc movido a gasolina, gerando 14,4 cv de potência, câmbio de 5 marchas, tanque de 14 litros e painel digital.",
+  "combustivel": "Flex",
+  "preco": 15990,
+  "fotos": [
+    "/images/veiculos/whatsapp-image-2026-08-10-at-20.25.56-2-.jpeg",
+    "/images/veiculos/whatsapp-image-2026-08-10-at-20.25.57.jpeg",
+    "/images/veiculos/whatsapp-image-2026-08-10-at-20.25.57-1-.jpeg",
+    "/images/veiculos/whatsapp-image-2026-08-10-at-20.25.56.jpeg",
+    "/images/veiculos/whatsapp-image-2026-08-10-at-20.25.56-1-.jpeg",
+    "/images/veiculos/whatsapp-image-2026-08-10-at-20.25.55.jpeg"
+  ],
+  "uf": "PE",
+  "tipo": "moto",
+  "cambio": "Manual",
+  "nome": "Honda CG Start 160",
+  "lancamento": false,
+  "marca": "Honda"
+}

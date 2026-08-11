@@ -24,6 +24,10 @@ const DEFAULTS: Filtros = {
   sort: 'recentes',
 };
 
+function initialNumber(el: HTMLInputElement | null, fallback: number): number {
+  return el ? Number(el.value) : fallback;
+}
+
 function brl(n: number): string {
   return 'R$ ' + Math.round(n).toLocaleString('pt-BR');
 }
@@ -56,18 +60,25 @@ export function initListagem() {
     filtersToggle.setAttribute('aria-expanded', String(!!isOpen));
   });
 
+  const INITIAL: Filtros = {
+    ...DEFAULTS,
+    precoMax: initialNumber(precoRange, DEFAULTS.precoMax),
+    anoMin: initialNumber(anoRange, DEFAULTS.anoMin),
+    kmMax: initialNumber(kmRange, DEFAULTS.kmMax),
+  };
+
   const params = new URLSearchParams(window.location.search);
   const state: Filtros = {
-    tipo: params.get('tipo') ?? DEFAULTS.tipo,
-    marca: params.get('marca') ?? DEFAULTS.marca,
-    precoMax: Number(params.get('precoMax') ?? DEFAULTS.precoMax),
-    anoMin: Number(params.get('anoMin') ?? DEFAULTS.anoMin),
-    kmMax: Number(params.get('kmMax') ?? DEFAULTS.kmMax),
-    cambio: params.get('cambio') ?? DEFAULTS.cambio,
-    combustivel: params.get('combustivel') ?? DEFAULTS.combustivel,
-    cor: params.get('cor') ?? DEFAULTS.cor,
-    busca: params.get('busca') ?? DEFAULTS.busca,
-    sort: params.get('sort') ?? DEFAULTS.sort,
+    tipo: params.get('tipo') ?? INITIAL.tipo,
+    marca: params.get('marca') ?? INITIAL.marca,
+    precoMax: params.has('precoMax') ? Number(params.get('precoMax')) : INITIAL.precoMax,
+    anoMin: params.has('anoMin') ? Number(params.get('anoMin')) : INITIAL.anoMin,
+    kmMax: params.has('kmMax') ? Number(params.get('kmMax')) : INITIAL.kmMax,
+    cambio: params.get('cambio') ?? INITIAL.cambio,
+    combustivel: params.get('combustivel') ?? INITIAL.combustivel,
+    cor: params.get('cor') ?? INITIAL.cor,
+    busca: params.get('busca') ?? INITIAL.busca,
+    sort: params.get('sort') ?? INITIAL.sort,
   };
 
   function syncControls() {
@@ -91,7 +102,7 @@ export function initListagem() {
   function updateURL() {
     const p = new URLSearchParams();
     (Object.keys(state) as (keyof Filtros)[]).forEach((k) => {
-      if (state[k] !== DEFAULTS[k] && state[k] !== '') p.set(k, String(state[k]));
+      if (state[k] !== INITIAL[k] && state[k] !== '') p.set(k, String(state[k]));
     });
     const qs = p.toString();
     history.replaceState(null, '', qs ? `?${qs}` : window.location.pathname);
@@ -168,7 +179,7 @@ export function initListagem() {
   });
 
   limparBtns.forEach((btn) => btn?.addEventListener('click', () => {
-    Object.assign(state, DEFAULTS);
+    Object.assign(state, INITIAL);
     syncControls();
     applyFilters();
   }));

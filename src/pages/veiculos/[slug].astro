@@ -20,6 +20,8 @@ const loja = lojaEntries[0]?.data;
 
 const fotos = v.fotos ?? [];
 const temFotos = fotos.length > 0;
+const cidade = v.cidade || 'Recife';
+const uf = v.uf || 'PE';
 
 function hashAngle(id: string): number {
   let h = 0;
@@ -27,18 +29,19 @@ function hashAngle(id: string): number {
   return 128 + (h % 8) * 8;
 }
 const placeholderAngle = hashAngle(vehicle.id);
+const kmTexto = v.km != null ? fmtKm(v.km) : '—';
 
 const fichas: [string, string][] = v.tipo === 'moto'
   ? [
       ['Marca', v.marca], ['Modelo', v.modelo], ['Ano/Modelo', `${v.ano}/${v.anoModelo}`],
-      ['Quilometragem', fmtKm(v.km)], ['Cilindrada', v.cilindrada ?? '—'], ['Potência', v.potencia ?? '—'],
-      ['Câmbio', v.cambio], ['Combustível', v.combustivel], ['Cor', v.cor], ['Cidade', `${v.cidade} · ${v.uf}`],
+      ['Quilometragem', kmTexto], ['Cilindrada', v.cilindrada ?? '—'], ['Potência', v.potencia ?? '—'],
+      ['Câmbio', v.cambio], ['Combustível', v.combustivel], ['Cor', v.cor], ['Cidade', `${cidade} · ${uf}`],
     ]
   : [
       ['Marca', v.marca], ['Modelo', v.modelo], ['Ano/Modelo', `${v.ano}/${v.anoModelo}`],
-      ['Quilometragem', fmtKm(v.km)], ['Câmbio', v.cambio], ['Combustível', v.combustivel],
+      ['Quilometragem', kmTexto], ['Câmbio', v.cambio], ['Combustível', v.combustivel],
       ['Motor', v.motor ?? '—'], ['Potência', v.potencia ?? '—'], ['Portas', v.portas ? `${v.portas} portas` : '—'],
-      ['Cor', v.cor], ['Cidade', `${v.cidade} · ${v.uf}`],
+      ['Cor', v.cor], ['Cidade', `${cidade} · ${uf}`],
     ];
 
 const similares = veiculos.filter((x) => x.data.tipo === v.tipo && x.id !== vehicle.id).slice(0, 4);
@@ -107,10 +110,10 @@ const parcelaInicial = (() => {
           <h1 class="jf-det-title">{v.nome}</h1>
           <div class="jf-det-chips">
             <span class="jf-chip">{v.ano}/{v.anoModelo}</span>
-            <span class="jf-chip">{fmtKm(v.km)}</span>
+            <span class="jf-chip">{kmTexto}</span>
             <span class="jf-chip">{v.cambio}</span>
             <span class="jf-chip">{v.combustivel}</span>
-            <span class="jf-chip">{v.cidade} · {v.uf}</span>
+            <span class="jf-chip">{cidade} · {uf}</span>
           </div>
         </div>
 

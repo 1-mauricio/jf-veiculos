@@ -1,6 +1,9 @@
 import { defineCollection, z } from 'astro:content';
 import { glob } from 'astro/loaders';
 
+/** O Decap CMS grava "" (não omite a chave) quando um campo numérico opcional fica em branco. */
+const optionalNumber = () => z.preprocess((v) => (v === '' ? undefined : v), z.number().optional());
+
 const veiculos = defineCollection({
   loader: glob({ pattern: '**/*.json', base: './src/content/veiculos' }),
   schema: z.object({
@@ -12,12 +15,12 @@ const veiculos = defineCollection({
     ano: z.number(),
     anoModelo: z.number(),
     preco: z.number(),
-    km: z.number(),
+    km: optionalNumber(),
     cambio: z.enum(['Automático', 'Manual']),
     combustivel: z.enum(['Flex', 'Gasolina', 'Diesel', 'Elétrico']),
     cor: z.string(),
-    cidade: z.string(),
-    uf: z.string(),
+    cidade: z.string().optional(),
+    uf: z.string().optional(),
     destaque: z.boolean().default(false),
     lancamento: z.boolean().default(false),
     fotos: z.array(z.string()).default([]),
@@ -25,7 +28,7 @@ const veiculos = defineCollection({
     opcionais: z.array(z.string()).default([]),
     motor: z.string().optional(),
     potencia: z.string().optional(),
-    portas: z.number().optional(),
+    portas: optionalNumber(),
     cilindrada: z.string().optional(),
   }),
 });

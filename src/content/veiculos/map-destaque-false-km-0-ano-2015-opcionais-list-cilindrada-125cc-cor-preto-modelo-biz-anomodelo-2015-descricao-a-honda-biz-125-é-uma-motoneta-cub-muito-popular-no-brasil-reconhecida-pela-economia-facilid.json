@@ -1,0 +1,23 @@
+{
+  "destaque": false,
+  "ano": 2015,
+  "opcionais": [],
+  "cilindrada": "125cc",
+  "cor": "Preto",
+  "modelo": "Biz",
+  "anoModelo": 2015,
+  "descricao": "A Honda Biz 125 é uma motoneta (cub) muito popular no Brasil, reconhecida pela economia, facilidade de pilotagem com câmbio semiautomático de 4 marchas e praticidade urbana, contando com motor de 123,9 cc (cerca de 9,5 cv), painel digital, porta-objetos sob o banco e entrada USB-C.",
+  "combustivel": "Flex",
+  "preco": 10990,
+  "fotos": [
+    "/images/veiculos/whatsapp-image-2026-08-10-at-20.47.24-3-.jpeg",
+    "/images/veiculos/whatsapp-image-2026-08-10-at-20.47.24.jpeg",
+    "/images/veiculos/whatsapp-image-2026-08-10-at-20.47.24-2-.jpeg",
+    "/images/veiculos/whatsapp-image-2026-08-10-at-20.47.24-1-.jpeg"
+  ],
+  "tipo": "moto",
+  "cambio": "Manual",
+  "nome": "Honda Biz 125",
+  "lancamento": false,
+  "marca": "Honda"
+}

@@ -1,0 +1,29 @@
+{
+  "destaque": false,
+  "km": 0,
+  "ano": 2022,
+  "opcionais": [],
+  "cilindrada": "250cc",
+  "cor": "Amarelo",
+  "modelo": "CRF",
+  "anoModelo": 2022,
+  "descricao": "A linha Honda CRF 250 engloba motos off-road de alta performance. Os modelos principais são a CRF 250R (focada em motocross de competição) e a CRF 250F (nacional, voltada para trilhas e lazer), variando entre 22,2 CV e 43,5 CV de potência com motores de 249cc.",
+  "combustivel": "Flex",
+  "preco": 19990,
+  "fotos": [
+    "/images/veiculos/whatsapp-image-2026-08-10-at-20.45.04.jpeg",
+    "/images/veiculos/whatsapp-image-2026-08-10-at-20.45.06.jpeg",
+    "/images/veiculos/whatsapp-image-2026-08-10-at-20.45.06-2-.jpeg",
+    "/images/veiculos/whatsapp-image-2026-08-10-at-20.45.06-1-.jpeg",
+    "/images/veiculos/whatsapp-image-2026-08-10-at-20.45.05.jpeg",
+    "/images/veiculos/whatsapp-image-2026-08-10-at-20.45.05-4-.jpeg",
+    "/images/veiculos/whatsapp-image-2026-08-10-at-20.45.05-3-.jpeg",
+    "/images/veiculos/whatsapp-image-2026-08-10-at-20.45.05-2-.jpeg",
+    "/images/veiculos/whatsapp-image-2026-08-10-at-20.45.05-1-.jpeg"
+  ],
+  "tipo": "moto",
+  "cambio": "Manual",
+  "nome": "Honda CRF 250cc",
+  "lancamento": false,
+  "marca": "Honda"
+}

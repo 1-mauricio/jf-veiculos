@@ -1,0 +1,27 @@
+{
+  "destaque": false,
+  "km": 2100,
+  "ano": 2022,
+  "opcionais": [],
+  "cilindrada": "50cc",
+  "cor": "Vermelho",
+  "modelo": "Jet",
+  "anoModelo": 2022,
+  "descricao": "A Shineray Jet é uma motoneta (tipo Cub) prática e econômica, muito popular para o uso urbano. Ela está disponível em versões de 50cc (conhecida como \"cinquentinha\") e de 125cc (como a Jet 125SS e a New Jet 125 EFI com injeção eletrônica), oferecendo câmbio semiautomático ou mecânico de 4 marchas, painel digital, rodas de liga leve e partida elétrica ou a pedal",
+  "combustivel": "Flex",
+  "preco": 4990,
+  "fotos": [
+    "/images/veiculos/whatsapp-image-2026-08-10-at-20.38.00.jpeg",
+    "/images/veiculos/whatsapp-image-2026-08-10-at-20.38.01.jpeg",
+    "/images/veiculos/whatsapp-image-2026-08-10-at-20.38.00-3-.jpeg",
+    "/images/veiculos/whatsapp-image-2026-08-10-at-20.38.00-2-.jpeg",
+    "/images/veiculos/whatsapp-image-2026-08-10-at-20.38.00-2-.jpeg",
+    "/images/veiculos/whatsapp-image-2026-08-10-at-20.38.01-1-.jpeg",
+    "/images/veiculos/whatsapp-image-2026-08-10-at-20.38.00-4-.jpeg"
+  ],
+  "tipo": "moto",
+  "cambio": "Manual",
+  "nome": "Shineray Jet 50",
+  "lancamento": false,
+  "marca": "Shineray"
+}
