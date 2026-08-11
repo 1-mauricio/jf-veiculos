@@ -31,9 +31,6 @@ const instagramHref = loja?.instagram ? `https://instagram.com/${loja.instagram}
           </div>
           {loja && (
             <div class="jf-loja-meta">
-              <span class="jf-loja-rating">★ {loja.avaliacaoMedia.toString().replace('.', ',')}</span>
-              <span>{loja.numAvaliacoes.toLocaleString('pt-BR')} avaliações</span>
-              <span>·</span>
               <span>{loja.cidade} · {loja.uf}</span>
               <span>·</span>
               <span>Desde {loja.anoFundacao}</span>
@@ -54,7 +51,6 @@ const instagramHref = loja?.instagram ? `https://instagram.com/${loja.instagram}
 
       <div class="jf-g4stat">
         <div class="jf-stat"><div class="jf-stat-value">{totalVeiculos}</div><div class="jf-stat-label">anúncios ativos</div></div>
-        <div class="jf-stat"><div class="jf-stat-value">3.200+</div><div class="jf-stat-label">veículos vendidos</div></div>
       </div>
     </div>
   </section>
@@ -90,7 +86,6 @@ const instagramHref = loja?.instagram ? `https://instagram.com/${loja.instagram}
       <div class="jf-g3">
         {depoimentos.map((d) => (
           <div class="jf-avaliacao">
-            <div class="jf-stars">★★★★★</div>
             <p class="jf-avaliacao-text">"{d.data.texto}"</p>
             <div class="jf-avaliacao-author">
               <div class="jf-avaliacao-avatar">{d.data.nome[0]}</div>
@@ -125,7 +120,6 @@ const instagramHref = loja?.instagram ? `https://instagram.com/${loja.instagram}
   .jf-loja-title-row { display: flex; align-items: center; gap: 10px; flex-wrap: wrap; }
   .jf-loja-title { font: 700 30px var(--font-display); color: var(--white); letter-spacing: -.7px; margin: 0; }
   .jf-loja-meta { display: flex; align-items: center; gap: 16px; margin-top: 8px; flex-wrap: wrap; color: var(--text-on-dark-secondary); font-size: 14px; }
-  .jf-loja-rating { color: var(--accent-on-dark); font-weight: 800; }
   .jf-loja-actions { display: flex; gap: 10px; padding-bottom: 6px; }
   .jf-loja-instagram {
     display: flex; align-items: center; gap: 8px; height: 42px; padding: 0 18px;
@@ -134,7 +128,7 @@ const instagramHref = loja?.instagram ? `https://instagram.com/${loja.instagram}
   }
   .jf-loja-instagram:hover { border-color: rgba(255, 255, 255, .5); color: var(--white); }
 
-  .jf-g4stat { display: grid; grid-template-columns: repeat(2, 1fr); gap: 14px; margin: 34px 0 0; padding-bottom: 34px; max-width: 460px; }
+  .jf-g4stat { display: grid; grid-template-columns: repeat(1, 1fr); gap: 14px; margin: 34px 0 0; padding-bottom: 34px; max-width: 220px; }
   .jf-stat { background: rgba(255, 255, 255, .06); border-radius: var(--radius-md); padding: 18px; }
   .jf-stat-value { font: 700 24px var(--font-display); color: var(--white); }
   .jf-stat-label { font-size: 13px; color: var(--text-on-dark-secondary); margin-top: 2px; }
@@ -158,10 +152,9 @@ const instagramHref = loja?.instagram ? `https://instagram.com/${loja.instagram}
   .jf-check { color: var(--success); }
 
   .jf-g3 { display: grid; grid-template-columns: repeat(3, 1fr); gap: 18px; }
-  .jf-avaliacao { background: var(--white); border: 1px solid var(--border-default); border-radius: var(--radius-lg); box-shadow: var(--shadow-card); padding: 24px; }
-  .jf-stars { color: var(--accent); font-size: 15px; letter-spacing: 2px; margin-bottom: 12px; }
+  .jf-avaliacao { background: var(--white); border: 1px solid var(--border-default); border-radius: var(--radius-lg); box-shadow: var(--shadow-card); padding: 24px; display: flex; flex-direction: column; height: 100%; }
   .jf-avaliacao-text { font: var(--text-body); color: var(--text-secondary); line-height: 1.7; margin: 0 0 18px; }
-  .jf-avaliacao-author { display: flex; align-items: center; gap: 11px; }
+  .jf-avaliacao-author { display: flex; align-items: center; gap: 11px; margin-top: auto; }
   .jf-avaliacao-avatar { width: 40px; height: 40px; border-radius: 50%; background: var(--gray-100); display: flex; align-items: center; justify-content: center; font-weight: 800; color: var(--text-secondary); }
   .jf-avaliacao-name { font-weight: 700; font-size: 14px; }
   .jf-avaliacao-local { font-size: 12.5px; color: var(--text-tertiary); }

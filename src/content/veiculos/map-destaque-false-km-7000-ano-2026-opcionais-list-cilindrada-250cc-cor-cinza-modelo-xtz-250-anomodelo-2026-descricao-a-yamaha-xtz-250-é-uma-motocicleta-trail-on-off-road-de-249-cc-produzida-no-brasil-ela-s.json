@@ -1,0 +1,23 @@
+{
+  "destaque": false,
+  "km": 7000,
+  "ano": 2026,
+  "opcionais": [],
+  "cilindrada": "250cc",
+  "cor": "Cinza",
+  "modelo": "XTZ 250",
+  "anoModelo": 2026,
+  "descricao": "A Yamaha XTZ 250 é uma motocicleta trail on/off-road de 249 cc produzida no Brasil. Ela se destaca pela versatilidade no uso urbano e em estradas de terra, equipada com motor flex de 4 tempos, injeção eletrônica, suspensões de longo curso e freios com sistema ABS.",
+  "combustivel": "Flex",
+  "preco": 28990,
+  "fotos": [
+    "/images/veiculos/whatsapp-image-2026-08-10-at-20.56.34-2-.jpeg",
+    "/images/veiculos/whatsapp-image-2026-08-10-at-20.56.34-1-.jpeg",
+    "/images/veiculos/whatsapp-image-2026-08-10-at-20.56.35.jpeg"
+  ],
+  "tipo": "moto",
+  "cambio": "Manual",
+  "nome": "Yamaha XTZ 250",
+  "lancamento": false,
+  "marca": "Yamaha"
+}
