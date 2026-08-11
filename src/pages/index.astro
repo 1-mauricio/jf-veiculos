@@ -168,7 +168,7 @@ const vendaHref = loja ? whatsappLink(loja.whatsapp, 'Olá! Quero avaliar meu ve
         <h2 class="jf-cta-title">{site?.ctaFinalTitulo}</h2>
         <p class="jf-cta-sub">{site?.ctaFinalTexto}</p>
       </div>
-      <Button href={vendaHref} target="_blank" variant="white">{site?.ctaFinalBotao}</Button>
+      <Button href={vendaHref} target="_blank" variant="white" data-wa-track="home_cta_final">{site?.ctaFinalBotao}</Button>
     </div>
   </section>
 </BaseLayout>

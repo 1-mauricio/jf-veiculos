@@ -48,7 +48,7 @@ const year = new Date().getFullYear();
       <div class="jf-foot-links">
         {loja && <span>{loja.horarios}</span>}
         {loja?.whatsapp && <span class="jf-foot-phone">{formatPhone(loja.whatsapp)}</span>}
-        <a href={whatsappHref} target="_blank" rel="noopener" class="jf-foot-whatsapp">WhatsApp</a>
+        <a href={whatsappHref} target="_blank" rel="noopener" class="jf-foot-whatsapp" data-wa-track="footer">WhatsApp</a>
       </div>
     </div>
   </div>

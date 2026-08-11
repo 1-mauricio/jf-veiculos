@@ -45,6 +45,26 @@ const fontTheme = FONT_THEMES[aparencia?.fonteTema ?? DEFAULT_FONT_THEME];
   {image && <meta property="og:image" content={new URL(image, Astro.site)} />}
   <meta name="twitter:card" content="summary_large_image" />
 
+  <!-- Google tag (gtag.js) -->
+  <script is:inline async src="https://www.googletagmanager.com/gtag/js?id=G-MMPV9XEFQL"></script>
+  <script is:inline>
+    window.dataLayer = window.dataLayer || [];
+    function gtag(){dataLayer.push(arguments);}
+    gtag('js', new Date());
+    gtag('config', 'G-MMPV9XEFQL');
+
+    document.addEventListener('click', (event) => {
+      const link = event.target.closest('[data-wa-track]');
+      if (!link) return;
+      gtag('event', 'whatsapp_click', {
+        event_category: 'engagement',
+        local: link.dataset.waTrack,
+        veiculo: link.dataset.waVehicle || undefined,
+        page_path: window.location.pathname,
+      });
+    });
+  </script>
+
   <link rel="stylesheet" href={fontTheme.googleFontsUrl} />
   <style set:html={`html:root {
     --accent: ${colorTheme.accent};

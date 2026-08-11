@@ -173,7 +173,7 @@ const parcelaInicial = (() => {
         <div class="jf-price-card">
           <div class="jf-price-label">Valor à vista</div>
           <div class="jf-price-value">{brl(v.preco)}</div>
-          <a href={whatsappHref} target="_blank" rel="noopener" class="jf-whatsapp-btn">Falar no WhatsApp</a>
+          <a href={whatsappHref} target="_blank" rel="noopener" class="jf-whatsapp-btn" data-wa-track="veiculo_detalhe" data-wa-vehicle={v.nome}>Falar no WhatsApp</a>
           <button type="button" class="jf-fav-btn" data-fav-btn data-vehicle-id={vehicle.id}>
             <Icon name="heart" size={16} />
             <span data-fav-label>Favoritar</span>
