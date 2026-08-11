@@ -1,0 +1,27 @@
+{
+  "destaque": false,
+  "km": 55700,
+  "ano": 2021,
+  "cidade": "Recife ",
+  "opcionais": [],
+  "cor": "Cinza",
+  "modelo": "Xre 300 adventure ",
+  "anoModelo": 2022,
+  "descricao": "Teste",
+  "combustivel": "Flex",
+  "preco": 28990,
+  "fotos": [
+    "/images/veiculos/img_1452.jpeg",
+    "/images/veiculos/img_1451.jpeg",
+    "/images/veiculos/img_1453.jpeg",
+    "/images/veiculos/img_1454.jpeg",
+    "/images/veiculos/img_1455.jpeg"
+  ],
+  "uf": "Pe",
+  "categoria": "300cc",
+  "tipo": "moto",
+  "cambio": "Manual",
+  "nome": "Xre 300 adventure 2022",
+  "lancamento": false,
+  "marca": "Honda"
+}
