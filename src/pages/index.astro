@@ -77,11 +77,13 @@ const vendaHref = loja ? whatsappLink(loja.whatsapp, 'Olá! Quero avaliar meu ve
   <!-- CATEGORIAS -->
   <section class="jf-section">
     <div class="jf-cat-carousel jf-scroll">
-      <a href="/veiculos?tipo=carro" class="jf-cat-card">
-        <div class="jf-cat-icon"><Icon name="car" size={21} color="var(--text-primary)" /></div>
-        <div class="jf-cat-title">Carros</div>
-        <div class="jf-cat-sub">{catCarros} disponíveis</div>
-      </a>
+      {catCarros > 0 && (
+        <a href="/veiculos?tipo=carro" class="jf-cat-card">
+          <div class="jf-cat-icon"><Icon name="car" size={21} color="var(--text-primary)" /></div>
+          <div class="jf-cat-title">Carros</div>
+          <div class="jf-cat-sub">{catCarros} disponíveis</div>
+        </a>
+      )}
       <a href="/veiculos?tipo=moto" class="jf-cat-card">
         <div class="jf-cat-icon"><Icon name="gauge" size={21} color="var(--text-primary)" /></div>
         <div class="jf-cat-title">Motos</div>

@@ -8,6 +8,8 @@ const lojaEntries = await getCollection('loja');
 const loja = lojaEntries[0]?.data;
 const siteEntries = await getCollection('site');
 const site = siteEntries[0]?.data;
+const veiculos = await getCollection('veiculos');
+const temCarros = veiculos.some((v) => v.data.tipo === 'carro');
 const anunciarHref = loja
   ? whatsappLink(loja.whatsapp, `Olá! Quero anunciar meu veículo na ${site?.nomeSite ?? 'JF Veículos'}.`)
   : '/loja';
@@ -24,7 +26,7 @@ const anunciarHref = loja
     </a>
 
     <nav class="jf-nav">
-      <a href="/veiculos?tipo=carro" class="jf-nav-link">Carros</a>
+      {temCarros && <a href="/veiculos?tipo=carro" class="jf-nav-link">Carros</a>}
       <a href="/veiculos?tipo=moto" class="jf-nav-link">Motos</a>
       <a href="/veiculos" class="jf-nav-link">Estoque</a>
       <a href="/loja" class="jf-nav-link">Nossa loja</a>
@@ -44,7 +46,7 @@ const anunciarHref = loja
   </div>
 
   <nav id="jf-mobile-nav" class="jf-mobile-nav">
-    <a href="/veiculos?tipo=carro" class="jf-mobile-nav-link">Carros</a>
+    {temCarros && <a href="/veiculos?tipo=carro" class="jf-mobile-nav-link">Carros</a>}
     <a href="/veiculos?tipo=moto" class="jf-mobile-nav-link">Motos</a>
     <a href="/veiculos" class="jf-mobile-nav-link">Estoque</a>
     <a href="/loja" class="jf-mobile-nav-link">Nossa loja</a>
