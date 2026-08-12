@@ -76,8 +76,8 @@ O site é feito para hospedar no [Netlify](https://netlify.com) (build command `
 
 O site tem um chatbot (bolha no canto inferior direito) que responde dúvidas sobre o estoque usando a API gratuita da [Groq](https://console.groq.com) (modelo `llama-3.1-8b-instant`) e, ao final da conversa, oferece um link de WhatsApp já com um resumo do interesse do visitante.
 
-- Backend: `src/pages/api/chat.ts` (rota on-demand, via adapter `@astrojs/netlify`).
-- Frontend: `src/components/ChatWidget.astro` + `src/scripts/chat.ts`.
 - Para rodar localmente, copie `.env.example` para `.env` e preencha `GROQ_API_KEY` com uma chave gratuita gerada em [console.groq.com/keys](https://console.groq.com/keys).
 - Em produção, configure a mesma variável em Netlify: **Site configuration > Environment variables > `GROQ_API_KEY`**.
 - Sem a chave configurada, o chat responde com uma mensagem de indisponibilidade — o resto do site continua funcionando normalmente.
+
+Documentação completa (arquitetura, prompt, fluxo de conversa, limitações): [`docs/chatbot.md`](docs/chatbot.md).
