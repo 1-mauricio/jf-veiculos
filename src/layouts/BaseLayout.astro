@@ -2,6 +2,7 @@
 import { getCollection } from 'astro:content';
 import Header from '../components/Header.astro';
 import Footer from '../components/Footer.astro';
+import ChatWidget from '../components/ChatWidget.astro';
 import '../styles/global.css';
 import { COLOR_THEMES, FONT_THEMES, DEFAULT_COLOR_THEME, DEFAULT_FONT_THEME } from '../lib/themes';
 
@@ -107,6 +108,7 @@ const fontTheme = FONT_THEMES[aparencia?.fonteTema ?? DEFAULT_FONT_THEME];
     </main>
     <Footer />
   </div>
+  <ChatWidget />
 </body>
 </html>
 
