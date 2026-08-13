@@ -1,6 +1,7 @@
 import type { ChatMessage } from '../../lib/chatbot/types';
 import { sendChatMessage } from './api';
 import { appendBubble, appendVehicleLink, appendWhatsappCta } from './dom';
+import { initKeyboardOffset } from './viewport';
 
 const history: ChatMessage[] = [];
 const shownVeiculoIds = new Set<string>();
@@ -69,6 +70,8 @@ export function initChatWidget() {
   if (!toggle || !panel || !form || !input || !log) return;
   if (toggle.dataset.chatInit === 'true') return;
   toggle.dataset.chatInit = 'true';
+
+  initKeyboardOffset();
 
   let opened = false;
   toggle.addEventListener('click', () => {

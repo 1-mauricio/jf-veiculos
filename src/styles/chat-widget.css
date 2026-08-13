@@ -1,7 +1,8 @@
 .jf-chat {
   position: fixed;
   right: 20px;
-  bottom: 20px;
+  /* --jf-keyboard-offset é atualizado via JS (visualViewport) para não ficar atrás do teclado virtual em mobile. */
+  bottom: calc(20px + var(--jf-keyboard-offset, 0px));
   z-index: 60;
 }
 
@@ -28,7 +29,8 @@
   right: 0;
   bottom: 72px;
   width: min(360px, calc(100vw - 40px));
-  height: min(520px, calc(100vh - 140px));
+  /* --jf-visible-height (definido via JS) reflete a área realmente visível quando o teclado está aberto. */
+  height: min(520px, calc(var(--jf-visible-height, 100vh) - 140px));
   background: var(--surface-card);
   border-radius: 16px;
   box-shadow: 0 16px 48px rgba(0, 0, 0, 0.24);
@@ -140,6 +142,6 @@
 .jf-chat-form button:disabled { opacity: 0.5; cursor: default; }
 
 @media (max-width: 480px) {
-  .jf-chat { right: 12px; bottom: 12px; }
+  .jf-chat { right: 12px; bottom: calc(12px + var(--jf-keyboard-offset, 0px)); }
   .jf-chat-window { right: -4px; }
 }
