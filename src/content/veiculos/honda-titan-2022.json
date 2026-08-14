@@ -1,0 +1,27 @@
+{
+  "destaque": false,
+  "km": 34000,
+  "ano": 2022,
+  "opcionais": [
+    "Único dono.",
+    "Manual e chave reserva."
+  ],
+  "cilindrada": "160cc",
+  "cor": "Amarelo",
+  "modelo": "Titan",
+  "anoModelo": 2022,
+  "descricao": "Honda CG 160 Titan é a versão mais completa e esportiva da famosa linha de motos street da Honda. Ela usa um motor flex de 162,7 cc, painel digital moderno, freios com tecnologia avançada e visual agressivo, sendo ideal para o uso diário na cidade.",
+  "combustivel": "Flex",
+  "preco": 16999,
+  "fotos": [
+    "/images/veiculos/whatsapp-image-2026-08-14-at-19.55.09.jpeg",
+    "/images/veiculos/whatsapp-image-2026-08-14-at-19.55.09-1-.jpeg",
+    "/images/veiculos/whatsapp-image-2026-08-14-at-19.55.08.jpeg",
+    "/images/veiculos/whatsapp-image-2026-08-14-at-19.55.09-2-.jpeg"
+  ],
+  "tipo": "moto",
+  "cambio": "Manual",
+  "nome": "Honda CB Titan 160",
+  "lancamento": false,
+  "marca": "Honda"
+}
