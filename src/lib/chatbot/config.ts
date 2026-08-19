@@ -1,5 +1,5 @@
 export const GROQ_URL = 'https://api.groq.com/openai/v1/chat/completions';
-export const GROQ_MODEL = 'llama-3.1-8b-instant';
+export const GROQ_MODEL = 'openai/gpt-oss-20b';
 export const GROQ_TEMPERATURE = 0.4;
 export const GROQ_MAX_TOKENS = 300;
 
