@@ -1,0 +1,70 @@
+---
+export const prerender = false;
+---
+<html lang="pt-BR">
+  <head>
+    <meta charset="utf-8" />
+    <title>Conversas do chat</title>
+    <style>
+      body { font-family: system-ui, sans-serif; max-width: 760px; margin: 2rem auto; padding: 0 1rem; }
+      .conversa { border: 1px solid #ddd; border-radius: 8px; padding: 1rem; margin-bottom: 1rem; }
+      .meta { color: #666; font-size: 0.85rem; margin-bottom: 0.5rem; }
+      .msg { margin: 0.4rem 0; }
+      .msg b { text-transform: capitalize; }
+      #status { color: #b00; }
+    </style>
+  </head>
+  <body>
+    <h1>Conversas do chat</h1>
+    <p id="status"></p>
+    <div id="lista"></div>
+    <script>
+      const status = document.getElementById('status')!;
+      const lista = document.getElementById('lista')!;
+
+      let token = sessionStorage.getItem('admin-token');
+      if (!token) {
+        token = prompt('Token de admin:');
+        if (token) sessionStorage.setItem('admin-token', token);
+      }
+
+      if (!token) {
+        status.textContent = 'Token não informado.';
+      } else {
+        fetch(`/api/admin/conversas?token=${encodeURIComponent(token)}`)
+          .then(async (res) => {
+            if (!res.ok) {
+              sessionStorage.removeItem('admin-token');
+              throw new Error((await res.json()).error || 'Falha ao carregar.');
+            }
+            return res.json();
+          })
+          .then((conversas: any[]) => {
+            if (conversas.length === 0) {
+              lista.textContent = 'Nenhuma conversa salva ainda.';
+              return;
+            }
+            for (const c of conversas) {
+              const div = document.createElement('div');
+              div.className = 'conversa';
+              const meta = document.createElement('div');
+              meta.className = 'meta';
+              meta.textContent = `${new Date(c.savedAt).toLocaleString('pt-BR')} · ${c.clientId}${c.interesseTipo ? ' · ' + c.interesseTipo : ''}`;
+              div.appendChild(meta);
+              for (const m of c.history) {
+                const p = document.createElement('p');
+                p.className = 'msg';
+                p.innerHTML = `<b>${m.role}:</b> `;
+                p.append(m.content);
+                div.appendChild(p);
+              }
+              lista.appendChild(div);
+            }
+          })
+          .catch((err) => {
+            status.textContent = err.message;
+          });
+      }
+    </script>
+  </body>
+</html>
