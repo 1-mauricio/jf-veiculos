@@ -1,0 +1,31 @@
+{
+  "destaque": true,
+  "km": "",
+  "ano": 2021,
+  "opcionais": [
+    "Ipva 2026 pago",
+    "Único dono",
+    "Quitada",
+    "Revisada"
+  ],
+  "cilindrada": "250cc",
+  "cor": "Azul",
+  "modelo": "Fazer FZ25",
+  "anoModelo": 2021,
+  "descricao": "O motor de 250 cilindradas da FAZER FZ25 CONNECTED é reconhecido em todo o Brasil por seu desempenho, eficiência e confiabilidade. Com potência e torque ideais, é perfeito para uso urbano e em viagens, além de exigir uma manutenção simples.",
+  "combustivel": "Flex",
+  "preco": 16999,
+  "fotos": [
+    "/images/veiculos/whatsapp-image-2026-08-20-at-14.06.21-3-.jpeg",
+    "/images/veiculos/whatsapp-image-2026-08-20-at-14.06.21-4-.jpeg",
+    "/images/veiculos/whatsapp-image-2026-08-20-at-14.06.21-2-.jpeg",
+    "/images/veiculos/whatsapp-image-2026-08-20-at-14.06.21-1-.jpeg",
+    "/images/veiculos/whatsapp-image-2026-08-20-at-14.06.21.jpeg",
+    "/images/veiculos/whatsapp-image-2026-08-20-at-14.06.20.jpeg"
+  ],
+  "tipo": "moto",
+  "cambio": "Manual",
+  "nome": "Yamaha Fazer FZ25",
+  "lancamento": false,
+  "marca": "Yamaha"
+}
