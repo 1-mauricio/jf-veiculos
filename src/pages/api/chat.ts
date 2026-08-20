@@ -4,6 +4,7 @@ import { sanitizeHistory } from '../../lib/chatbot/sanitize';
 import { buildSystemPrompt } from '../../lib/chatbot/prompt';
 import { askGroq, GroqRateLimitError } from '../../lib/chatbot/groqClient';
 import { parseAssistantReply } from '../../lib/chatbot/parseReply';
+import { logConversation } from '../../lib/chatbot/logStore';
 
 export const prerender = false;
 
@@ -50,5 +51,6 @@ export const POST: APIRoute = async ({ request, clientAddress }) => {
   }
 
   const { reply, ready, resumo, veiculos } = parseAssistantReply(raw, vehicleNames);
+  void logConversation(clientAddress || 'unknown', [...history, { role: 'assistant', content: reply }]);
   return jsonResponse({ reply, ready, resumo, veiculos }, 200);
 };
