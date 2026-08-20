@@ -50,7 +50,7 @@ export const POST: APIRoute = async ({ request, clientAddress }) => {
     return jsonResponse({ error: 'Falha ao contatar o assistente. Tente novamente.' }, 502);
   }
 
-  const { reply, ready, resumo, veiculos } = parseAssistantReply(raw, vehicleNames);
-  void logConversation(clientAddress || 'unknown', [...history, { role: 'assistant', content: reply }]);
+  const { reply, ready, resumo, veiculos, interesseTipo } = parseAssistantReply(raw, vehicleNames);
+  void logConversation(clientAddress || 'unknown', [...history, { role: 'assistant', content: reply }], interesseTipo);
   return jsonResponse({ reply, ready, resumo, veiculos }, 200);
 };

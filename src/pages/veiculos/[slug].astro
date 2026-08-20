@@ -60,9 +60,37 @@ const parcelaInicial = (() => {
   const fin = v.preco - entradaValor;
   return (fin * (i * Math.pow(1 + i, n))) / (Math.pow(1 + i, n) - 1);
 })();
+
+const canonicalURL = new URL(Astro.url.pathname, Astro.site);
+const jsonLd = {
+  '@context': 'https://schema.org',
+  '@type': v.tipo === 'moto' ? 'Motorcycle' : 'Car',
+  name: v.nome,
+  brand: v.marca,
+  model: v.modelo,
+  vehicleModelDate: String(v.ano),
+  productionDate: String(v.ano),
+  vehicleConfiguration: v.categoria,
+  color: v.cor,
+  fuelType: v.combustivel,
+  vehicleTransmission: v.cambio,
+  mileageFromOdometer: v.km != null ? { '@type': 'QuantitativeValue', value: v.km, unitCode: 'KMT' } : undefined,
+  image: fotos.map((f) => new URL(f, Astro.site)),
+  description: v.descricao,
+  offers: {
+    '@type': 'Offer',
+    price: v.preco,
+    priceCurrency: 'BRL',
+    availability: 'https://schema.org/InStock',
+    url: canonicalURL,
+    itemCondition: 'https://schema.org/UsedCondition',
+    seller: loja ? { '@type': 'AutoDealer', name: 'JF Veículos', telephone: loja.whatsapp } : undefined,
+  },
+};
 ---
 
 <BaseLayout title={v.nome} description={v.descricao} image={fotos[0]}>
+  <script type="application/ld+json" set:html={JSON.stringify(jsonLd)} />
   <div class="jf-det-wrap">
     <div class="jf-breadcrumb">
       <a href="/">Início</a> <span>›</span> <a href="/veiculos">Veículos</a> <span>›</span>

@@ -7,6 +7,7 @@ function applyFilter() {
   const grid = document.getElementById('jf-fav-grid');
   const empty = document.getElementById('jf-fav-empty');
   const count = document.getElementById('jf-fav-count-label');
+  const compareBtn = document.getElementById('jf-fav-compare');
 
   let visible = 0;
   cards.forEach((card) => {
@@ -19,6 +20,7 @@ function applyFilter() {
   if (grid) grid.hidden = visible === 0;
   if (empty) empty.hidden = visible !== 0;
   if (count) count.textContent = visible + (visible === 1 ? ' veículo favoritado' : ' veículos favoritados');
+  if (compareBtn) compareBtn.hidden = visible < 2;
 }
 
 export function initFavoritosPage() {

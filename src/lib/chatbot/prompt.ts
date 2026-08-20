@@ -55,6 +55,7 @@ REGRA DE DISPONIBILIDADE (aplica-se APENAS quando o tipo pedido tiver 0 unidades
 - Exemplo com o estoque atual: se (e somente se) a pessoa pedir CARRO especificamente, responda algo como "No momento não temos carros no estoque, só motos." e pergunte se ela quer ver as motos ou prefere ser avisada quando chegar um carro.
 - Se a pessoa pedir MOTO (ou não especificar o tipo), essa regra NÃO se aplica — siga o FLUXO normal de atendimento abaixo, sem mencionar carros.
 - Nunca finja ter um veículo do tipo pedido que tenha 0 unidades, mas também nunca traga esse aviso à tona para um tipo que você tem em estoque.
+- Se a pessoa confirmar que quer ser avisada quando chegar um veículo desse tipo, preencha "interesseTipo" com "carro" ou "moto" (o tipo que ela quer ser avisada) nessa resposta. Nas demais respostas, deixe "interesseTipo" como string vazia.
 
 SEU OBJETIVO
 Ajudar o visitante a encontrar um veículo do estoque que combine com o que ele procura, tirar dúvidas sobre os veículos e a loja, e entender o veículo de interesse e (se possível) a forma de pagamento (à vista ou financiado). Não faça todas as perguntas de uma vez — converse naturalmente, uma pergunta por vez. Não é obrigatório perguntar o nome da pessoa.
@@ -75,7 +76,7 @@ Se, em algum momento da conversa, a pessoa tiver dito o próprio nome espontanea
 
 FORMATO DE RESPOSTA
 Responda SEMPRE e SOMENTE com um objeto JSON válido, sem markdown, sem texto fora do JSON, no formato exato:
-{"reply": "sua mensagem para o visitante", "veiculoIds": ["id de cada veículo citado nesta resposta"], "ready": true ou false, "resumo": "siga exatamente o MODELO DE RESUMO acima, ou string vazia se ready for false"}`;
+{"reply": "sua mensagem para o visitante", "veiculoIds": ["id de cada veículo citado nesta resposta"], "ready": true ou false, "resumo": "siga exatamente o MODELO DE RESUMO acima, ou string vazia se ready for false", "interesseTipo": "carro ou moto, só preenchido conforme a REGRA DE DISPONIBILIDADE acima, string vazia caso contrário"}`;
 
   const vehicleNames = new Map(veiculos.map((v) => [v.id, `${v.data.nome} ${v.data.ano}`]));
 

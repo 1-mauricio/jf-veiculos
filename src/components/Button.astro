@@ -4,6 +4,8 @@ interface Props {
   variant?: 'accent' | 'dark' | 'outline' | 'white' | 'whatsapp';
   target?: string;
   class?: string;
+  id?: string;
+  hidden?: boolean;
 }
 
 const { href, variant = 'accent', target, class: className, ...rest } = Astro.props;

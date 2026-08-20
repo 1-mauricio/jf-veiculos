@@ -13,8 +13,11 @@ const veiculos = await getCollection('veiculos');
     <div class="jf-breadcrumb"><a href="/">Início</a> <span>›</span> <span>Meus favoritos</span></div>
 
     <div class="jf-fav-head">
-      <h1 class="jf-h1">Meus favoritos</h1>
-      <div class="jf-fav-count" id="jf-fav-count-label">Carregando...</div>
+      <div>
+        <h1 class="jf-h1">Meus favoritos</h1>
+        <div class="jf-fav-count" id="jf-fav-count-label">Carregando...</div>
+      </div>
+      <Button href="/comparar" variant="outline" id="jf-fav-compare" hidden>Comparar favoritos</Button>
     </div>
 
     <div class="jf-g3" id="jf-fav-grid" hidden>
@@ -44,7 +47,7 @@ const veiculos = await getCollection('veiculos');
   .jf-breadcrumb { font-size: 13px; color: var(--text-tertiary); margin-bottom: 18px; }
   .jf-breadcrumb a { color: var(--text-tertiary); }
 
-  .jf-fav-head { margin-bottom: 24px; }
+  .jf-fav-head { display: flex; align-items: flex-end; justify-content: space-between; gap: 16px; margin-bottom: 24px; flex-wrap: wrap; }
   .jf-h1 { font: 700 28px var(--font-display); letter-spacing: -.6px; margin: 0 0 4px; }
   .jf-fav-count { font-size: 14px; color: var(--text-secondary); }
 

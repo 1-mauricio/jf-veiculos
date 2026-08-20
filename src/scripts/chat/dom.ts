@@ -18,8 +18,6 @@ export function appendVehicleLink(log: HTMLElement, veiculo: VehicleRef) {
   wrap.className = 'jf-chat-cta';
   const link = document.createElement('a');
   link.href = `/veiculos/${veiculo.id}`;
-  link.target = '_blank';
-  link.rel = 'noopener';
   link.className = 'jf-chat-cta-btn jf-chat-cta-btn-outline';
   link.textContent = `Ver ${veiculo.nome}`;
   wrap.appendChild(link);

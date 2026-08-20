@@ -5,6 +5,8 @@ export interface ParsedReply {
   ready: boolean;
   resumo: string;
   veiculos: VehicleRef[];
+  /** Tipo de veículo que a pessoa quer ser avisada quando chegar no estoque ('carro'/'moto'), ou '' se não pediu. */
+  interesseTipo: 'carro' | 'moto' | '';
 }
 
 const FALLBACK_REPLY = 'Desculpe, não consegui entender. Pode reformular?';
@@ -15,7 +17,7 @@ const FALLBACK_REPLY = 'Desculpe, não consegui entender. Pode reformular?';
  * consegue linkar (ou "confirmar") um veículo inventado.
  */
 export function parseAssistantReply(raw: string, vehicleNames: Map<string, string>): ParsedReply {
-  const result: ParsedReply = { reply: FALLBACK_REPLY, ready: false, resumo: '', veiculos: [] };
+  const result: ParsedReply = { reply: FALLBACK_REPLY, ready: false, resumo: '', veiculos: [], interesseTipo: '' };
   if (!raw) return result;
 
   let parsed: unknown;
@@ -32,6 +34,7 @@ export function parseAssistantReply(raw: string, vehicleNames: Map<string, strin
   if (typeof obj.reply === 'string') result.reply = obj.reply;
   if (typeof obj.ready === 'boolean') result.ready = obj.ready;
   if (typeof obj.resumo === 'string') result.resumo = obj.resumo;
+  if (obj.interesseTipo === 'carro' || obj.interesseTipo === 'moto') result.interesseTipo = obj.interesseTipo;
 
   if (Array.isArray(obj.veiculoIds)) {
     const seen = new Set<string>();
