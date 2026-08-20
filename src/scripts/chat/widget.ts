@@ -1,11 +1,54 @@
-import type { ChatMessage } from '../../lib/chatbot/types';
+import type { ChatMessage, VehicleRef } from '../../lib/chatbot/types';
 import { sendChatMessage } from './api';
 import { appendBubble, appendVehicleLink, appendWhatsappCta } from './dom';
 import { initKeyboardOffset } from './viewport';
+import { loadChatEvents, saveChatEvents, type ChatEvent } from './session';
 
 const history: ChatMessage[] = [];
 const shownVeiculoIds = new Set<string>();
+const events: ChatEvent[] = [];
 let sending = false;
+
+/** Registra um evento e persiste a conversa — usado só para conteúdo real, nunca para feedback transitório (digitando, erros). */
+function recordEvent(event: ChatEvent) {
+  events.push(event);
+  saveChatEvents(events);
+}
+
+function renderBubble(log: HTMLElement, role: 'user' | 'assistant', text: string) {
+  recordEvent({ type: 'bubble', role, text });
+  return appendBubble(log, role, text);
+}
+
+function renderVehicleLink(log: HTMLElement, veiculo: VehicleRef) {
+  recordEvent({ type: 'vehicle', veiculo });
+  appendVehicleLink(log, veiculo);
+}
+
+function renderWhatsappCta(log: HTMLElement, waNumber: string, resumo: string) {
+  recordEvent({ type: 'whatsapp', waNumber, resumo });
+  appendWhatsappCta(log, waNumber, resumo);
+}
+
+/** Reconstrói o log a partir da sessão salva. Devolve `true` se havia algo para restaurar. */
+function restoreSession(log: HTMLElement): boolean {
+  const stored = loadChatEvents();
+  if (stored.length === 0) return false;
+
+  for (const event of stored) {
+    events.push(event);
+    if (event.type === 'bubble') {
+      appendBubble(log, event.role, event.text);
+      history.push({ role: event.role, content: event.text });
+    } else if (event.type === 'vehicle') {
+      appendVehicleLink(log, event.veiculo);
+      shownVeiculoIds.add(event.veiculo.id);
+    } else {
+      appendWhatsappCta(log, event.waNumber, event.resumo);
+    }
+  }
+  return true;
+}
 
 async function sendMessage(panel: HTMLElement, text: string) {
   if (sending) return;
@@ -21,7 +64,7 @@ async function sendMessage(panel: HTMLElement, text: string) {
   }
 
   history.push({ role: 'user', content: text });
-  appendBubble(log, 'user', text);
+  renderBubble(log, 'user', text);
   if (input) input.value = '';
   form?.querySelector('button')?.setAttribute('disabled', 'true');
 
@@ -38,16 +81,16 @@ async function sendMessage(panel: HTMLElement, text: string) {
     }
 
     history.push({ role: 'assistant', content: data.reply });
-    appendBubble(log, 'assistant', data.reply);
+    renderBubble(log, 'assistant', data.reply);
 
     for (const veiculo of data.veiculos ?? []) {
       if (shownVeiculoIds.has(veiculo.id)) continue;
       shownVeiculoIds.add(veiculo.id);
-      appendVehicleLink(log, veiculo);
+      renderVehicleLink(log, veiculo);
     }
 
     if (data.ready && data.resumo && waNumber) {
-      appendWhatsappCta(log, waNumber, data.resumo);
+      renderWhatsappCta(log, waNumber, data.resumo);
     }
   } catch {
     typing.remove();
@@ -72,6 +115,7 @@ export function initChatWidget() {
   toggle.dataset.chatInit = 'true';
 
   initKeyboardOffset();
+  restoreSession(log);
 
   let opened = false;
   toggle.addEventListener('click', () => {
