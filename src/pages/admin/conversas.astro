@@ -7,20 +7,26 @@ export const prerender = false;
     <title>Conversas do chat</title>
     <style>
       body { font-family: system-ui, sans-serif; max-width: 760px; margin: 2rem auto; padding: 0 1rem; }
-      .conversa { border: 1px solid #ddd; border-radius: 8px; padding: 1rem; margin-bottom: 1rem; }
-      .meta { color: #666; font-size: 0.85rem; margin-bottom: 0.5rem; }
+      .conversa { border: 1px solid #ddd; border-left-width: 5px; border-radius: 8px; padding: 1rem; margin-bottom: 1rem; }
+      .meta { display: flex; align-items: center; gap: 0.5rem; color: #666; font-size: 0.85rem; margin-bottom: 0.5rem; }
+      .user-badge { padding: 0.1rem 0.5rem; border-radius: 999px; font-weight: 600; font-size: 0.78rem; }
       .msg { margin: 0.4rem 0; }
       .msg b { text-transform: capitalize; }
       #status { color: #b00; }
+      #paginacao { display: flex; align-items: center; gap: 0.75rem; margin: 1.5rem 0; }
+      #paginacao button { cursor: pointer; }
+      #paginacao button:disabled { cursor: default; opacity: 0.5; }
     </style>
   </head>
   <body>
     <h1>Conversas do chat</h1>
     <p id="status"></p>
     <div id="lista"></div>
+    <div id="paginacao"></div>
     <script>
       const status = document.getElementById('status')!;
       const lista = document.getElementById('lista')!;
+      const paginacao = document.getElementById('paginacao')!;
 
       let token = sessionStorage.getItem('admin-token');
       if (!token) {
@@ -28,10 +34,21 @@ export const prerender = false;
         if (token) sessionStorage.setItem('admin-token', token);
       }
 
-      if (!token) {
-        status.textContent = 'Token não informado.';
-      } else {
-        fetch(`/api/admin/conversas?token=${encodeURIComponent(token)}`)
+      /** Gera uma cor estável a partir do clientId, pra dar pra ver de relance quais balões são do mesmo visitante. */
+      function corDoUsuario(clientId: string) {
+        let hash = 0;
+        for (const ch of clientId) hash = (hash * 31 + ch.charCodeAt(0)) >>> 0;
+        const hue = hash % 360;
+        return { borda: `hsl(${hue} 60% 50%)`, badgeBg: `hsl(${hue} 80% 93%)`, badgeFg: `hsl(${hue} 70% 28%)` };
+      }
+
+      function carregar(page: number) {
+        if (!token) {
+          status.textContent = 'Token não informado.';
+          return;
+        }
+        status.textContent = 'Carregando...';
+        fetch(`/api/admin/conversas?token=${encodeURIComponent(token)}&page=${page}`)
           .then(async (res) => {
             if (!res.ok) {
               sessionStorage.removeItem('admin-token');
@@ -39,18 +56,29 @@ export const prerender = false;
             }
             return res.json();
           })
-          .then((conversas: any[]) => {
-            if (conversas.length === 0) {
+          .then(({ conversas, page, totalPages, total }: { conversas: any[]; page: number; totalPages: number; total: number }) => {
+            status.textContent = '';
+            lista.innerHTML = '';
+            if (total === 0) {
               lista.textContent = 'Nenhuma conversa salva ainda.';
-              return;
             }
             for (const c of conversas) {
+              const cor = corDoUsuario(c.clientId);
               const div = document.createElement('div');
               div.className = 'conversa';
+              div.style.borderLeftColor = cor.borda;
+
               const meta = document.createElement('div');
               meta.className = 'meta';
-              meta.textContent = `${new Date(c.savedAt).toLocaleString('pt-BR')} · ${c.clientId}${c.interesseTipo ? ' · ' + c.interesseTipo : ''}`;
+              const badge = document.createElement('span');
+              badge.className = 'user-badge';
+              badge.style.background = cor.badgeBg;
+              badge.style.color = cor.badgeFg;
+              badge.textContent = c.clientId;
+              meta.appendChild(badge);
+              meta.append(`${new Date(c.savedAt).toLocaleString('pt-BR')}${c.interesseTipo ? ' · ' + c.interesseTipo : ''}`);
               div.appendChild(meta);
+
               for (const m of c.history) {
                 const p = document.createElement('p');
                 p.className = 'msg';
@@ -60,11 +88,31 @@ export const prerender = false;
               }
               lista.appendChild(div);
             }
+
+            paginacao.innerHTML = '';
+            if (total > 0) {
+              const prev = document.createElement('button');
+              prev.textContent = '← Anteriores';
+              prev.disabled = page <= 1;
+              prev.onclick = () => carregar(page - 1);
+
+              const info = document.createElement('span');
+              info.textContent = `Página ${page} de ${totalPages} (${total} conversas)`;
+
+              const next = document.createElement('button');
+              next.textContent = 'Próximas →';
+              next.disabled = page >= totalPages;
+              next.onclick = () => carregar(page + 1);
+
+              paginacao.append(prev, info, next);
+            }
           })
           .catch((err) => {
             status.textContent = err.message;
           });
       }
+
+      carregar(1);
     </script>
   </body>
 </html>
