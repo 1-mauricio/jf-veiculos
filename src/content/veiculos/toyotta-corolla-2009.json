@@ -23,7 +23,7 @@
     "/images/veiculos/whatsapp-image-2026-08-25-at-16.08.14-2-.jpeg"
   ],
   "uf": "PE",
-  "portas": -4,
+  "portas": 4,
   "tipo": "carro",
   "cambio": "Automático",
   "nome": "Toyotta Corolla",

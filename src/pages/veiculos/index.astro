@@ -14,6 +14,8 @@ const combustiveis = [...new Set(veiculos.map((v) => v.data.combustivel))].sort(
 const anos = veiculos.map((v) => v.data.ano);
 const anoMinData = anos.length ? Math.min(...anos) : 2016;
 const anoMaxData = anos.length ? Math.max(...anos) : 2024;
+const precoMaxData = Math.max(200000, ...veiculos.map((v) => v.data.preco));
+const kmMaxData = Math.max(120000, ...veiculos.map((v) => v.data.km ?? 0));
 const siteEntries = await getCollection('site');
 const nomeSite = siteEntries[0]?.data.nomeSite ?? 'JF Veículos';
 ---
@@ -68,8 +70,8 @@ const nomeSite = siteEntries[0]?.data.nomeSite ?? 'JF Veículos';
           </div>
 
           <div class="jf-filter-group">
-            <div class="jf-filter-row"><label class="jf-filter-label" for="jf-preco">Preço até</label><span class="jf-filter-value" id="jf-preco-val">{brl(200000)}</span></div>
-            <input type="range" id="jf-preco" min="20000" max="200000" step="5000" value="200000" aria-describedby="jf-preco-val" />
+            <div class="jf-filter-row"><label class="jf-filter-label" for="jf-preco">Preço até</label><span class="jf-filter-value" id="jf-preco-val">{brl(precoMaxData)}</span></div>
+            <input type="range" id="jf-preco" min="20000" max={precoMaxData} step="5000" value={precoMaxData} aria-describedby="jf-preco-val" />
           </div>
 
           <div class="jf-filter-group">
@@ -78,8 +80,8 @@ const nomeSite = siteEntries[0]?.data.nomeSite ?? 'JF Veículos';
           </div>
 
           <div class="jf-filter-group">
-            <div class="jf-filter-row"><label class="jf-filter-label" for="jf-km">Km até</label><span class="jf-filter-value" id="jf-km-val">120.000 km</span></div>
-            <input type="range" id="jf-km" min="0" max="120000" step="5000" value="120000" aria-describedby="jf-km-val" />
+            <div class="jf-filter-row"><label class="jf-filter-label" for="jf-km">Km até</label><span class="jf-filter-value" id="jf-km-val">{kmMaxData.toLocaleString('pt-BR')} km</span></div>
+            <input type="range" id="jf-km" min="0" max={kmMaxData} step="5000" value={kmMaxData} aria-describedby="jf-km-val" />
           </div>
 
           <div class="jf-filter-group">
