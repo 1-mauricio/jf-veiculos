@@ -1,0 +1,34 @@
+{
+  "destaque": true,
+  "km": 33500,
+  "ano": 2022,
+  "cidade": "Recife",
+  "opcionais": [
+    "Manual e Chave Reserva.",
+    "IPVA 2026 Pago.",
+    "2 Pneus Zero.",
+    "Freios ABS."
+  ],
+  "cor": "Vermelha",
+  "modelo": "Rally 300",
+  "anoModelo": 2020,
+  "descricao": "Moto linda, potente e pronta para rodar! Ideal para quem procura conforto, desempenho e aquele visual aventureiro que chama atenção por onde passa.",
+  "combustivel": "Flex",
+  "preco": 29990,
+  "fotos": [
+    "/images/veiculos/whatsapp-image-2026-08-25-at-12.24.46-3-.jpeg",
+    "/images/veiculos/whatsapp-image-2026-08-25-at-12.24.47-2-.jpeg",
+    "/images/veiculos/whatsapp-image-2026-08-25-at-12.24.47-4-.jpeg",
+    "/images/veiculos/whatsapp-image-2026-08-25-at-12.24.47.jpeg",
+    "/images/veiculos/whatsapp-image-2026-08-25-at-12.24.46-5-.jpeg",
+    "/images/veiculos/whatsapp-image-2026-08-25-at-12.24.47-1-.jpeg",
+    "/images/veiculos/whatsapp-image-2026-08-25-at-12.24.47-4-.jpeg",
+    "/images/veiculos/whatsapp-image-2026-08-25-at-12.24.46-5-.jpeg"
+  ],
+  "uf": "PE",
+  "tipo": "moto",
+  "cambio": "Manual",
+  "nome": "Xre 300 Rally",
+  "lancamento": false,
+  "marca": "Honda"
+}
