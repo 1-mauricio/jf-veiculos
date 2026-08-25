@@ -132,6 +132,7 @@ export function initListagem() {
     if (state.sort === 'menor') visible = [...visible].sort((a, b) => Number(a.dataset.preco) - Number(b.dataset.preco));
     else if (state.sort === 'maior') visible = [...visible].sort((a, b) => Number(b.dataset.preco) - Number(a.dataset.preco));
     else if (state.sort === 'km') visible = [...visible].sort((a, b) => Number(a.dataset.km) - Number(b.dataset.km));
+    else if (state.sort === 'recentes') visible = [...visible].sort((a, b) => Number(b.dataset.criado) - Number(a.dataset.criado));
 
     const visibleSet = new Set(visible);
     cards.forEach((card) => {

@@ -4,6 +4,9 @@ import { glob } from 'astro/loaders';
 /** O Decap CMS grava "" (não omite a chave) quando um campo numérico opcional fica em branco. */
 const optionalNumber = () => z.preprocess((v) => (v === '' ? undefined : v), z.number().optional());
 
+/** Data de cadastro do anúncio, usada para ordenar "Mais recentes". Sem valor (CMS em branco ou item antigo) = agora. */
+const criadoEm = () => z.preprocess((v) => (v === '' || v == null ? undefined : v), z.coerce.date().default(() => new Date()));
+
 const veiculos = defineCollection({
   loader: glob({ pattern: '**/*.json', base: './src/content/veiculos' }),
   schema: z.object({
@@ -30,6 +33,7 @@ const veiculos = defineCollection({
     potencia: z.string().optional(),
     portas: optionalNumber(),
     cilindrada: z.string().optional(),
+    criadoEm: criadoEm(),
   }),
 });
 

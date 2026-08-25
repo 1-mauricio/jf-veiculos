@@ -6,7 +6,16 @@ import Icon from '../../components/Icon.astro';
 import { brl } from '../../lib/format';
 
 const veiculos = await getCollection('veiculos');
-const marcas = [...new Set(veiculos.map((v) => v.data.marca))].sort();
+
+/** O campo marca é texto livre no CMS: "Honda" e "HONDA" não podem virar duas marcas diferentes no filtro. */
+const marcaCanonica = new Map<string, string>();
+for (const v of veiculos) {
+  const key = v.data.marca.trim().toLowerCase();
+  if (!marcaCanonica.has(key)) marcaCanonica.set(key, v.data.marca.trim());
+}
+const getMarca = (marca: string) => marcaCanonica.get(marca.trim().toLowerCase()) ?? marca;
+
+const marcas = [...marcaCanonica.values()].sort();
 const cores = [...new Set(veiculos.map((v) => v.data.cor))].sort();
 const tipos = [...new Set(veiculos.map((v) => v.data.tipo))];
 const cambios = [...new Set(veiculos.map((v) => v.data.cambio))].sort();
@@ -113,12 +122,13 @@ const nomeSite = siteEntries[0]?.data.nomeSite ?? 'JF Veículos';
       <!-- GRID -->
       <div>
         <div class="jf-g3" id="jf-grid">
-          {veiculos.map((v) => (
+          {[...veiculos].sort((a, b) => b.data.criadoEm.getTime() - a.data.criadoEm.getTime()).map((v) => (
             <div
               class="jf-grid-item"
               data-vehicle-card
               data-tipo={v.data.tipo}
-              data-marca={v.data.marca}
+              data-marca={getMarca(v.data.marca)}
+              data-criado={v.data.criadoEm.getTime()}
               data-preco={v.data.preco}
               data-ano={v.data.ano}
               data-km={v.data.km ?? 0}

@@ -16,7 +16,13 @@ const site = siteEntries[0]?.data;
 const catCarros = veiculos.filter((v) => v.data.tipo === 'carro').length;
 const catMotos = veiculos.filter((v) => v.data.tipo === 'moto').length;
 const destaques = veiculos.filter((v) => v.data.destaque).slice(0, 4);
-const marcas = [...new Set(veiculos.map((v) => v.data.marca))].sort();
+/** O campo marca é texto livre no CMS: "Honda" e "HONDA" não podem virar duas marcas diferentes no filtro. */
+const marcaCanonica = new Map<string, string>();
+for (const v of veiculos) {
+  const key = v.data.marca.trim().toLowerCase();
+  if (!marcaCanonica.has(key)) marcaCanonica.set(key, v.data.marca.trim());
+}
+const marcas = [...marcaCanonica.values()].sort();
 
 const vendaHref = loja ? whatsappLink(loja.whatsapp, 'Olá! Quero avaliar meu veículo para venda ou troca.') : '/loja';
 ---

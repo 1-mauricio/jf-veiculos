@@ -25,7 +25,7 @@ collections:
     format: "json"
     fields:
       - { label: "Nome do anúncio", name: "nome", widget: "string", hint: "Ex: VW Nivus Highline" }
-      - { label: "Marca", name: "marca", widget: "string" }
+      - { label: "Marca", name: "marca", widget: "string", hint: "Ex: Honda (o site já agrupa maiúsculas/minúsculas diferentes)" }
       - { label: "Modelo", name: "modelo", widget: "string" }
       - label: "Tipo"
         name: "tipo"
@@ -65,6 +65,7 @@ collections:
       - { label: "Potência", name: "potencia", widget: "string", required: false, hint: "Ex: 116 cv" }
       - { label: "Portas (carro)", name: "portas", widget: "number", value_type: "int", required: false }
       - { label: "Cilindrada (moto)", name: "cilindrada", widget: "string", required: false, hint: "Ex: 471cc" }
+      - { label: "Cadastrado em", name: "criadoEm", widget: "datetime", required: false, hint: "Usado para ordenar por 'Mais recentes'. Deixe em branco para usar a data de hoje." }
 
   - name: "depoimentos"
     label: "Depoimentos"
