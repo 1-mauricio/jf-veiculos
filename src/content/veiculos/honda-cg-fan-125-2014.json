@@ -1,0 +1,30 @@
+{
+  "destaque": true,
+  "km": 115000,
+  "ano": 2013,
+  "cidade": "Recife.",
+  "opcionais": [
+    "Manual e Chave Reserva.",
+    "Ipva 2026 Pago."
+  ],
+  "cor": "Preta",
+  "modelo": "CG FAN 125",
+  "anoModelo": 2014,
+  "descricao": "Moto econômica, confiável e ideal para o dia a dia, conhecida pela facilidade de manutenção e baixo custo de consumo.\nUma excelente opção para quem busca uma moto prática para o trabalho e o dia a dia, com ótimo consumo de combustível e manutenção acessível.",
+  "combustivel": "Flex",
+  "preco": 9499,
+  "fotos": [
+    "/images/veiculos/whatsapp-image-2026-08-25-at-12.34.35-1-.jpeg",
+    "/images/veiculos/whatsapp-image-2026-08-25-at-12.34.36-1-.jpeg",
+    "/images/veiculos/whatsapp-image-2026-08-25-at-12.34.36.jpeg",
+    "/images/veiculos/whatsapp-image-2026-08-25-at-12.34.35.jpeg",
+    "/images/veiculos/whatsapp-image-2026-08-25-at-12.34.35-2-.jpeg",
+    "/images/veiculos/whatsapp-image-2026-08-25-at-12.34.34.jpeg"
+  ],
+  "uf": "PE",
+  "tipo": "moto",
+  "cambio": "Manual",
+  "nome": "CG 125 FAN",
+  "lancamento": false,
+  "marca": "Honda"
+}
