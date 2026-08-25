@@ -1,0 +1,29 @@
+{
+  "destaque": true,
+  "km": 22999,
+  "ano": 2023,
+  "cidade": "RECIFE ",
+  "opcionais": [
+    "MANUAL E CHAVE RESERVA",
+    "UNICO DONO "
+  ],
+  "cor": "Vermelha.",
+  "modelo": "CG 160",
+  "anoModelo": 2024,
+  "descricao": "A Honda CG 160 2024 é uma motocicleta popular no Brasil, conhecida por sua robustez e baixo custo de manutenção.\nModelos disponíveis: Inclui a CG 160 Titan e a CG 160 Start, cada um com características específicas.",
+  "combustivel": "Flex",
+  "preco": 17499,
+  "fotos": [
+    "/images/veiculos/whatsapp-image-2026-08-25-at-15.42.25-5-.jpeg",
+    "/images/veiculos/whatsapp-image-2026-08-25-at-15.42.25-4-.jpeg",
+    "/images/veiculos/whatsapp-image-2026-08-25-at-15.42.25-3-.jpeg",
+    "/images/veiculos/whatsapp-image-2026-08-25-at-15.42.25-1-.jpeg",
+    "/images/veiculos/whatsapp-image-2026-08-25-at-15.42.25-2-.jpeg"
+  ],
+  "uf": "PE",
+  "tipo": "moto",
+  "cambio": "Manual",
+  "nome": "FAN 160",
+  "lancamento": false,
+  "marca": "Honda"
+}
