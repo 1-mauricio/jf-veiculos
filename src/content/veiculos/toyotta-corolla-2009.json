@@ -1,0 +1,32 @@
+{
+  "destaque": true,
+  "km": 180000,
+  "ano": 2009,
+  "cidade": "Recife",
+  "opcionais": [
+    "Manual e Chave Reserva. ",
+    "VERSÃO SEG.",
+    "Carro Impecável."
+  ],
+  "cor": "Preta",
+  "modelo": "Corolla",
+  "anoModelo": 2009,
+  "descricao": "O Toyota Corolla 2009 é um sedã que se destaca por ser prático no dia a dia. Com um motor que entrega até 136 cv e um torque máximo de 17,5 kgfm, ele tem uma boa resposta na hora de acelerar, ideal para quem precisa se deslocar rapidamente em situações urbanas. ",
+  "combustivel": "Flex",
+  "preco": 53999,
+  "fotos": [
+    "/images/veiculos/whatsapp-image-2026-08-25-at-16.31.04-2-.jpeg",
+    "/images/veiculos/whatsapp-image-2026-08-25-at-16.08.14-1-.jpeg",
+    "/images/veiculos/whatsapp-image-2026-08-25-at-16.31.04.jpeg",
+    "/images/veiculos/whatsapp-image-2026-08-25-at-16.08.14-4-.jpeg",
+    "/images/veiculos/whatsapp-image-2026-08-25-at-16.08.14-3-.jpeg",
+    "/images/veiculos/whatsapp-image-2026-08-25-at-16.08.14-2-.jpeg"
+  ],
+  "uf": "PE",
+  "portas": -4,
+  "tipo": "carro",
+  "cambio": "Automático",
+  "nome": "Toyotta Corolla",
+  "lancamento": false,
+  "marca": "Toyotta"
+}
