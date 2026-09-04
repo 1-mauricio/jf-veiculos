@@ -1,0 +1,31 @@
+{
+  "destaque": true,
+  "km": 50000,
+  "ano": 2012,
+  "cidade": "Recife",
+  "opcionais": [
+    "Único Dono."
+  ],
+  "cilindrada": "150 cc",
+  "cor": "Preta",
+  "modelo": "FAN 150",
+  "anoModelo": 2012,
+  "descricao": "A Honda CG 150 Fan 2012 é uma motocicleta urbana robusta e econômica, equipada com motor flex de 149,2 cm³ e partida elétrica.",
+  "combustivel": "Gasolina",
+  "preco": 11500,
+  "fotos": [
+    "/images/veiculos/whatsapp-image-2026-09-04-at-17.01.20-1-.jpeg",
+    "/images/veiculos/whatsapp-image-2026-09-04-at-17.01.19.jpeg",
+    "/images/veiculos/whatsapp-image-2026-09-04-at-17.01.20-2-.jpeg",
+    "/images/veiculos/whatsapp-image-2026-09-04-at-17.01.20-3-.jpeg",
+    "/images/veiculos/whatsapp-image-2026-09-04-at-17.01.20.jpeg",
+    "/images/veiculos/whatsapp-image-2026-09-04-at-17.01.19-1-.jpeg"
+  ],
+  "uf": "PE",
+  "portas": "",
+  "tipo": "moto",
+  "cambio": "Manual",
+  "nome": "CG 150 FAN",
+  "lancamento": false,
+  "marca": "Honda"
+}
