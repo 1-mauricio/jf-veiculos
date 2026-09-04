@@ -11,7 +11,7 @@
   "anoModelo": 2018,
   "descricao": "A Honda CG 125 Fan é uma motocicleta urbana econômica, conhecida pela sua simplicidade e resistência.\nMotor: Monocilíndrico de 124,7 cm³, OHC com duas válvulas, refrigeração a ar. Potência máxima entre 11,4 cv e 11,8 cv a 8.000 a 8.250 rpm, torque de 1,05 a 1,06 kgf.m a 6.000 a 6.500 rpm.",
   "combustivel": "Flex",
-  "preco": 11500,
+  "preco": 10999,
   "fotos": [
     "/images/veiculos/whatsapp-image-2026-08-25-at-11.53.37.jpeg",
     "/images/veiculos/whatsapp-image-2026-08-25-at-11.53.36.jpeg",
@@ -23,7 +23,7 @@
   "tipo": "moto",
   "cambio": "Manual",
   "nome": "Fan 125",
+  "criadoEm": "2026-08-25T15:25:51Z",
   "lancamento": false,
-  "marca": "Honda",
-  "criadoEm": "2026-08-25T15:25:51Z"
+  "marca": "Honda"
 }
