@@ -1,0 +1,30 @@
+{
+  "destaque": true,
+  "km": 5000,
+  "ano": 2024,
+  "cidade": "Recife",
+  "opcionais": [
+    "Único Dono.",
+    "Chave reserva e Manual."
+  ],
+  "cilindrada": "160 cc",
+  "cor": "Cinza",
+  "modelo": "CG 160 FAN",
+  "anoModelo": 2024,
+  "descricao": "A Honda CG 160 Fan 2024 é uma motocicleta urbana de 162,7 cc que se destaca pelo equilíbrio entre economia, design esportivo e custo-benefício na categoria.",
+  "combustivel": "Flex",
+  "preco": 17990,
+  "fotos": [
+    "/images/veiculos/whatsapp-image-2026-09-04-at-17.10.23-4-.jpeg",
+    "/images/veiculos/whatsapp-image-2026-09-04-at-17.10.23.jpeg",
+    "/images/veiculos/whatsapp-image-2026-09-04-at-17.10.23-3-.jpeg",
+    "/images/veiculos/whatsapp-image-2026-09-04-at-17.10.23-2-.jpeg",
+    "/images/veiculos/whatsapp-image-2026-09-04-at-17.10.23-1-.jpeg"
+  ],
+  "uf": "PE",
+  "tipo": "moto",
+  "cambio": "Manual",
+  "nome": "CG FAN 160",
+  "lancamento": false,
+  "marca": "Honda"
+}
