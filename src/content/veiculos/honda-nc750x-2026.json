@@ -1,0 +1,30 @@
+{
+  "destaque": true,
+  "km": 3200,
+  "ano": 2025,
+  "cidade": "Recife",
+  "opcionais": [
+    "Único Dono.",
+    "Manual e Chave Reserva."
+  ],
+  "cor": "Vermelha",
+  "modelo": "NC750X",
+  "anoModelo": 2026,
+  "descricao": "A NC750X estreia rodas de alumínio com novo design 3x3, que alterna três raios em cada direção. Essa estrutura reforça a rigidez e reduz o peso, melhorando a estabilidade e a resposta da suspensão. O resultado é uma pilotagem mais precisa e confortável, tanto na cidade quanto na estrada.\n    4 modos de condução\nA Honda NC750X é equipada com quatro modos de condução: Sport, Standard, Rain e User. Eles ajustam automaticamente a entrega de potência, o freio-motor e o controle de tração, conforme o tipo de pilotagem e as condições da pista.",
+  "combustivel": "Flex",
+  "preco": 58990,
+  "fotos": [
+    "/images/veiculos/whatsapp-image-2026-09-04-at-17.17.38.jpeg",
+    "/images/veiculos/whatsapp-image-2026-09-04-at-17.17.37-4-.jpeg",
+    "/images/veiculos/whatsapp-image-2026-09-04-at-17.17.37-2-.jpeg",
+    "/images/veiculos/whatsapp-image-2026-09-04-at-17.17.37-1-.jpeg",
+    "/images/veiculos/whatsapp-image-2026-09-04-at-17.17.37.jpeg",
+    "/images/veiculos/whatsapp-image-2026-09-04-at-17.17.37-3-.jpeg"
+  ],
+  "uf": "PE",
+  "tipo": "moto",
+  "cambio": "Manual",
+  "nome": "NC 750X",
+  "lancamento": false,
+  "marca": "Honda"
+}
