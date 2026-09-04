@@ -1,0 +1,30 @@
+{
+  "destaque": true,
+  "km": 5000,
+  "ano": 2024,
+  "cidade": "Recife",
+  "opcionais": [
+    "Único Dono.",
+    "Chave reserva e manual."
+  ],
+  "cilindrada": "160 cc",
+  "cor": "Azul",
+  "modelo": "NXR 160 Bros",
+  "anoModelo": 2024,
+  "descricao": "A Honda NXR 160 Bros 2024 é uma motocicleta estilo trail versátil, projetada para o uso misto em estradas asfaltadas e pisos irregulares.",
+  "combustivel": "Flex",
+  "preco": 19990,
+  "fotos": [
+    "/images/veiculos/whatsapp-image-2026-09-04-at-17.05.04-2-.jpeg",
+    "/images/veiculos/whatsapp-image-2026-09-04-at-17.05.04-1-.jpeg",
+    "/images/veiculos/whatsapp-image-2026-09-04-at-17.05.03-1-.jpeg",
+    "/images/veiculos/whatsapp-image-2026-09-04-at-17.05.04.jpeg",
+    "/images/veiculos/whatsapp-image-2026-09-04-at-17.05.03.jpeg"
+  ],
+  "uf": "PE",
+  "tipo": "moto",
+  "cambio": "Manual",
+  "nome": "NXR BROS 160",
+  "lancamento": false,
+  "marca": "Honda"
+}
