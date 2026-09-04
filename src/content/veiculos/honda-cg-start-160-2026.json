@@ -11,7 +11,7 @@
   "anoModelo": 2026,
   "descricao": "A Honda CG 160 Start 2026 é a versão de entrada da linha street mais vendida do Brasil. Com preço público sugerido a partir de R$ 16.770 (base São Paulo), ela traz motor OHC de 162,7 cc, painel digital, freios CBS e tanque de 14 litros, focando em economia para o uso diário.",
   "combustivel": "Flex",
-  "preco": 20990,
+  "preco": 19999,
   "fotos": [
     "/images/veiculos/whatsapp-image-2026-08-10-at-21.27.48-1-.jpeg",
     "/images/veiculos/whatsapp-image-2026-08-10-at-21.27.48-2-.jpeg"
@@ -19,7 +19,7 @@
   "tipo": "moto",
   "cambio": "Manual",
   "nome": "Honda CG Start 160",
+  "criadoEm": "2026-08-10T21:40:04-03:00",
   "lancamento": false,
-  "marca": "Honda",
-  "criadoEm": "2026-08-10T21:40:04-03:00"
+  "marca": "Honda"
 }
