@@ -1,0 +1,30 @@
+{
+  "destaque": true,
+  "km": 14000,
+  "ano": 2025,
+  "cidade": "Recife",
+  "opcionais": [
+    "IPVA pago.",
+    "Manual e Chave reserva."
+  ],
+  "cilindrada": "",
+  "cor": "Vermelho.",
+  "modelo": " Sahara 300 Rally",
+  "anoModelo": 2025,
+  "descricao": "A Honda Sahara 300 Rally 2026 é uma motocicleta trail de visual aventureiro inspirada nas pistas de rali, equipada com motor flex de 293,5 cc e suspensão de longo curso para diferentes tipos de terreno.",
+  "combustivel": "Flex",
+  "preco": 34999,
+  "fotos": [
+    "/images/veiculos/whatsapp-image-2026-09-09-at-16.23.33-1-.jpeg",
+    "/images/veiculos/whatsapp-image-2026-09-09-at-16.23.32.jpeg",
+    "/images/veiculos/whatsapp-image-2026-09-09-at-16.23.33.jpeg",
+    "/images/veiculos/whatsapp-image-2026-09-09-at-16.23.32-1-.jpeg"
+  ],
+  "uf": "PE",
+  "tipo": "moto",
+  "cambio": "Manual",
+  "nome": "Sahara Rally",
+  "lancamento": false,
+  "marca": "Honda",
+  "potencia": ""
+}
