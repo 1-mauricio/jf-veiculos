@@ -1,0 +1,31 @@
+{
+  "destaque": true,
+  "km": 17600,
+  "ano": 2025,
+  "cidade": "Recife",
+  "opcionais": [
+    "Único Dono.",
+    "Manual e Chave Reserva."
+  ],
+  "cor": "Vermelha.",
+  "modelo": "Dominar 400",
+  "anoModelo": 2025,
+  "descricao": "A Bajaj Dominar 400 é uma motocicleta sport-touring/crossover de 373,3 cm³ que se destaca no mercado brasileiro pelo alto custo-benefício, entregando potência de moto maior, oferece 4 modos de pilotagem ajustáveis.",
+  "combustivel": "Gasolina",
+  "preco": 23999,
+  "fotos": [
+    "/images/veiculos/whatsapp-image-2026-09-09-at-16.30.05-1-.jpeg",
+    "/images/veiculos/whatsapp-image-2026-09-09-at-16.30.05.jpeg",
+    "/images/veiculos/whatsapp-image-2026-09-09-at-16.30.05-2-.jpeg",
+    "/images/veiculos/whatsapp-image-2026-09-09-at-16.30.04.jpeg",
+    "/images/veiculos/whatsapp-image-2026-09-09-at-16.30.02.jpeg",
+    "/images/veiculos/whatsapp-image-2026-09-09-at-16.29.57.jpeg",
+    "/images/veiculos/whatsapp-image-2026-09-09-at-16.29.59.jpeg"
+  ],
+  "uf": "PE",
+  "tipo": "moto",
+  "cambio": "Manual",
+  "nome": "BAJAJ DOMINAR 40",
+  "lancamento": false,
+  "marca": "Bajaj Auto"
+}
