@@ -1,0 +1,36 @@
+{
+  "destaque": true,
+  "km": 150000,
+  "ano": 2019,
+  "cidade": "Recife",
+  "opcionais": [
+    "Chave Reserva e Manual.",
+    "IPVA 2026 PAGO.",
+    "Com GNV G5"
+  ],
+  "cor": "Branco",
+  "modelo": "Ford Ka",
+  "anoModelo": 2019,
+  "descricao": "O Ford Ka SE 1.0 2019 é um hatchback compacto de quatro portas e cinco lugares que se destaca pelo motor eficiente e bom espaço interno na categoria.",
+  "combustivel": "Flex",
+  "preco": 41990,
+  "fotos": [
+    "/images/veiculos/whatsapp-image-2026-09-09-at-18.08.19.jpeg",
+    "/images/veiculos/whatsapp-image-2026-09-09-at-18.08.25.jpeg",
+    "/images/veiculos/whatsapp-image-2026-09-09-at-18.15.57.jpeg",
+    "/images/veiculos/whatsapp-image-2026-09-09-at-18.15.58.jpeg",
+    "/images/veiculos/whatsapp-image-2026-09-09-at-18.15.57-2-.jpeg",
+    "/images/veiculos/whatsapp-image-2026-09-09-at-18.15.57-1-.jpeg",
+    "/images/veiculos/whatsapp-image-2026-09-09-at-18.08.36.jpeg",
+    "/images/veiculos/whatsapp-image-2026-09-09-at-18.15.56.jpeg",
+    "/images/veiculos/whatsapp-image-2026-09-09-at-18.08.30.jpeg"
+  ],
+  "uf": "PE",
+  "portas": 4,
+  "tipo": "carro",
+  "motor": "1.0",
+  "cambio": "Manual",
+  "nome": "Ford Ka",
+  "lancamento": false,
+  "marca": "Ford."
+}
