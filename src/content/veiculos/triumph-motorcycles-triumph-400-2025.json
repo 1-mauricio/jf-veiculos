@@ -1,0 +1,29 @@
+{
+  "destaque": true,
+  "km": 7300,
+  "ano": 2025,
+  "cidade": "Recife",
+  "opcionais": [
+    "Manual e Chave Reserva."
+  ],
+  "cor": "Vermelha.",
+  "modelo": " Triumph 400",
+  "anoModelo": 2025,
+  "descricao": "A Triumph Speed 400 é uma motocicleta naked de estilo retrô equipada com motor monocilíndrico de 398,15 cc, entregando 40 cavalos de potência e 37,5 Nm de torque.",
+  "combustivel": "Gasolina",
+  "preco": 24999,
+  "fotos": [
+    "/images/veiculos/whatsapp-image-2026-09-09-at-16.31.43-1-.jpeg",
+    "/images/veiculos/whatsapp-image-2026-09-09-at-16.31.44-2-.jpeg",
+    "/images/veiculos/whatsapp-image-2026-09-09-at-16.31.43-2-.jpeg",
+    "/images/veiculos/whatsapp-image-2026-09-09-at-16.31.44-1-.jpeg",
+    "/images/veiculos/whatsapp-image-2026-09-09-at-16.31.44.jpeg",
+    "/images/veiculos/whatsapp-image-2026-09-09-at-16.31.43.jpeg"
+  ],
+  "uf": "PE",
+  "tipo": "moto",
+  "cambio": "Manual",
+  "nome": "Triumph Speed 400",
+  "lancamento": false,
+  "marca": "Triumph Motorcycles."
+}
