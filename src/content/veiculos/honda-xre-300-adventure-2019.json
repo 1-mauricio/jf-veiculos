@@ -1,0 +1,29 @@
+{
+  "destaque": true,
+  "km": 63000,
+  "ano": 2019,
+  "cidade": "Recife",
+  "opcionais": [
+    "Chave Reserva e Manual.",
+    "IPVA 2026 pago."
+  ],
+  "cor": "Preta",
+  "modelo": "XRE 300 Adventure",
+  "anoModelo": 2019,
+  "descricao": "A Honda XRE 300 Adventure 2019 é uma motocicleta trail de uso misto que se destaca pelo visual exclusivo com pintura foscamente estilizada, iluminação em LED e freios ABS de série.",
+  "combustivel": "Flex",
+  "preco": 22999,
+  "fotos": [
+    "/images/veiculos/whatsapp-image-2026-09-09-at-16.29.05.jpeg",
+    "/images/veiculos/whatsapp-image-2026-09-09-at-16.29.06-2-.jpeg",
+    "/images/veiculos/whatsapp-image-2026-09-09-at-16.29.06.jpeg",
+    "/images/veiculos/whatsapp-image-2026-09-09-at-16.29.05-1-.jpeg",
+    "/images/veiculos/whatsapp-image-2026-09-09-at-16.29.06-1-.jpeg"
+  ],
+  "uf": "PE",
+  "tipo": "moto",
+  "cambio": "Manual",
+  "nome": "XRE 300 ADVENTURE",
+  "lancamento": false,
+  "marca": "Honda"
+}
