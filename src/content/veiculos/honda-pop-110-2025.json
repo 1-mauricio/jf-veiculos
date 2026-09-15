@@ -1,0 +1,28 @@
+{
+  "destaque": true,
+  "km": 5300,
+  "ano": 2025,
+  "cidade": "Recife",
+  "opcionais": [
+    "Manual e Chave Reserva.",
+    "IPVA 2026 PAGO."
+  ],
+  "cor": "Preta",
+  "modelo": "Pop 110",
+  "anoModelo": 2025,
+  "descricao": "A Honda Pop 110 traz como grandes novidades a chegada da partida elétrica e o câmbio semiautomático.",
+  "combustivel": "Gasolina",
+  "preco": 12990,
+  "fotos": [
+    "/images/veiculos/whatsapp-image-2026-09-15-at-14.21.31-1-.jpeg",
+    "/images/veiculos/whatsapp-image-2026-09-15-at-14.21.31.jpeg",
+    "/images/veiculos/whatsapp-image-2026-09-15-at-14.21.32-1-.jpeg",
+    "/images/veiculos/whatsapp-image-2026-09-15-at-14.21.32.jpeg"
+  ],
+  "uf": "PE",
+  "tipo": "moto",
+  "cambio": "Automático",
+  "nome": "POP 110",
+  "lancamento": false,
+  "marca": "Honda"
+}
