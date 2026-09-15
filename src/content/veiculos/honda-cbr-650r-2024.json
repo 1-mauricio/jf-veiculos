@@ -1,0 +1,29 @@
+{
+  "destaque": true,
+  "km": 1100,
+  "ano": 2024,
+  "cidade": "Recife.",
+  "opcionais": [
+    "Manual e Chave reserva.",
+    "Nota Fiscal."
+  ],
+  "cor": "Preta e detalhes prata.",
+  "modelo": "Cbr 650r",
+  "anoModelo": 2024,
+  "descricao": "A Honda CBR 650R 2024 é uma motocicleta esportiva estilo sport-touring inspirada no visual agressivo da CBR 1000RR Fireblade.\nControle de tração HSTC (Honda Selectable Torque Control) e sinalizador de frenagem de emergência (ESS).",
+  "combustivel": "Gasolina",
+  "preco": 57990,
+  "fotos": [
+    "/images/veiculos/whatsapp-image-2026-09-15-at-14.10.11.jpeg",
+    "/images/veiculos/whatsapp-image-2026-09-15-at-14.10.16.jpeg",
+    "/images/veiculos/whatsapp-image-2026-09-15-at-14.10.13.jpeg",
+    "/images/veiculos/whatsapp-image-2026-09-15-at-14.10.19.jpeg",
+    "/images/veiculos/whatsapp-image-2026-09-15-at-14.10.17.jpeg"
+  ],
+  "uf": "PE",
+  "tipo": "moto",
+  "cambio": "Manual",
+  "nome": "CBR 650R",
+  "lancamento": false,
+  "marca": "Honda"
+}
