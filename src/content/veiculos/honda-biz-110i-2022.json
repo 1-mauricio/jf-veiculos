@@ -1,0 +1,28 @@
+{
+  "destaque": true,
+  "km": 4900,
+  "ano": 2022,
+  "cidade": "Recife",
+  "opcionais": [
+    "Única Dona.",
+    "Manual e Chave Reserva."
+  ],
+  "cor": "Branca.",
+  "modelo": "Biz 110i ",
+  "anoModelo": 2022,
+  "descricao": "A Honda Biz 110i é uma motoneta prática e muito econômica, feita para o dia a dia.",
+  "combustivel": "Gasolina",
+  "preco": 12990,
+  "fotos": [
+    "/images/veiculos/whatsapp-image-2026-09-15-at-14.26.15-1-.jpeg",
+    "/images/veiculos/whatsapp-image-2026-09-15-at-14.26.15.jpeg",
+    "/images/veiculos/whatsapp-image-2026-09-15-at-14.26.15-3-.jpeg",
+    "/images/veiculos/whatsapp-image-2026-09-15-at-14.26.15-2-.jpeg"
+  ],
+  "uf": "PE",
+  "tipo": "moto",
+  "cambio": "Automático",
+  "nome": "Biz 110",
+  "lancamento": false,
+  "marca": "Honda"
+}
