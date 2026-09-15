@@ -1,0 +1,29 @@
+{
+  "destaque": true,
+  "km": 40000,
+  "ano": 2025,
+  "cidade": "Recife.",
+  "opcionais": [
+    "Único Dono.",
+    "Com Manual e Chave Reserva."
+  ],
+  "cor": "Vermelha.",
+  "modelo": "Bajaj Dominar 250",
+  "anoModelo": 2025,
+  "descricao": "A Bajaj Dominar 250 é uma motocicleta estilo naked robusta que se destaca no mercado brasileiro pela alta potência na categoria.\nModos de Pilotagem: Três opções (Road, Rain e Off-road) e controle de tração eletrônico.",
+  "combustivel": "Gasolina",
+  "preco": 16999,
+  "fotos": [
+    "/images/veiculos/whatsapp-image-2026-09-15-at-17.28.41-2-.jpeg",
+    "/images/veiculos/whatsapp-image-2026-09-15-at-17.28.41.jpeg",
+    "/images/veiculos/whatsapp-image-2026-09-15-at-17.28.40.jpeg",
+    "/images/veiculos/whatsapp-image-2026-09-15-at-17.28.41-1-.jpeg",
+    "/images/veiculos/whatsapp-image-2026-09-15-at-17.28.40-1-.jpeg"
+  ],
+  "uf": "PE",
+  "tipo": "moto",
+  "cambio": "Manual",
+  "nome": "BAJAJ 250",
+  "lancamento": false,
+  "marca": "Bajaj Auto"
+}
