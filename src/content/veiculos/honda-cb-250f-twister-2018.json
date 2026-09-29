@@ -1,0 +1,28 @@
+{
+  "destaque": true,
+  "km": 52000,
+  "ano": 2018,
+  "cidade": "Recife",
+  "opcionais": [
+    "Manual e Chave reserva."
+  ],
+  "cor": "Cinza",
+  "modelo": "CB 250F Twister",
+  "anoModelo": 2018,
+  "descricao": "A Honda CB 250F Twister 2018 é uma motocicleta naked de 250 cilindradas conhecida pelo design esportivo, baixo custo de manutenção e bom desempenho urbano e rodoviário.",
+  "combustivel": "Flex",
+  "preco": 16990,
+  "fotos": [
+    "/images/veiculos/whatsapp-image-2026-09-29-at-14.51.55.jpeg",
+    "/images/veiculos/whatsapp-image-2026-09-29-at-14.51.58.jpeg",
+    "/images/veiculos/whatsapp-image-2026-09-29-at-14.51.59.jpeg",
+    "/images/veiculos/whatsapp-image-2026-09-29-at-14.51.57.jpeg",
+    "/images/veiculos/whatsapp-image-2026-09-29-at-14.51.56.jpeg"
+  ],
+  "uf": "PE",
+  "tipo": "moto",
+  "cambio": "Manual",
+  "nome": "Twister CB 250",
+  "lancamento": false,
+  "marca": "Honda"
+}
