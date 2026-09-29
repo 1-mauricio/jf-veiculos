@@ -1,0 +1,28 @@
+{
+  "destaque": true,
+  "km": 12000,
+  "ano": 2024,
+  "cidade": "Recife",
+  "opcionais": [
+    "Único Dono.",
+    "Manual e Chave reserva."
+  ],
+  "cor": "Preta",
+  "modelo": "Pop 110cc",
+  "anoModelo": 2024,
+  "descricao": "A Honda Pop 110 é uma motocicleta urbana focada em economia, praticidade e facilidade de pilotagem. ",
+  "combustivel": "Gasolina",
+  "preco": 11900,
+  "fotos": [
+    "/images/veiculos/whatsapp-image-2026-09-29-at-14.23.46.jpeg",
+    "/images/veiculos/whatsapp-image-2026-09-29-at-14.23.47-1-.jpeg",
+    "/images/veiculos/whatsapp-image-2026-09-29-at-14.23.47-2-.jpeg",
+    "/images/veiculos/whatsapp-image-2026-09-29-at-14.23.47.jpeg"
+  ],
+  "uf": "PE",
+  "tipo": "moto",
+  "cambio": "Manual",
+  "nome": "POP 110",
+  "lancamento": false,
+  "marca": "Honda"
+}
