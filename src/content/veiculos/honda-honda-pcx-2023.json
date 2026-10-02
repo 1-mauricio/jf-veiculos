@@ -1,0 +1,27 @@
+{
+  "destaque": true,
+  "km": 13000,
+  "ano": 2023,
+  "cidade": "Recife",
+  "opcionais": [
+    "Ipva 2026 pago."
+  ],
+  "cor": "Cinza Grafite",
+  "modelo": "Honda Pcx",
+  "anoModelo": 2023,
+  "descricao": "Honda PCX traz uma reformulação completa com motor de 160 cc, novo design mais agressivo e mais tecnologia para o uso urbano.\nFreios: Opções com sistema CBS (frenagem integrada) ou ABS na roda dianteira.",
+  "combustivel": "Gasolina",
+  "preco": 17499,
+  "fotos": [
+    "/images/veiculos/whatsapp-image-2026-10-02-at-16.19.42.jpeg",
+    "/images/veiculos/whatsapp-image-2026-10-02-at-16.19.55.jpeg",
+    "/images/veiculos/whatsapp-image-2026-10-02-at-16.20.04.jpeg",
+    "/images/veiculos/whatsapp-image-2026-10-02-at-16.20.17.jpeg"
+  ],
+  "uf": "PE",
+  "tipo": "moto",
+  "cambio": "Automático",
+  "nome": "PCX 160",
+  "lancamento": false,
+  "marca": "Honda"
+}
