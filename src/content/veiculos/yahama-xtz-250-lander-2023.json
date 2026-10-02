@@ -1,0 +1,27 @@
+{
+  "destaque": true,
+  "km": 28000,
+  "ano": 2023,
+  "cidade": "Recife",
+  "opcionais": [
+    "Único dono.",
+    "Manual e Chave reserva."
+  ],
+  "cor": "Azul",
+  "modelo": "XTZ 250 Lander",
+  "anoModelo": 2023,
+  "descricao": "Yamaha XTZ 250 Lander é uma motocicleta estilo trail (uso misto) versátil e robusta, ideal para o uso urbano e para estradas de terra.\nFreios: Disco nas duas rodas com sistema ABS antichoque apenas na roda dianteira.\nPainel: 100% digital com visor em LCD, exibindo velocímetro, odômetro e nível de combustível.",
+  "combustivel": "Flex",
+  "preco": 24990,
+  "fotos": [
+    "/images/veiculos/whatsapp-image-2026-10-02-at-16.16.29.jpeg",
+    "/images/veiculos/whatsapp-image-2026-10-02-at-16.16.38.jpeg",
+    "/images/veiculos/whatsapp-image-2026-10-02-at-16.16.59.jpeg"
+  ],
+  "uf": "PE",
+  "tipo": "moto",
+  "cambio": "Manual",
+  "nome": "Lander XTZ 250",
+  "lancamento": false,
+  "marca": "Yahama"
+}
