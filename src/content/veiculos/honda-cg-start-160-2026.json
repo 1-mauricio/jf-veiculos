@@ -1,7 +1,8 @@
 {
-  "destaque": false,
+  "destaque": true,
   "km": 0,
   "ano": 2026,
+  "cidade": "Recife",
   "opcionais": [
     "Zero km"
   ],
@@ -13,9 +14,12 @@
   "combustivel": "Flex",
   "preco": 19999,
   "fotos": [
-    "/images/veiculos/whatsapp-image-2026-08-10-at-21.27.48-1-.jpeg",
-    "/images/veiculos/whatsapp-image-2026-08-10-at-21.27.48-2-.jpeg"
+    "/images/veiculos/whatsapp-image-2026-10-02-at-18.16.14.jpeg",
+    "/images/veiculos/whatsapp-image-2026-10-02-at-18.16.13-2-.jpeg",
+    "/images/veiculos/whatsapp-image-2026-10-02-at-18.16.13-1-.jpeg",
+    "/images/veiculos/whatsapp-image-2026-10-02-at-18.16.13.jpeg"
   ],
+  "uf": "PE",
   "tipo": "moto",
   "cambio": "Manual",
   "nome": "Honda CG Start 160",
