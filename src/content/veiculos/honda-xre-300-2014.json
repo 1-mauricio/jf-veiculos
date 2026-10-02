@@ -1,0 +1,25 @@
+{
+  "destaque": true,
+  "km": 68000,
+  "ano": 2013,
+  "cidade": "Recife",
+  "opcionais": [],
+  "cor": "Azul",
+  "modelo": "Xre 300",
+  "anoModelo": 2014,
+  "descricao": "A Honda XRE 300 Rally é uma motocicleta trail on-off-road versátil, que se destaca pelo visual exclusivo com grafismos inspirados nas competições de rally da Honda.\nRaios inox.",
+  "combustivel": "Flex",
+  "preco": 16999,
+  "fotos": [
+    "/images/veiculos/whatsapp-image-2026-10-02-at-16.21.59.jpeg",
+    "/images/veiculos/whatsapp-image-2026-10-02-at-16.22.04.jpeg",
+    "/images/veiculos/whatsapp-image-2026-10-02-at-16.22.18.jpeg",
+    "/images/veiculos/whatsapp-image-2026-10-02-at-16.22.12.jpeg"
+  ],
+  "uf": "PE",
+  "tipo": "moto",
+  "cambio": "Manual",
+  "nome": "XRE 300 Rally",
+  "lancamento": false,
+  "marca": "Honda"
+}
