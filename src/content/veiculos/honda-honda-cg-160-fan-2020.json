@@ -1,0 +1,28 @@
+{
+  "destaque": true,
+  "km": 43000,
+  "ano": 2020,
+  "cidade": "Recife",
+  "opcionais": [
+    "Manual e Chave reserva.",
+    "Ipva 2026 pago."
+  ],
+  "cor": "Vermelha",
+  "modelo": " Honda CG 160 Fan",
+  "anoModelo": 2020,
+  "descricao": "Honda CG 160 Fan 2020 é uma moto urbana robusta e econômica, equipada com motor flex de 162,7 cm³.\nFreios: Sistema CBS (Combined Brake System) com disco na dianteira e tambor na traseira.\nPainel: Digital completo com marcador de combustível, odômetro total e parcial, velocímetro e relógio.",
+  "combustivel": "Flex",
+  "preco": 14499,
+  "fotos": [
+    "/images/veiculos/whatsapp-image-2026-10-02-at-16.27.25.jpeg",
+    "/images/veiculos/whatsapp-image-2026-10-02-at-16.27.30.jpeg",
+    "/images/veiculos/whatsapp-image-2026-10-02-at-16.27.38.jpeg",
+    "/images/veiculos/whatsapp-image-2026-10-02-at-16.27.43.jpeg"
+  ],
+  "uf": "PE",
+  "tipo": "moto",
+  "cambio": "Manual",
+  "nome": "Fan CG 160",
+  "lancamento": false,
+  "marca": "Honda"
+}
