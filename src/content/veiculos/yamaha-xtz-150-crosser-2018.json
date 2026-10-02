@@ -1,0 +1,28 @@
+{
+  "destaque": true,
+  "km": 81000,
+  "ano": 2018,
+  "cidade": "Recife",
+  "opcionais": [
+    "Com manual e Chave reserva.",
+    "Ipva 2026 pago."
+  ],
+  "cor": "Branca",
+  "modelo": "XTZ 150 Crosser",
+  "anoModelo": 2018,
+  "descricao": "A Yamaha XTZ 150 Crosser é uma motocicleta trail versátil e econômica, que se destaca pelo conforto no uso urbano e bom desempenho em estradas de terra.\nRaios inox.",
+  "combustivel": "Flex",
+  "preco": 12500,
+  "fotos": [
+    "/images/veiculos/whatsapp-image-2026-10-02-at-16.13.52.jpeg",
+    "/images/veiculos/whatsapp-image-2026-10-02-at-16.14.11.jpeg",
+    "/images/veiculos/whatsapp-image-2026-10-02-at-16.14.31.jpeg",
+    "/images/veiculos/whatsapp-image-2026-10-02-at-16.14.02.jpeg"
+  ],
+  "uf": "PE",
+  "tipo": "moto",
+  "cambio": "Manual",
+  "nome": "Crosser XTZ 150",
+  "lancamento": false,
+  "marca": "Yamaha"
+}
