@@ -1,11 +1,9 @@
 backend:
-  name: git-gateway
+  name: github
+  repo: 1-mauricio/jf-veiculos
   branch: main
 
 locale: "pt"
-
-# TODO: depois do primeiro deploy no Netlify, ative "Identity" e "Git Gateway"
-# em Site settings > Identity, e convide o e-mail de quem vai editar o site.
 
 local_backend:
   url: "http://192.168.3.25:8081/api/v1"
@@ -51,10 +49,10 @@ collections:
       - { label: "É lançamento/novo?", name: "lancamento", widget: "boolean", default: false }
       - label: "Fotos"
         name: "fotos"
-        widget: "list"
-        field: { label: "Foto", name: "foto", widget: "image", allow_multiple: false }
-        default: []
-        hint: "A primeira foto é a capa do anúncio. Clique em \"Add fotos\" para cada foto (o Decap CMS só permite subir uma imagem por vez). Arraste para reordenar."
+        widget: "image"
+        multiple: true
+        required: false
+        hint: "Selecione ou arraste várias fotos de uma vez. A primeira é a capa do anúncio; arraste para reordenar."
       - { label: "Descrição", name: "descricao", widget: "text" }
       - label: "Itens e opcionais"
         name: "opcionais"
