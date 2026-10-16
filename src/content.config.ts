@@ -1,8 +1,8 @@
 import { defineCollection, z } from 'astro:content';
 import { glob } from 'astro/loaders';
 
-/** O Decap CMS grava "" (não omite a chave) quando um campo numérico opcional fica em branco. */
-const optionalNumber = () => z.preprocess((v) => (v === '' ? undefined : v), z.number().optional());
+/** Decap grava "" e Sveltia grava null (não omitem a chave) quando um campo numérico opcional fica em branco. */
+const optionalNumber = () => z.preprocess((v) => (v === '' || v == null ? undefined : v), z.number().optional());
 
 /** Data de cadastro do anúncio, usada para ordenar "Mais recentes". Sem valor (CMS em branco ou item antigo) = agora. */
 const criadoEm = () => z.preprocess((v) => (v === '' || v == null ? undefined : v), z.coerce.date().default(() => new Date()));
