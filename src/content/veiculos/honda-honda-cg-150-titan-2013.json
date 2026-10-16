@@ -1,0 +1,33 @@
+{
+  "nome": "CG 150 Titan",
+  "marca": "Honda",
+  "modelo": "Honda CG 150 Titan",
+  "tipo": "moto",
+  "categoria": "",
+  "ano": 2013,
+  "anoModelo": 2013,
+  "preco": 11900,
+  "km": 71500,
+  "cambio": "Manual",
+  "combustivel": "Flex",
+  "cor": "Vermelha",
+  "cidade": "Recife",
+  "uf": "PE",
+  "destaque": true,
+  "lancamento": false,
+  "fotos": [
+    "/images/veiculos/WhatsApp Image 2026-10-16 at 14.03.20.jpeg",
+    "/images/veiculos/WhatsApp Image 2026-10-16 at 14.03.21 (1).jpeg",
+    "/images/veiculos/WhatsApp Image 2026-10-16 at 14.03.21 (2).jpeg",
+    "/images/veiculos/WhatsApp Image 2026-10-16 at 14.03.21.jpeg"
+  ],
+  "descricao": "MOTO EXTRA\nA Honda CG 150 Titan 2013 é um modelo urbano de alta praticidade, conhecido pelo seu design moderno, mecânica confiável e sistema Mix/Flex que permite rodar com gasolina ou etanol.",
+  "opcionais": [
+    "Chave Reserva."
+  ],
+  "motor": "",
+  "potencia": "",
+  "portas": null,
+  "cilindrada": "",
+  "criadoEm": ""
+}
