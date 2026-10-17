@@ -18,6 +18,16 @@ export class GroqRequestError extends Error {
 }
 
 /**
+ * O cliente guarda só o texto das respostas; reembrulha-as em JSON para o modelo ver os próprios
+ * turnos no formato exigido. Com texto puro no histórico, ele passa a imitá-lo e a Groq rejeita
+ * a resposta com json_validate_failed.
+ */
+function asModelTurn(m: ChatMessage): ChatMessage {
+  if (m.role !== 'assistant') return m;
+  return { role: 'assistant', content: JSON.stringify({ reply: m.content, veiculoIds: [], ready: false, resumo: '', interesseTipo: '' }) };
+}
+
+/**
  * Chama a API de chat completions da Groq e devolve o texto bruto da resposta do modelo
  * (esperado como um JSON string, já que a chamada usa response_format "json_object").
  */
@@ -32,7 +42,7 @@ export async function askGroq(apiKey: string, systemPrompt: string, history: Cha
       },
       body: JSON.stringify({
         model: GROQ_MODEL,
-        messages: [{ role: 'system', content: systemPrompt }, ...history],
+        messages: [{ role: 'system', content: systemPrompt }, ...history.map(asModelTurn)],
         temperature: GROQ_TEMPERATURE,
         max_tokens: GROQ_MAX_TOKENS,
         reasoning_effort: 'low',
