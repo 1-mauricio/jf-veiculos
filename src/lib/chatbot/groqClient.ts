@@ -35,6 +35,7 @@ export async function askGroq(apiKey: string, systemPrompt: string, history: Cha
         messages: [{ role: 'system', content: systemPrompt }, ...history],
         temperature: GROQ_TEMPERATURE,
         max_tokens: GROQ_MAX_TOKENS,
+        reasoning_effort: 'low',
         response_format: { type: 'json_object' },
       }),
     });

@@ -1,7 +1,7 @@
 export const GROQ_URL = 'https://api.groq.com/openai/v1/chat/completions';
 export const GROQ_MODEL = 'openai/gpt-oss-20b';
 export const GROQ_TEMPERATURE = 0.4;
-export const GROQ_MAX_TOKENS = 300;
+export const GROQ_MAX_TOKENS = 1000; // inclui os tokens de raciocínio do gpt-oss
 
 /** Quantas mensagens do histórico (por conversa) são reenviadas à Groq a cada turno. */
 export const MAX_HISTORY_MESSAGES = 10;
