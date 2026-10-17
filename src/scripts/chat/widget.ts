@@ -125,7 +125,9 @@ export function initChatWidget() {
     if (opened) {
       input.focus();
       if (log.children.length === 0) {
-        appendBubble(log, 'assistant', 'Olá! Sou a atendente virtual da JF Veículos. Está procurando carro ou moto?');
+        const greeting = 'Olá! Sou a atendente virtual da JF Veículos. Está procurando carro ou moto?';
+        history.push({ role: 'assistant', content: greeting });
+        renderBubble(log, 'assistant', greeting);
       }
     }
   });
