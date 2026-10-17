@@ -57,6 +57,8 @@ export async function askGroq(apiKey: string, systemPrompt: string, history: Cha
     const errorBody = await response.text().catch(() => '');
     console.error(`[chatbot] Groq respondeu ${response.status}:`, errorBody);
     if (response.status === 429) throw new GroqRateLimitError();
+    // O modelo respondeu fora do JSON (ex.: recusa em texto puro); vazio cai na resposta padrão do parser.
+    if (errorBody.includes('json_validate_failed')) return '';
     throw new GroqRequestError(`Groq respondeu ${response.status}`);
   }
 

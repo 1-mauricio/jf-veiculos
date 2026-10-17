@@ -11,6 +11,16 @@ export interface ParsedReply {
 
 const FALLBACK_REPLY = 'Desculpe, não consegui entender. Pode reformular?';
 
+/** Remove ids internos que o modelo às vezes copia para o texto (ex.: " – id: honda-biz-125-2015"). */
+function stripIds(text: string, vehicleNames: Map<string, string>): string {
+  let out = text;
+  for (const id of vehicleNames.keys()) {
+    const escaped = id.replace(/[.*+?^${}()|[\]\\]/g, '\\$&');
+    out = out.replace(new RegExp(`[ \\t]*[-–—|,]?[ \\t]*\\(?(?:id:?[ \\t]*)?${escaped}\\)?`, 'gi'), '');
+  }
+  return out;
+}
+
 /**
  * Interpreta o JSON bruto devolvido pelo modelo e o valida contra o estoque real:
  * qualquer `veiculoId` que não exista em `vehicleNames` é descartado, então a IA nunca
@@ -31,9 +41,13 @@ export function parseAssistantReply(raw: string, vehicleNames: Map<string, strin
   if (typeof parsed !== 'object' || parsed === null) return result;
   const obj = parsed as Record<string, unknown>;
 
-  if (typeof obj.reply === 'string') result.reply = obj.reply;
+  if (typeof obj.reply === 'string') result.reply = stripIds(obj.reply, vehicleNames);
   if (typeof obj.ready === 'boolean') result.ready = obj.ready;
   if (typeof obj.resumo === 'string') result.resumo = obj.resumo;
+  // Sem resumo o site não mostra o botão do WhatsApp, e o "clique aqui embaixo" ficaria sem botão.
+  if (result.ready && !result.resumo.trim()) {
+    result.resumo = 'Olá! Vim pelo assistente virtual do site da JF Veículos e gostaria de falar com a equipe.';
+  }
   if (obj.interesseTipo === 'carro' || obj.interesseTipo === 'moto') result.interesseTipo = obj.interesseTipo;
 
   if (Array.isArray(obj.veiculoIds)) {
