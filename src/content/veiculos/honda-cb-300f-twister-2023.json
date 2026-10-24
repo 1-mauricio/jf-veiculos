@@ -1,19 +1,20 @@
 {
-  "destaque": true,
-  "km": 10000,
-  "ano": 2023,
-  "cidade": "Recife",
-  "opcionais": [
-    "Único dono.",
-    "Manual e Chave reserva.",
-    "Ipva 2026 pago."
-  ],
-  "cor": "Vermelha",
+  "nome": "Twister CB 300",
+  "marca": "Honda.",
   "modelo": "CB 300F Twister",
-  "anoModelo": 2023,
-  "descricao": "A Honda CB 300F Twister 2023 é uma motocicleta naked de visual esportivo e robusto.\nSistema a disco em ambas as rodas (276 mm na diant. e 220 mm na tras.), comercializada nas versões com ABS de dois canais ou CBS (sistema de frenagem combinada).",
-  "combustivel": "Flex",
+  "tipo": "moto",
+  "categoria": "",
+  "ano": 2024,
+  "anoModelo": 2024,
   "preco": 23990,
+  "km": 21000,
+  "cambio": "Manual",
+  "combustivel": "Flex",
+  "cor": "Vermelha",
+  "cidade": "Recife",
+  "uf": "PE",
+  "destaque": true,
+  "lancamento": false,
   "fotos": [
     "/images/veiculos/whatsapp-image-2026-10-02-at-16.33.23.jpeg",
     "/images/veiculos/whatsapp-image-2026-10-02-at-16.33.27.jpeg",
@@ -21,10 +22,15 @@
     "/images/veiculos/whatsapp-image-2026-10-02-at-16.34.19.jpeg",
     "/images/veiculos/whatsapp-image-2026-10-02-at-16.34.40.jpeg"
   ],
-  "uf": "PE",
-  "tipo": "moto",
-  "cambio": "Manual",
-  "nome": "Twister CB 300",
-  "lancamento": false,
-  "marca": "Honda."
+  "descricao": "A Honda CB 300F Twister 2023 é uma motocicleta naked de visual esportivo e robusto.\nSistema a disco em ambas as rodas (276 mm na diant. e 220 mm na tras.), comercializada nas versões com ABS de dois canais ou CBS (sistema de frenagem combinada).",
+  "opcionais": [
+    "Único dono.",
+    "Manual e Chave reserva.",
+    "Ipva 2026 pago."
+  ],
+  "motor": "",
+  "potencia": "",
+  "portas": null,
+  "cilindrada": "",
+  "criadoEm": ""
 }
