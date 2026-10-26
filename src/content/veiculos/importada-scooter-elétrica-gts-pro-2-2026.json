@@ -1,0 +1,34 @@
+{
+  "nome": "Scooter Elétrica",
+  "marca": "Importada",
+  "modelo": "Scooter Elétrica GTS Pro 2",
+  "tipo": "moto",
+  "categoria": "",
+  "ano": 2026,
+  "anoModelo": 2026,
+  "preco": 4490,
+  "km": 0,
+  "cambio": "Automático",
+  "combustivel": "Elétrico",
+  "cor": "Branca",
+  "cidade": "Recife",
+  "uf": "PE",
+  "destaque": true,
+  "lancamento": false,
+  "fotos": [
+    "/images/veiculos/WhatsApp Image 2026-10-26 at 16.00.17.jpeg",
+    "/images/veiculos/WhatsApp Image 2026-10-26 at 16.00.16.jpeg",
+    "/images/veiculos/WhatsApp Image 2026-10-26 at 16.06.33.jpeg",
+    "/images/veiculos/WhatsApp Image 2026-10-26 at 16.00.17 (1).jpeg"
+  ],
+  "descricao": "A scooter eletrica GTS Pro 2 é uma excelente opção para quem busca praticidade e eficiência no transporte urbano. Com motor elétrico de 500W, ela atinge uma velocidade máxima de 32 km/h, permitindo que você se desloque rapidamente pela cidade, evitando o trânsito e economizando tempo. Seu design compacto e aro de 14 polegadas a torna perfeita para manobras em espaços reduzidos, enquanto a bateria de chumbo-ácido garante uma autonomia confiável para suas viagens diárias. Embora não seja dobrável, sua estrutura robusta oferece estabilidade e conforto durante o uso.",
+  "opcionais": [
+    "Chave Reserva.",
+    "Não precisa de CNH."
+  ],
+  "motor": "",
+  "potencia": "",
+  "portas": null,
+  "cilindrada": "",
+  "criadoEm": ""
+}
