@@ -1,0 +1,35 @@
+{
+  "nome": "NXR 160 BROS",
+  "marca": "Honda",
+  "modelo": "NXR 160 BROS",
+  "tipo": "moto",
+  "categoria": "",
+  "ano": 2026,
+  "anoModelo": 2026,
+  "preco": 24990,
+  "km": 9000,
+  "cambio": "Manual",
+  "combustivel": "Flex",
+  "cor": "Vermelha",
+  "cidade": "Recife",
+  "uf": "PE",
+  "destaque": true,
+  "lancamento": false,
+  "fotos": [
+    "/images/veiculos/WhatsApp Image 2026-10-26 at 15.16.20.jpeg",
+    "/images/veiculos/WhatsApp Image 2026-10-26 at 15.16.20 (3).jpeg",
+    "/images/veiculos/WhatsApp Image 2026-10-26 at 15.16.20 (2).jpeg",
+    "/images/veiculos/WhatsApp Image 2026-10-26 at 15.16.20 (1).jpeg"
+  ],
+  "descricao": "A Honda NXR 160 Bros 2026 é uma motocicleta trail de 160cc, projetada para uso urbano e de trabalho no Brasil. O modelo apresenta um motor monocilíndrico de 162,7 cm³, com potência de 14,3 CV e torque máximo de 1,45 kgf.m. A moto possui um painel LCD digital com conta-giros, velocímetro, hodômetro total e parcial, indicador de nível de combustível e luzes de alerta. O design da NXR 160 Bros 2026 inclui um novo farol de LED e lanterna, além de um sistema de freio ABS para versões ABS.",
+  "opcionais": [
+    "Único Dono.",
+    "Manual e Chave reserva.",
+    "Com nota fiscal."
+  ],
+  "motor": "",
+  "potencia": "",
+  "portas": null,
+  "cilindrada": "",
+  "criadoEm": ""
+}
