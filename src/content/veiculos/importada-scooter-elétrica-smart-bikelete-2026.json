@@ -1,0 +1,35 @@
+{
+  "nome": "Scooter Elétrica",
+  "marca": "Importada",
+  "modelo": "Scooter Elétrica Smart Bikelete",
+  "tipo": "moto",
+  "categoria": "",
+  "ano": 2026,
+  "anoModelo": 2026,
+  "preco": 3990,
+  "km": 0,
+  "cambio": "Automático",
+  "combustivel": "Elétrico",
+  "cor": "Vermelha.",
+  "cidade": "Recife",
+  "uf": "PE",
+  "destaque": true,
+  "lancamento": false,
+  "fotos": [
+    "/images/veiculos/WhatsApp Image 2026-10-26 at 15.58.13.jpeg",
+    "/images/veiculos/WhatsApp Image 2026-10-26 at 15.58.13 (2).jpeg",
+    "/images/veiculos/WhatsApp Image 2026-10-26 at 15.58.13 (3).jpeg",
+    "/images/veiculos/WhatsApp Image 2026-10-26 at 16.06.32.jpeg",
+    "/images/veiculos/WhatsApp Image 2026-10-26 at 15.58.13 (1).jpeg"
+  ],
+  "descricao": "A Scooter Elétrica Smart Bikelete é uma bicicleta elétrica que combina desempenho, conforto e segurança. Equipada com motor de 500W e bateria 48V 12Ah removível, ela oferece uma velocidade máxima de até 32 km/h e autonomia de até 40 km. O painel digital LCD exibe informações essenciais como velocidade, hodômetro e nível de bateria, enquanto o sistema de alarme com controle remoto garante mais segurança ao estacionar. Com farol e lanterna em LED, a visibilidade é garantida mesmo à noite. A Scooter foi projetada para o máximo conforto, com suspensão dianteira e traseira com amortecedores, dois bancos acolchoados (inclusive para o garupa) e freios a tambor que oferecem mais estabilidade nas frenagens. Compacta, silenciosa e econômica, essa bicicleta elétrica é ideal para quem quer se locomover com estilo, segurança e zero emissão de poluentes. \nSuporta 250 kg.",
+  "opcionais": [
+    "Chave Reserva.",
+    "Não precisa de CNH"
+  ],
+  "motor": "",
+  "potencia": "",
+  "portas": null,
+  "cilindrada": "",
+  "criadoEm": ""
+}
