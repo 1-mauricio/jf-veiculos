@@ -1,0 +1,33 @@
+{
+  "nome": "Bicicleta Elétrica WeHawk WX-15",
+  "marca": "Importada.",
+  "modelo": "bicicleta elétrica WeHawk WX-15",
+  "tipo": "moto",
+  "categoria": "",
+  "ano": 2026,
+  "anoModelo": 2026,
+  "preco": 5890,
+  "km": 0,
+  "cambio": "Automático",
+  "combustivel": "Elétrico",
+  "cor": "Branca",
+  "cidade": "Recife",
+  "uf": "PE",
+  "destaque": true,
+  "lancamento": false,
+  "fotos": [
+    "/images/veiculos/WhatsApp Image 2026-10-26 at 15.55.38.jpeg",
+    "/images/veiculos/WhatsApp Image 2026-10-26 at 15.55.38 (1).jpeg",
+    "/images/veiculos/WhatsApp Image 2026-10-26 at 16.05.34.jpeg",
+    "/images/veiculos/WhatsApp Image 2026-10-26 at 15.55.39.jpeg"
+  ],
+  "descricao": "A bicicleta elétrica WeHawk WX-15 é equipada com um motor brushless de 800W, oferecendo uma velocidade máxima de 32 km/h e uma autonomia de até 50 km com uma carga de 20Ah de bateria de lítio.\nCapacidade: Suporta até 2 pessoas.\nDesign: Possui iluminação LED, painel digital, alarme, suspensão com amortecedores e seletor de velocidade em 3 níveis.\nConforto: Assentos de espuma revestidos em couro sintético, com cesta porta-objetos e armazenamento adicional.\nSegurança: Freios a tambor, retrovisores e buzina para maior segurança durante o uso.",
+  "opcionais": [
+    "Chave Reserva."
+  ],
+  "motor": "",
+  "potencia": "",
+  "portas": null,
+  "cilindrada": "",
+  "criadoEm": ""
+}
