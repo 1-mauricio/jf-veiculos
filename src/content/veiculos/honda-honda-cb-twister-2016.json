@@ -1,0 +1,33 @@
+{
+  "nome": "CB Twister",
+  "marca": "Honda",
+  "modelo": "Honda CB Twister",
+  "tipo": "moto",
+  "categoria": "",
+  "ano": 2016,
+  "anoModelo": 2016,
+  "preco": 14990,
+  "km": 58000,
+  "cambio": "Manual",
+  "combustivel": "Flex",
+  "cor": "Preta.",
+  "cidade": "Recife",
+  "uf": "PE",
+  "destaque": true,
+  "lancamento": false,
+  "fotos": [
+    "/images/veiculos/WhatsApp Image 2026-10-26 at 15.10.21.jpeg",
+    "/images/veiculos/WhatsApp Image 2026-10-26 at 15.10.21 (2).jpeg",
+    "/images/veiculos/WhatsApp Image 2026-10-26 at 15.10.22.jpeg"
+  ],
+  "descricao": "A Honda CB Twister é uma motocicleta que combina design moderno e tecnologia avançada.\nO modelo apresenta um design robusto e agressivo, com faróis em LED que proporcionam melhor visibilidade. Essas características fazem da CB Twister uma opção atraente para motociclistas que buscam uma moto eficiente e moderna.",
+  "opcionais": [
+    "Chave Reserva.",
+    "IPVA 2026 pago."
+  ],
+  "motor": "",
+  "potencia": "",
+  "portas": null,
+  "cilindrada": "",
+  "criadoEm": ""
+}
