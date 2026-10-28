@@ -1,0 +1,33 @@
+{
+  "nome": "XRE 300",
+  "marca": "Honda",
+  "modelo": "XRE 300",
+  "tipo": "moto",
+  "categoria": "",
+  "ano": 2013,
+  "anoModelo": 2013,
+  "preco": 14500,
+  "km": 60000,
+  "cambio": "Manual",
+  "combustivel": "Flex",
+  "cor": "Branca",
+  "cidade": "Recife",
+  "uf": "PE",
+  "destaque": true,
+  "lancamento": false,
+  "fotos": [
+    "/images/veiculos/WhatsApp Image 2026-10-28 at 18.20.55.jpeg",
+    "/images/veiculos/WhatsApp Image 2026-10-28 at 18.20.55 (1).jpeg",
+    "/images/veiculos/WhatsApp Image 2026-10-28 at 18.20.55 (2).jpeg",
+    "/images/veiculos/WhatsApp Image 2026-10-28 at 18.20.56.jpeg"
+  ],
+  "descricao": "A Honda XRE 300 é uma motocicleta que se destaca no segmento de trail, combinando versatilidade e desempenho. O modelo é robusto e possui um design que favorece a aerodinâmica e a eficiência. Inclui faróis em LED, assento espaçoso e confortável, e um painel de instrumentos completo.",
+  "opcionais": [
+    "Chave Reserva."
+  ],
+  "motor": "",
+  "potencia": "",
+  "portas": null,
+  "cilindrada": "",
+  "criadoEm": ""
+}
