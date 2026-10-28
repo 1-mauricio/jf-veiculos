@@ -1,0 +1,34 @@
+{
+  "nome": "Titan CG 160",
+  "marca": "Honda",
+  "modelo": "CG 160 Titan",
+  "tipo": "moto",
+  "categoria": "",
+  "ano": 2025,
+  "anoModelo": 2025,
+  "preco": 20990,
+  "km": 14000,
+  "cambio": "Manual",
+  "combustivel": "Flex",
+  "cor": "Preta",
+  "cidade": "Recife",
+  "uf": "PE",
+  "destaque": true,
+  "lancamento": false,
+  "fotos": [
+    "/images/veiculos/WhatsApp Image 2026-10-28 at 18.12.54.jpeg",
+    "/images/veiculos/WhatsApp Image 2026-10-28 at 18.12.54 (1).jpeg",
+    "/images/veiculos/WhatsApp Image 2026-10-28 at 18.12.55 (1).jpeg",
+    "/images/veiculos/WhatsApp Image 2026-10-28 at 18.12.55.jpeg"
+  ],
+  "descricao": "A Honda CG 160 Titan é uma moto de 160cc que se destaca pelo seu design esportivo e tecnologia avançada.",
+  "opcionais": [
+    "Único dono.",
+    "Manual e chave reserva."
+  ],
+  "motor": "",
+  "potencia": "",
+  "portas": null,
+  "cilindrada": "",
+  "criadoEm": ""
+}
