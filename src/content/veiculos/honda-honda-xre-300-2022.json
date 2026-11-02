@@ -1,0 +1,34 @@
+{
+  "nome": "XRE 300",
+  "marca": "Honda",
+  "modelo": "Honda XRE 300",
+  "tipo": "moto",
+  "categoria": "",
+  "ano": 2022,
+  "anoModelo": 2022,
+  "preco": 29990,
+  "km": 38000,
+  "cambio": "Manual",
+  "combustivel": "Flex",
+  "cor": "Vermelha",
+  "cidade": "Recife",
+  "uf": "PE",
+  "destaque": true,
+  "lancamento": false,
+  "fotos": [
+    "/images/veiculos/81c51ed7-32ef-4e94-9db4-6836f04b3ff3.jpeg",
+    "/images/veiculos/e3a4c574-5abb-4812-b395-0bdeb3baf6dd.jpeg",
+    "/images/veiculos/e5eb79ce-844d-4679-97aa-614b95af3471.jpeg",
+    "/images/veiculos/d56cad5b-4156-4364-8d4e-9ef110520cf9.jpeg"
+  ],
+  "descricao": "A Honda XRE 300 é uma motocicleta do segmento trail/fun, ideal tanto para o uso urbano quanto para estradas e caminhos de terra.\n• Freios: Disco hidráulico na dianteira e na traseira, equipados com sistema ABS.",
+  "opcionais": [
+    "Único dono.",
+    "Manual e Chave reserva."
+  ],
+  "motor": "",
+  "potencia": "",
+  "portas": null,
+  "cilindrada": "",
+  "criadoEm": ""
+}
