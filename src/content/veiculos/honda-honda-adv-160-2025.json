@@ -1,0 +1,34 @@
+{
+  "nome": "ADV 160",
+  "marca": "Honda",
+  "modelo": "Honda ADV 160",
+  "tipo": "moto",
+  "categoria": "",
+  "ano": 2025,
+  "anoModelo": 2025,
+  "preco": 25990,
+  "km": 7500,
+  "cambio": "Automático",
+  "combustivel": "Flex",
+  "cor": "Vermelha",
+  "cidade": "Recife",
+  "uf": "PE",
+  "destaque": true,
+  "lancamento": false,
+  "fotos": [
+    "/images/veiculos/444af160-bc92-4861-a58a-eed367bf4149.jpeg",
+    "/images/veiculos/6c12b93f-a673-4ce1-b824-654c9e40b7a1.jpeg",
+    "/images/veiculos/a0fc9d1e-4b46-494e-bf28-0d3d834feb07.jpeg",
+    "/images/veiculos/18a7c8d9-0814-4e18-abdf-76f8c580096b.jpeg",
+    "/images/veiculos/f4f8ed54-a4ad-4c00-9cc1-5d085213c334.jpeg"
+  ],
+  "descricao": "A Honda ADV 160 é a scooter aventureira da Honda que chegou com um motor mais forte, maior nível de tecnologia e um visual encorpado.\nToda original. \nSegurança e Tecnologia: \n• Controle de tração (HSTC — Honda Selectable Torque Control), que pode ser desligado.\n• Freio ABS na roda dianteira (disco de 240 mm na frente e 220 mm atrás).\n• Sistema Idling Stop (desliga o motor automaticamente em paradas rápidas).\n• Chave de presença (Smart Key) e alarme integrado.\n• Tomada USB-C no porta-luvas (capacidade de 2 litros).",
+  "opcionais": [
+    "Manual e Chave Reserva."
+  ],
+  "motor": "",
+  "potencia": "",
+  "portas": null,
+  "cilindrada": "",
+  "criadoEm": ""
+}
