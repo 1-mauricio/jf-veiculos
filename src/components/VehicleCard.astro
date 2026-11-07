@@ -19,8 +19,6 @@ function hashAngle(id: string): number {
 
 const fotos = v.fotos ?? [];
 const placeholderAngle = hashAngle(vehicle.id);
-const cidade = v.cidade || 'Recife';
-const uf = v.uf || 'PE';
 ---
 
 <a href={href} class="jf-card">
@@ -29,7 +27,7 @@ const uf = v.uf || 'PE';
     data-gallery
     data-fotos={JSON.stringify(fotos)}
     data-idx="0"
-    style={fotos.length === 0 ? `background: repeating-linear-gradient(${placeholderAngle}deg, var(--gray-100) 0 15px, var(--gray-200) 15px 30px);` : undefined}
+    style={fotos.length === 0 ? `background: repeating-linear-gradient(${placeholderAngle}deg, var(--surface-muted) 0 15px, var(--border-default) 15px 30px);` : undefined}
   >
     {fotos.length > 0 ? (
       <img data-gallery-img src={fotos[0]} alt={v.nome} loading="lazy" decoding="async" />
@@ -46,10 +44,10 @@ const uf = v.uf || 'PE';
     {fotos.length > 1 && (
       <>
         <button type="button" class="jf-card-arrow jf-card-arrow-prev" data-gallery-prev aria-label="Foto anterior">
-          <Icon name="chevron-left" size={16} color="var(--text-primary)" />
+          <Icon name="chevron-left" size={18} color="var(--text-primary)" />
         </button>
         <button type="button" class="jf-card-arrow jf-card-arrow-next" data-gallery-next aria-label="Próxima foto">
-          <Icon name="chevron-right" size={16} color="var(--text-primary)" />
+          <Icon name="chevron-right" size={18} color="var(--text-primary)" />
         </button>
       </>
     )}
@@ -67,14 +65,14 @@ const uf = v.uf || 'PE';
     </div>
     <div class="jf-card-price-wrap">
       <div class="jf-card-price">{brl(v.preco)}</div>
-      <div class="jf-card-sub">{cidade} · {uf}</div>
+      <div class="jf-card-sub">Financie em até 60x</div>
     </div>
   </div>
 </a>
 
 <style>
   .jf-card {
-    background: var(--white);
+    background: var(--surface-card);
     border: 1px solid var(--border-default);
     border-radius: var(--radius-lg);
     box-shadow: var(--shadow-card);
@@ -94,26 +92,26 @@ const uf = v.uf || 'PE';
     align-items: center;
     justify-content: center;
     overflow: hidden;
-    background: var(--gray-100);
+    background: var(--surface-muted);
     touch-action: pan-y;
     user-select: none;
   }
-  .jf-card-photo img { width: 100%; height: 100%; object-fit: contain; pointer-events: none; }
+  .jf-card-photo img { width: 100%; height: 100%; object-fit: cover; pointer-events: none; }
 
   .jf-card-arrow {
-    position: absolute; top: 50%; transform: translateY(-50%); width: 28px; height: 28px;
-    border-radius: var(--radius-full); background: rgba(255, 255, 255, .92); border: none;
+    position: absolute; top: 50%; transform: translateY(-50%); width: 40px; height: 40px;
+    border-radius: var(--radius-full); background: var(--surface-overlay); border: none;
     display: flex; align-items: center; justify-content: center; cursor: pointer; box-shadow: var(--shadow-card);
   }
   .jf-card-arrow-prev { left: 8px; }
   .jf-card-arrow-next { right: 8px; }
-  .jf-card-photo-label { font: 600 11px var(--font-display); letter-spacing: 2px; color: var(--gray-500); }
+  .jf-card-photo-label { font: 600 11px var(--font-display); letter-spacing: 2px; color: var(--text-secondary); }
 
   .jf-card-badges { position: absolute; top: 12px; left: 12px; display: flex; gap: 6px; }
 
   .jf-card-fav {
-    position: absolute; top: 10px; right: 10px; width: 32px; height: 32px;
-    border-radius: var(--radius-full); background: rgba(255, 255, 255, .92); border: none;
+    position: absolute; top: 10px; right: 10px; width: 40px; height: 40px;
+    border-radius: var(--radius-full); background: var(--surface-overlay); border: none;
     display: flex; align-items: center; justify-content: center; cursor: pointer; box-shadow: var(--shadow-card);
   }
   .jf-card-fav :global(svg) { fill: none; stroke: var(--text-tertiary); transition: fill var(--dur-fast) var(--ease-standard), stroke var(--dur-fast) var(--ease-standard); }
@@ -132,8 +130,20 @@ const uf = v.uf || 'PE';
   .jf-card-eyebrow { font: var(--text-caption); color: var(--text-tertiary); text-transform: uppercase; letter-spacing: .4px; }
   .jf-card-title { font: 700 18px var(--font-display); margin: 5px 0 0; letter-spacing: -.2px; color: var(--text-primary); }
   .jf-card-chips { display: flex; flex-wrap: wrap; gap: 6px; }
-  .jf-chip { font-size: 12px; color: var(--text-secondary); background: var(--gray-100); padding: 4px 9px; border-radius: var(--radius-md); }
+  .jf-chip { font-size: 12px; color: var(--text-secondary); background: var(--surface-muted); padding: 4px 9px; border-radius: var(--radius-md); }
   .jf-card-price-wrap { margin-top: auto; padding-top: 6px; border-top: 1px solid var(--border-default); }
   .jf-card-price { font: 700 22px var(--font-display); color: var(--text-primary); letter-spacing: -.3px; margin-top: 10px; }
-  .jf-card-sub { font-size: 12.5px; color: var(--text-secondary); margin-top: 3px; }
+  /* Mobile: card horizontal (foto à esquerda), como no design. */
+  @media (max-width: 620px) {
+    .jf-card { flex-direction: row; }
+    .jf-card-photo { height: auto; width: 128px; min-height: 168px; flex-shrink: 0; }
+    .jf-card-photo-label { font-size: 9px; letter-spacing: 1px; text-align: center; padding: 0 8px; }
+    .jf-card-photo img { position: absolute; inset: 0; object-fit: cover; }
+    .jf-card-arrow { display: none; }
+    .jf-card-body { padding: 12px 14px; gap: 8px; min-width: 0; }
+    .jf-card-title { font-size: 16px; }
+    .jf-chip:nth-child(n+3) { display: none; }
+    .jf-card-price { font-size: 19px; margin-top: 6px; }
+  }
+  .jf-card-sub { font-size: 12.5px; font-weight: 600; color: var(--text-secondary); margin-top: 2px; }
 </style>
