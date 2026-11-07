@@ -1,3 +1,6 @@
+/* Chat oculto temporariamente (código mantido). Para voltar, apague esta regra. */
+.jf-chat { display: none !important; }
+
 .jf-chat {
   position: fixed;
   right: 20px;
