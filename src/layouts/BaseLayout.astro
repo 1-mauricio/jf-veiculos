@@ -46,6 +46,13 @@ const fontTheme = FONT_THEMES[aparencia?.fonteTema ?? DEFAULT_FONT_THEME];
   {image && <meta property="og:image" content={new URL(image, Astro.site)} />}
   <meta name="twitter:card" content="summary_large_image" />
 
+  <script is:inline>
+    try {
+      const t = localStorage.getItem('jf-tema');
+      if (t === 'dark' || (!t && matchMedia('(prefers-color-scheme: dark)').matches)) document.documentElement.dataset.theme = 'dark';
+    } catch {}
+  </script>
+
   <!-- Google tag (gtag.js) -->
   <script is:inline async src="https://www.googletagmanager.com/gtag/js?id=G-MMPV9XEFQL"></script>
   <script is:inline>
@@ -70,6 +77,7 @@ const fontTheme = FONT_THEMES[aparencia?.fonteTema ?? DEFAULT_FONT_THEME];
   <style set:html={`html:root {
     --accent: ${colorTheme.accent};
     --accent-strong: ${colorTheme.accentStrong};
+    --accent-deep: ${colorTheme.accentStrong};
     --accent-soft: ${colorTheme.accentSoft};
     --accent-on-dark: ${colorTheme.accentOnDark};
     --focus-ring: ${colorTheme.accent};
@@ -80,10 +88,11 @@ const fontTheme = FONT_THEMES[aparencia?.fonteTema ?? DEFAULT_FONT_THEME];
   <script>
     import { initGalleries } from '../scripts/gallery';
     import { initFavorites } from '../scripts/favorites';
-    import { initMobileMenu } from '../scripts/menu';
+    import { initMobileMenu, initThemeToggle } from '../scripts/menu';
     initGalleries();
     initFavorites();
     initMobileMenu();
+    initThemeToggle();
   </script>
 
   <!-- Redireciona para /admin depois que a pessoa confirma o convite/login do painel de edição. -->

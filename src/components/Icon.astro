@@ -1,6 +1,6 @@
 ---
 interface Props {
-  name: 'search' | 'car' | 'gauge' | 'check' | 'star' | 'cart' | 'shield' | 'heart' | 'chevron-left' | 'chevron-right' | 'instagram' | 'menu' | 'x' | 'whatsapp';
+  name: 'search' | 'car' | 'gauge' | 'check' | 'star' | 'cart' | 'shield' | 'heart' | 'chevron-left' | 'chevron-right' | 'instagram' | 'menu' | 'x' | 'whatsapp' | 'moon' | 'sun' | 'filter';
   size?: number;
   color?: string;
 }
@@ -21,6 +21,9 @@ const paths: Record<Props['name'], string> = {
   instagram: '<rect x="2" y="2" width="20" height="20" rx="5" ry="5"/><path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z"/><line x1="17.5" y1="6.5" x2="17.51" y2="6.5"/>',
   menu: '<line x1="3" y1="6" x2="21" y2="6"/><line x1="3" y1="12" x2="21" y2="12"/><line x1="3" y1="18" x2="21" y2="18"/>',
   x: '<line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/>',
+  moon: '<path d="M20 14.5A8 8 0 1 1 9.5 4a6.5 6.5 0 0 0 10.5 10.5z"/>',
+  sun: '<circle cx="12" cy="12" r="4"/><path d="M12 2v2M12 20v2M4.9 4.9l1.4 1.4M17.7 17.7l1.4 1.4M2 12h2M20 12h2M4.9 19.1l1.4-1.4M17.7 6.3l1.4-1.4"/>',
+  filter: '<path d="M4 6h16M7 12h10M10 18h4"/>',
   whatsapp: '<path d="M3 21l1.65 -3.8a9 9 0 1 1 3.4 2.9l-5.05 .9"/><path d="M9 10a.5 .5 0 0 0 1 0v-1a.5 .5 0 0 0 -1 0v1a5 5 0 0 0 5 5h1a.5 .5 0 0 0 0 -1h-1a.5 .5 0 0 0 0 1"/>',
 };
 ---

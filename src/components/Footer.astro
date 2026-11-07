@@ -91,13 +91,14 @@ const year = new Date().getFullYear();
   .jf-foot-bottom {
     max-width: 1240px; margin: 0 auto; padding: 20px 24px;
     display: flex; justify-content: space-between; flex-wrap: wrap; gap: 12px;
-    font-size: 12.5px; color: var(--gray-500);
+    font-size: 12.5px; color: var(--gray-400);
   }
 
   @media (max-width: 980px) {
     .jf-foot { grid-template-columns: 1fr 1fr; }
   }
   @media (max-width: 620px) {
-    .jf-foot { grid-template-columns: 1fr; }
+    .jf-foot { grid-template-columns: 1fr 1fr; gap: 28px; }
+    .jf-foot > div:first-child { grid-column: 1 / -1; }
   }
 </style>

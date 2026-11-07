@@ -16,3 +16,23 @@ export function initMobileMenu() {
     });
   });
 }
+
+export function initThemeToggle() {
+  const btn = document.querySelector<HTMLButtonElement>('[data-theme-toggle]');
+  if (!btn) return;
+  const root = document.documentElement;
+  const sync = () => {
+    const dark = root.dataset.theme === 'dark';
+    const label = dark ? 'Mudar para tema claro' : 'Mudar para tema escuro';
+    btn.setAttribute('aria-label', label);
+    btn.title = label;
+  };
+  sync();
+  btn.addEventListener('click', () => {
+    const dark = root.dataset.theme !== 'dark';
+    if (dark) root.dataset.theme = 'dark';
+    else delete root.dataset.theme;
+    try { localStorage.setItem('jf-tema', dark ? 'dark' : 'light'); } catch {}
+    sync();
+  });
+}
