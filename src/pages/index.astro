@@ -4,6 +4,7 @@ import BaseLayout from '../layouts/BaseLayout.astro';
 import VehicleCard from '../components/VehicleCard.astro';
 import Icon from '../components/Icon.astro';
 import Button from '../components/Button.astro';
+import ComoChegar from '../components/ComoChegar.astro';
 import { whatsappLink, brl, km as fmtKm } from '../lib/format';
 
 const veiculos = await getCollection('veiculos');
@@ -225,6 +226,10 @@ const vendaHref = loja ? whatsappLink(loja.whatsapp, 'Olá! Quero avaliar meu ve
   </div>
 
   <!-- FAQ -->
+  <section class="jf-section">
+    <ComoChegar titleClass="jf-h2" />
+  </section>
+
   <section class="jf-faq">
     <h2 class="jf-h2 jf-center">Perguntas frequentes</h2>
     <div class="jf-faq-list">

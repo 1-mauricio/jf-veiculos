@@ -63,6 +63,8 @@ const loja = defineCollection({
     sobre: z.string(),
     historia: z.string().optional(),
     cnpj: z.string(),
+    mapsLink: z.string().optional(),
+    mapsCoordenadas: z.string().optional(),
   }),
 });
 

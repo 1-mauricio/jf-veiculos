@@ -1,0 +1,51 @@
+---
+import { getCollection } from 'astro:content';
+import Button from './Button.astro';
+import { formatPhone } from '../lib/format';
+
+interface Props {
+  /** Classe do título, para seguir o tamanho de h2 de cada página. */
+  titleClass?: string;
+}
+const { titleClass = 'jf-cc-title' } = Astro.props;
+
+const loja = (await getCollection('loja'))[0]?.data;
+const nomeSite = (await getCollection('site'))[0]?.data.nomeSite ?? 'JF Veículos';
+
+const cidadeUf = loja ? `${loja.cidade.trim()} · ${loja.uf}` : '';
+const enderecoQuery = loja ? encodeURIComponent(`${loja.endereco}, ${loja.cidade.trim()} - ${loja.uf}`) : '';
+const mapsHref = loja?.mapsLink || `https://www.google.com/maps/search/?api=1&query=${enderecoQuery}`;
+const mapsQuery = loja?.mapsCoordenadas ? encodeURIComponent(loja.mapsCoordenadas.replace(/\s/g, '')) : enderecoQuery;
+const mapsEmbed = `https://maps.google.com/maps?q=${mapsQuery}&z=17&output=embed`;
+const telefone = loja ? formatPhone(loja.telefoneFixo || loja.whatsapp) : '';
+---
+
+{loja && (
+  <>
+    <h2 class={titleClass}>Como chegar</h2>
+    <div class="jf-cc">
+      <iframe class="jf-cc-mapa" title={`Mapa da ${nomeSite}`} src={mapsEmbed} loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
+      <div class="jf-cc-card">
+        <div><div class="jf-cc-fl">Endereço</div><div class="jf-cc-val">{loja.endereco}<br />{cidadeUf}</div></div>
+        <div><div class="jf-cc-fl">Horário</div><div class="jf-cc-val">{loja.horarios}</div></div>
+        <div><div class="jf-cc-fl">Telefone</div><div class="jf-cc-val"><a href={`tel:+55${telefone.replace(/\D/g, '')}`}>{telefone}</a></div></div>
+        <Button href={mapsHref} target="_blank" variant="dark" class="jf-cc-btn">Abrir no Google Maps</Button>
+      </div>
+    </div>
+  </>
+)}
+
+<style>
+  .jf-cc-title { font: 700 21px var(--font-display); margin: 0 0 18px; color: var(--text-primary); }
+  .jf-cc { display: grid; grid-template-columns: 1.7fr 1fr; gap: 26px; align-items: stretch; }
+  .jf-cc-mapa { width: 100%; height: 100%; min-height: 300px; border: 1px solid var(--border-default); border-radius: var(--radius-lg); background: var(--surface-muted); }
+  .jf-cc-card {
+    background: var(--surface-card); border: 1px solid var(--border-default); border-radius: var(--radius-lg);
+    box-shadow: var(--shadow-card); padding: 22px; display: flex; flex-direction: column; gap: 16px;
+  }
+  .jf-cc-fl { font: 500 12px var(--font-body); color: var(--text-label); text-transform: uppercase; letter-spacing: .5px; margin-bottom: 10px; }
+  .jf-cc-val { font-size: 15px; font-weight: 600; color: var(--text-primary); }
+  .jf-cc-val a { display: inline-flex; align-items: center; min-height: 44px; color: inherit; }
+  .jf-cc-card :global(.jf-cc-btn) { margin-top: auto; min-height: 44px; }
+  @media (max-width: 980px) { .jf-cc { grid-template-columns: 1fr; } }
+</style>

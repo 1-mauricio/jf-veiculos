@@ -100,6 +100,8 @@ collections:
           - { label: "Texto 'Sobre a loja'", name: "sobre", widget: "text" }
           - { label: "Nossa história", name: "historia", widget: "text", required: false, hint: "Texto exibido ao clicar em 'Conheça nossa história' na página Nossa loja" }
           - { label: "CNPJ", name: "cnpj", widget: "string" }
+          - { label: "Link do Google Maps", name: "mapsLink", widget: "string", required: false, hint: "Link de compartilhar do Google Maps (https://maps.app.goo.gl/...). Usado no botão 'Abrir no Google Maps'." }
+          - { label: "Coordenadas do mapa", name: "mapsCoordenadas", widget: "string", required: false, hint: "Latitude,longitude do pin (ex: -8.1154031,-34.9595151). Em branco, o mapa usa o endereço." }
 
   - name: "site"
     label: "Site"
