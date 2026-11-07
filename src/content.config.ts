@@ -86,8 +86,10 @@ const site = defineCollection({
     ctaFinalTexto: z.string(),
     ctaFinalBotao: z.string(),
     footerDescricao: z.string(),
+    veiculosVendidos: z.string().optional(),
   }),
 });
+
 
 const aparencia = defineCollection({
   loader: glob({ pattern: '**/*.json', base: './src/content/aparencia' }),

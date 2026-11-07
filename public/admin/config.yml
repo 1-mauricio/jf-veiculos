@@ -125,6 +125,7 @@ collections:
           - { label: "CTA final — texto", name: "ctaFinalTexto", widget: "text" }
           - { label: "CTA final — texto do botão", name: "ctaFinalBotao", widget: "string" }
           - { label: "Descrição no rodapé", name: "footerDescricao", widget: "text" }
+          - { label: "Veículos vendidos (estatística do banner)", name: "veiculosVendidos", widget: "string", required: false, hint: "Ex: 1000+. Em branco, a estatística some." }
 
   - name: "aparencia"
     label: "Aparência"
