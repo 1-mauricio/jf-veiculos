@@ -53,11 +53,22 @@ export function initListagem() {
   const kmVal = document.getElementById('jf-km-val');
   const limparBtns = [document.getElementById('jf-limpar'), document.getElementById('jf-limpar-2')];
   const filtersAside = document.getElementById('jf-filters');
-  const filtersToggle = document.getElementById('jf-filters-toggle');
+  const backdrop = document.getElementById('jf-backdrop');
+  const filtrarBtn = document.getElementById('jf-filtrar');
 
-  filtersToggle?.addEventListener('click', () => {
-    const isOpen = filtersAside?.classList.toggle('is-open');
-    filtersToggle.setAttribute('aria-expanded', String(!!isOpen));
+  function setDrawer(open: boolean) {
+    filtersAside?.classList.toggle('is-open', open);
+    if (backdrop) backdrop.hidden = !open;
+    document.body.style.overflow = open ? 'hidden' : '';
+    if (open) filtersAside?.querySelector<HTMLElement>('button, select, input')?.focus();
+    else filtrarBtn?.focus();
+  }
+  filtrarBtn?.addEventListener('click', () => setDrawer(true));
+  document.getElementById('jf-filters-close')?.addEventListener('click', () => setDrawer(false));
+  document.getElementById('jf-filters-apply')?.addEventListener('click', () => setDrawer(false));
+  backdrop?.addEventListener('click', () => setDrawer(false));
+  document.addEventListener('keydown', (e) => {
+    if (e.key === 'Escape' && filtersAside?.classList.contains('is-open')) setDrawer(false);
   });
 
   const INITIAL: Filtros = {
