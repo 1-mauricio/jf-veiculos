@@ -4,7 +4,7 @@ import BaseLayout from '../layouts/BaseLayout.astro';
 import Button from '../components/Button.astro';
 import Icon from '../components/Icon.astro';
 import Logo from '../components/Logo.astro';
-import { whatsappLink } from '../lib/format';
+import { whatsappLink, formatPhone } from '../lib/format';
 
 const veiculos = await getCollection('veiculos');
 const depoimentos = await getCollection('depoimentos');
@@ -17,6 +17,11 @@ const nomeSite = site?.nomeSite ?? 'JF Veículos';
 const totalVeiculos = veiculos.length;
 const whatsappHref = loja ? whatsappLink(loja.whatsapp, `Olá! Vim pelo site da ${nomeSite}.`) : '#';
 const instagramHref = loja?.instagram ? `https://instagram.com/${loja.instagram}` : null;
+const cidadeUf = loja ? `${loja.cidade.trim()} · ${loja.uf}` : '';
+const enderecoQuery = loja ? encodeURIComponent(`${loja.endereco}, ${loja.cidade.trim()} - ${loja.uf}`) : '';
+const mapsHref = `https://www.google.com/maps/search/?api=1&query=${enderecoQuery}`;
+const mapsEmbed = `https://maps.google.com/maps?q=${enderecoQuery}&output=embed`;
+const telefone = loja ? formatPhone(loja.telefoneFixo || loja.whatsapp) : '';
 ---
 
 <BaseLayout title="Nossa loja" description={`Conheça a ${nomeSite}: seminovos revisados e as melhores condições de financiamento.`}>
@@ -24,14 +29,14 @@ const instagramHref = loja?.instagram ? `https://instagram.com/${loja.instagram}
   <section class="jf-loja-hero">
     <div class="jf-loja-hero-inner">
       <div class="jf-loja-head">
-        <Logo size={110} radius="var(--radius-lg)" />
+        <Logo size={96} radius="var(--radius-lg)" />
         <div class="jf-loja-head-text">
           <div class="jf-loja-title-row">
             <h1 class="jf-loja-title">{nomeSite}</h1>
           </div>
           {loja && (
             <div class="jf-loja-meta">
-              <span>{loja.cidade} · {loja.uf}</span>
+              <span>{cidadeUf}</span>
               <span>·</span>
               <span>Desde {loja.anoFundacao}</span>
             </div>
@@ -71,10 +76,10 @@ const instagramHref = loja?.instagram ? `https://instagram.com/${loja.instagram}
         )}
       </div>
       <div class="jf-sobre-card">
-        <div class="jf-sobre-item"><span class="jf-check">✓</span> Financiamento próprio e via bancos</div>
-        <div class="jf-sobre-item"><span class="jf-check">✓</span> Aceitamos seu usado na troca</div>
-        <div class="jf-sobre-item"><span class="jf-check">✓</span> Garantia de motor e câmbio</div>
-        <div class="jf-sobre-item"><span class="jf-check">✓</span> Entrega em todo o estado</div>
+        <div class="jf-sobre-item"><span class="jf-check"><Icon name="check" size={16} /></span> Financiamento próprio e via bancos</div>
+        <div class="jf-sobre-item"><span class="jf-check"><Icon name="check" size={16} /></span> Aceitamos seu usado na troca</div>
+        <div class="jf-sobre-item"><span class="jf-check"><Icon name="check" size={16} /></span> Garantia de motor e câmbio</div>
+        <div class="jf-sobre-item"><span class="jf-check"><Icon name="check" size={16} /></span> Entrega em todo o estado</div>
       </div>
     </div>
   </section>
@@ -99,6 +104,22 @@ const instagramHref = loja?.instagram ? `https://instagram.com/${loja.instagram}
       </div>
     </section>
   )}
+
+  <!-- COMO CHEGAR -->
+  {loja && (
+    <section class="jf-loja-section jf-loja-last">
+      <h2 class="jf-h2b">Como chegar</h2>
+      <div class="jf-sobre jf-chegar">
+        <iframe class="jf-mapa" title={`Mapa da ${nomeSite}`} src={mapsEmbed} loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
+        <div class="jf-sobre-card jf-chegar-card">
+          <div><div class="jf-fl">Endereço</div><div class="jf-chegar-val">{loja.endereco}<br />{cidadeUf}</div></div>
+          <div><div class="jf-fl">Horário</div><div class="jf-chegar-val">{loja.horarios}</div></div>
+          <div><div class="jf-fl">Telefone</div><div class="jf-chegar-val"><a href={`tel:+55${telefone.replace(/\D/g, '')}`}>{telefone}</a></div></div>
+          <Button href={mapsHref} target="_blank" variant="dark" class="jf-chegar-btn">Abrir no Google Maps</Button>
+        </div>
+      </div>
+    </section>
+  )}
 </BaseLayout>
 
 <script>
@@ -118,23 +139,24 @@ const instagramHref = loja?.instagram ? `https://instagram.com/${loja.instagram}
   .jf-loja-head { display: flex; gap: 24px; align-items: flex-end; flex-wrap: wrap; }
   .jf-loja-head-text { flex: 1; padding-bottom: 6px; }
   .jf-loja-title-row { display: flex; align-items: center; gap: 10px; flex-wrap: wrap; }
-  .jf-loja-title { font: 700 30px var(--font-display); color: var(--white); letter-spacing: -.7px; margin: 0; }
+  .jf-loja-title { font: 700 30px var(--font-display); color: var(--text-on-dark); letter-spacing: -.7px; margin: 0; }
   .jf-loja-meta { display: flex; align-items: center; gap: 16px; margin-top: 8px; flex-wrap: wrap; color: var(--text-on-dark-secondary); font-size: 14px; }
-  .jf-loja-actions { display: flex; gap: 10px; padding-bottom: 6px; }
+  .jf-loja-actions { display: flex; gap: 10px; padding-bottom: 6px; flex-wrap: wrap; }
+  .jf-loja-actions :global(.jf-btn) { height: 44px; padding-top: 0; padding-bottom: 0; }
   .jf-loja-instagram {
-    display: flex; align-items: center; gap: 8px; height: 42px; padding: 0 18px;
+    display: flex; align-items: center; gap: 8px; height: 44px; padding: 0 18px;
     background: transparent; border: 1px solid rgba(255, 255, 255, .24); border-radius: var(--radius-full);
     color: var(--white); font-weight: 700; font-size: 14px;
   }
   .jf-loja-instagram:hover { border-color: rgba(255, 255, 255, .5); color: var(--white); }
 
-  .jf-g4stat { display: grid; grid-template-columns: repeat(1, 1fr); gap: 14px; margin: 34px 0 0; padding-bottom: 34px; max-width: 220px; }
+  .jf-g4stat { margin: 34px 0 0; padding-bottom: 34px; max-width: 220px; }
   .jf-stat { background: rgba(255, 255, 255, .06); border-radius: var(--radius-md); padding: 18px; }
   .jf-stat-value { font: 700 24px var(--font-display); color: var(--white); }
   .jf-stat-label { font-size: 13px; color: var(--text-on-dark-secondary); margin-top: 2px; }
 
   .jf-loja-section { max-width: 1240px; margin: 0 auto; padding: 40px 24px 0; }
-  .jf-h2b { font: 700 21px var(--font-display); margin: 0 0 18px; }
+  .jf-h2b { font: 700 21px var(--font-display); margin: 0 0 18px; color: var(--text-primary); }
 
   .jf-sobre { display: grid; grid-template-columns: 1.7fr 1fr; gap: 26px; align-items: start; }
   .jf-sobre-text { font: var(--text-body-lg); color: var(--text-secondary); line-height: 1.75; margin: 0; }
@@ -145,24 +167,34 @@ const instagramHref = loja?.instagram ? `https://instagram.com/${loja.instagram}
   .jf-historia-toggle:hover { color: var(--accent); }
   .jf-historia-text { margin-top: 14px; }
   .jf-sobre-card {
-    background: var(--white); border: 1px solid var(--border-default); border-radius: var(--radius-lg);
+    background: var(--surface-card); border: 1px solid var(--border-default); border-radius: var(--radius-lg);
     box-shadow: var(--shadow-card); padding: 22px; display: flex; flex-direction: column; gap: 14px;
   }
   .jf-sobre-item { display: flex; gap: 10px; align-items: center; font-size: 14px; color: var(--text-secondary); }
-  .jf-check { color: var(--success); }
+  .jf-check { color: var(--success); display: inline-flex; }
+  .jf-loja-last { padding-bottom: 8px; }
+  .jf-chegar { align-items: stretch; }
+  .jf-mapa { width: 100%; height: 100%; min-height: 300px; border: 1px solid var(--border-default); border-radius: var(--radius-lg); background: var(--surface-muted); }
+  .jf-chegar-card { gap: 16px; }
+  .jf-fl { font: 500 12px var(--font-body, inherit); color: var(--text-label); text-transform: uppercase; letter-spacing: .5px; margin-bottom: 10px; }
+  .jf-chegar-val { font-size: 15px; font-weight: 600; color: var(--text-primary); }
+  .jf-chegar-card :global(.jf-chegar-btn) { margin-top: auto; min-height: 44px; }
+  .jf-chegar-val a { display: inline-flex; align-items: center; min-height: 44px; }
 
   .jf-g3 { display: grid; grid-template-columns: repeat(3, 1fr); gap: 18px; }
-  .jf-avaliacao { background: var(--white); border: 1px solid var(--border-default); border-radius: var(--radius-lg); box-shadow: var(--shadow-card); padding: 24px; display: flex; flex-direction: column; height: 100%; }
+  .jf-avaliacao { background: var(--surface-card); border: 1px solid var(--border-default); border-radius: var(--radius-lg); box-shadow: var(--shadow-card); padding: 24px; display: flex; flex-direction: column; height: 100%; }
   .jf-avaliacao-text { font: var(--text-body); color: var(--text-secondary); line-height: 1.7; margin: 0 0 18px; }
   .jf-avaliacao-author { display: flex; align-items: center; gap: 11px; margin-top: auto; }
-  .jf-avaliacao-avatar { width: 40px; height: 40px; border-radius: 50%; background: var(--gray-100); display: flex; align-items: center; justify-content: center; font-weight: 800; color: var(--text-secondary); }
+  .jf-avaliacao-avatar { width: 40px; height: 40px; border-radius: 50%; background: var(--surface-muted); display: flex; align-items: center; justify-content: center; font-weight: 800; color: var(--text-secondary); }
   .jf-avaliacao-name { font-weight: 700; font-size: 14px; }
-  .jf-avaliacao-local { font-size: 12.5px; color: var(--text-tertiary); }
+  .jf-avaliacao-local { font-size: 12.5px; color: var(--text-secondary); }
 
   @media (max-width: 980px) {
     .jf-sobre { grid-template-columns: 1fr; }
+    .jf-g3 { grid-template-columns: repeat(2, 1fr); }
   }
   @media (max-width: 620px) {
-    .jf-g4stat, .jf-g3 { grid-template-columns: 1fr; }
+    .jf-g3 { grid-template-columns: 1fr; }
+    .jf-loja-actions { width: 100%; }
   }
 </style>
