@@ -1,0 +1,34 @@
+{
+  "nome": "XRE 300",
+  "marca": "Honda",
+  "modelo": "Honda XRE 300",
+  "tipo": "moto",
+  "categoria": "",
+  "ano": 2023,
+  "anoModelo": 2023,
+  "preco": 30990,
+  "km": 10000,
+  "cambio": "Manual",
+  "combustivel": "Flex",
+  "cor": "Preta",
+  "cidade": "Recife",
+  "uf": "PE",
+  "destaque": true,
+  "lancamento": false,
+  "fotos": [
+    "/images/veiculos/65e56ed5-c5cb-4517-8d07-b4f79dbdcc97.jpeg",
+    "/images/veiculos/0472a52d-2e35-47ed-8052-534bfc428335.jpeg",
+    "/images/veiculos/53c8ebd1-b989-4f34-bc92-d76348f3c906.jpeg",
+    "/images/veiculos/07652c98-21b3-47b6-9b37-6b62433b5e20.jpeg"
+  ],
+  "descricao": "A Honda XRE 300 é uma motocicleta do segmento trail/fun versátil e robusta, projetada para uso misto (cidade, estrada e terra).\n• Freios: Sistema ABS de dois canais com discos na dianteira (256 mm) e na traseira (220 mm).\n• Suspensão: Dianteira com garfo telescópico de longo curso (245 mm) e traseira Pro-Link com balança de alumínio.",
+  "opcionais": [
+    "Único dono.",
+    "Manual e Chave Reserva."
+  ],
+  "motor": "",
+  "potencia": "",
+  "portas": null,
+  "cilindrada": "",
+  "criadoEm": ""
+}
