@@ -14,7 +14,7 @@
   "cidade": "Recife",
   "uf": "PE",
   "destaque": true,
-  "lancamento": false,
+  "lancamento": true,
   "fotos": [
     "/images/veiculos/6716d7e4-79c5-4045-be7d-83d03acea632.jpeg",
     "/images/veiculos/c023f906-6de0-4c13-b642-2e3aae9a6ac5.jpeg",
