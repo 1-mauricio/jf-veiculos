@@ -48,7 +48,7 @@ export const prerender = false;
           return;
         }
         status.textContent = 'Carregando...';
-        fetch(`/api/admin/conversas?token=${encodeURIComponent(token)}&page=${page}`)
+        fetch(`/api/admin/conversas?page=${page}`, { headers: { Authorization: `Bearer ${token}` } })
           .then(async (res) => {
             if (!res.ok) {
               sessionStorage.removeItem('admin-token');

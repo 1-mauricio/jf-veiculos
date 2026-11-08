@@ -3,7 +3,7 @@ import { getCollection, render } from 'astro:content';
 import BaseLayout from '../../layouts/BaseLayout.astro';
 import VehicleCard from '../../components/VehicleCard.astro';
 import Icon from '../../components/Icon.astro';
-import { brl, brlDec, km as fmtKm, whatsappLink } from '../../lib/format';
+import { brl, brlDec, km as fmtKm, whatsappLink, parcela, FINANCIAMENTO } from '../../lib/format';
 
 export async function getStaticPaths() {
   const veiculos = await getCollection('veiculos');
@@ -34,13 +34,13 @@ const kmTexto = v.km != null ? fmtKm(v.km) : '—';
 const fichas: [string, string][] = v.tipo === 'moto'
   ? [
       ['Marca', v.marca], ['Modelo', v.modelo], ['Ano/Modelo', `${v.ano}/${v.anoModelo}`],
-      ['Quilometragem', kmTexto], ['Cilindrada', v.cilindrada ?? '—'], ['Potência', v.potencia ?? '—'],
+      ['Quilometragem', kmTexto], ['Cilindrada', v.cilindrada || '—'], ['Potência', v.potencia || '—'],
       ['Câmbio', v.cambio], ['Combustível', v.combustivel], ['Cor', v.cor], ['Cidade', `${cidade} · ${uf}`],
     ]
   : [
       ['Marca', v.marca], ['Modelo', v.modelo], ['Ano/Modelo', `${v.ano}/${v.anoModelo}`],
       ['Quilometragem', kmTexto], ['Câmbio', v.cambio], ['Combustível', v.combustivel],
-      ['Motor', v.motor ?? '—'], ['Potência', v.potencia ?? '—'], ['Portas', v.portas ? `${v.portas} portas` : '—'],
+      ['Motor', v.motor || '—'], ['Potência', v.potencia || '—'], ['Portas', v.portas ? `${v.portas} portas` : '—'],
       ['Cor', v.cor], ['Cidade', `${cidade} · ${uf}`],
     ];
 
@@ -53,13 +53,7 @@ const whatsappHref = loja
 // Simulador de financiamento desativado temporariamente. Para reativar, troque para `true`.
 const SHOW_FINANCING_SIMULATOR = false;
 
-const parcelaInicial = (() => {
-  const i = 0.0159;
-  const n = 48;
-  const entradaValor = v.preco * 0.2;
-  const fin = v.preco - entradaValor;
-  return (fin * (i * Math.pow(1 + i, n))) / (Math.pow(1 + i, n) - 1);
-})();
+const parcelaInicial = parcela(v.preco * (1 - FINANCIAMENTO.entradaPct));
 
 const canonicalURL = new URL(Astro.url.pathname, Astro.site);
 const jsonLd = {
@@ -93,8 +87,7 @@ const jsonLd = {
   <script type="application/ld+json" set:html={JSON.stringify(jsonLd)} />
   <div class="jf-det-wrap">
     <div class="jf-breadcrumb">
-      <a href="/">Início</a> <span>›</span> <a href="/veiculos">Veículos</a> <span>›</span>
-      <span class="jf-breadcrumb-current">{v.nome}</span>
+      <a href="/">Início</a> <span>›</span> <a href="/veiculos">Veículos</a> <span>›</span> <span class="jf-breadcrumb-current">{v.nome}</span>
     </div>
 
     <div class="jf-det">
@@ -106,14 +99,13 @@ const jsonLd = {
           data-gallery
           data-fotos={JSON.stringify(fotos)}
           data-idx="0"
-          style={!temFotos ? `background: repeating-linear-gradient(${placeholderAngle}deg, var(--surface-muted) 0 20px, var(--border-default) 20px 40px);` : undefined}
+          style={temFotos ? `--bg: url('${fotos[0]}');` : `background: repeating-linear-gradient(${placeholderAngle}deg, var(--surface-muted) 0 20px, var(--border-default) 20px 40px);`}
         >
           {temFotos ? (
             <img id="jf-galeria-hero" data-gallery-img src={fotos[0]} alt={v.nome} fetchpriority="high" />
           ) : (
             <span class="jf-galeria-label">SEM FOTO</span>
           )}
-          {v.destaque && <span class="jf-galeria-badge">EM ALTA</span>}
           {fotos.length > 1 && (
             <>
               <button type="button" class="jf-galeria-arrow jf-galeria-arrow-prev" data-gallery-prev aria-label="Foto anterior">
@@ -289,7 +281,12 @@ const jsonLd = {
     display: flex; align-items: center; justify-content: center; background: var(--surface-muted);
     touch-action: pan-y; user-select: none; cursor: grab;
   }
-  .jf-galeria img { width: 100%; height: 100%; object-fit: contain; pointer-events: none; }
+  /* Fundo desfocado com a própria foto: preenche as laterais de fotos verticais sem cortar a imagem. */
+  .jf-galeria::before {
+    content: ''; position: absolute; inset: -24px; background: var(--bg) center / cover no-repeat;
+    filter: blur(22px) saturate(1.1); opacity: .45; pointer-events: none;
+  }
+  .jf-galeria img { position: relative; z-index: 1; width: 100%; height: 100%; object-fit: contain; pointer-events: none; }
   .jf-galeria-label { font: 600 13px var(--font-display); letter-spacing: 2px; color: var(--text-tertiary); }
   .jf-galeria-badge {
     position: absolute; top: 16px; left: 16px; background: rgba(18, 18, 20, .82); color: var(--white);
@@ -305,8 +302,8 @@ const jsonLd = {
 
   .jf-thumbs { display: flex; gap: 10px; margin-top: 12px; overflow-x: auto; }
   .jf-thumb {
-    flex: 0 0 92px; height: 66px; border-radius: var(--radius-sm); cursor: pointer;
-    background-size: contain; background-repeat: no-repeat; background-position: center;
+    flex: 0 0 112px; height: 84px; border-radius: var(--radius-sm); cursor: pointer;
+    background-size: cover; background-repeat: no-repeat; background-position: center;
     background-color: var(--border-default); border: 2px solid transparent;
   }
   .jf-thumb.is-active { border-color: var(--accent); }
@@ -388,7 +385,7 @@ const jsonLd = {
     border: 1px solid var(--text-primary); border-radius: var(--radius-full); font-size: 15px; font-weight: 700; color: var(--text-primary);
   }
   .jf-trust { list-style: none; margin: 18px 0 0; padding: 16px 0 0; border-top: 1px solid var(--border-default); display: flex; flex-direction: column; gap: 10px; font-size: 14px; color: var(--text-secondary); }
-  .jf-trust span { color: var(--success); font-weight: 800; }
+  .jf-trust span { color: var(--success); font-weight: 800; margin-right: 8px; }
   .jf-mbar { display: none; }
   .jf-sim-disclaimer { font-size: 12px; color: var(--text-tertiary); margin: 14px 0 0; line-height: 1.5; }
 

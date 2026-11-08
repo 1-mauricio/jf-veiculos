@@ -51,6 +51,7 @@ export const POST: APIRoute = async ({ request, clientAddress }) => {
   }
 
   const { reply, ready, resumo, veiculos, interesseTipo } = parseAssistantReply(raw, vehicleNames);
-  void logConversation(clientAddress || 'unknown', [...history, { role: 'assistant', content: reply }], interesseTipo);
+  // await: em função serverless o processo pode ser encerrado logo após a resposta, perdendo um log não aguardado.
+  await logConversation(clientAddress || 'unknown', [...history, { role: 'assistant', content: reply }], interesseTipo);
   return jsonResponse({ reply, ready, resumo, veiculos }, 200);
 };

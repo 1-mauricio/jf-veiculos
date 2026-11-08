@@ -12,7 +12,7 @@ src/pages/api/chat.ts  (rota on-demand, roda como Netlify Function — só orque
         │  sanitiza histórico, monta o system prompt, chama a Groq, valida a resposta
         │  (cada etapa vive em um módulo próprio de src/lib/chatbot/)
         ▼
-Groq (llama-3.1-8b-instant) responde em JSON estruturado
+Groq (openai/gpt-oss-20b) responde em JSON estruturado
         │
         ▼
 rota devolve { reply, ready, resumo, veiculos } para o navegador
@@ -24,7 +24,7 @@ A lógica de negócio fica dividida em módulos de responsabilidade única sob `
 
 ## Por que Groq
 
-A Groq oferece um tier gratuito com modelos pequenos e muito rápidos (usamos o `llama-3.1-8b-instant`). Não há custo de infraestrutura própria — é só uma API HTTP chamada a partir da function.
+A Groq oferece um tier gratuito com modelos pequenos e muito rápidos (usamos o `openai/gpt-oss-20b`). Não há custo de infraestrutura própria — é só uma API HTTP chamada a partir da function.
 
 **Limite do tier gratuito:** 6.000 tokens por minuto por organização. Isso é suficiente para o uso normal do chat, mas uma rajada de mensagens muito rápidas (testes automatizados, por exemplo) pode esbarrar nesse limite. Quando isso acontece, a rota retorna 429 e o widget mostra "Estamos com muita gente conversando agora. Aguarde alguns segundos e tente de novo." em vez de travar silenciosamente.
 

@@ -8,9 +8,20 @@ interface Bucket {
 /** Estado em memória (reseta a cada cold start da function). Suficiente para um freio simples de abuso. */
 const buckets = new Map<string, Bucket>();
 
+/** Acima deste número de IPs guardados, remove os buckets já expirados (evita crescimento sem limite). */
+const SWEEP_THRESHOLD = 1000;
+
+function sweepExpired(now: number) {
+  if (buckets.size <= SWEEP_THRESHOLD) return;
+  for (const [ip, bucket] of buckets) {
+    if (now > bucket.resetAt) buckets.delete(ip);
+  }
+}
+
 /** Retorna `true` quando o IP excedeu o limite de requisições na janela atual. */
 export function isRateLimited(ip: string): boolean {
   const now = Date.now();
+  sweepExpired(now);
   const bucket = buckets.get(ip);
 
   if (!bucket || now > bucket.resetAt) {

@@ -1,7 +1,7 @@
 ---
 import type { CollectionEntry } from 'astro:content';
 import Icon from './Icon.astro';
-import { brl, km as fmtKm, parcelaEstimada } from '../lib/format';
+import { brl, km as fmtKm } from '../lib/format';
 
 interface Props {
   /** Cards acima da dobra: carregam sem lazy (candidatos a LCP). */
@@ -21,6 +21,13 @@ function hashAngle(id: string): number {
 
 const fotos = v.fotos ?? [];
 const placeholderAngle = hashAngle(vehicle.id);
+
+/** O eyebrow já mostra a marca; tira a marca do início do nome para não repetir ("Honda · Honda Biz"). */
+const marcaRe = new RegExp(
+  '^' + v.marca.trim().split('').map((c) => (c === ' ' ? '\\s*' : c.replace(/[.*+?^${}()|[\]\\]/g, '\\$&'))).join('') + '\\s+',
+  'i',
+);
+const nomeCurto = v.nome.replace(marcaRe, '') || v.nome;
 ---
 
 <a href={href} class="jf-card">
@@ -37,7 +44,6 @@ const placeholderAngle = hashAngle(vehicle.id);
       <span class="jf-card-photo-label">SEM FOTO</span>
     )}
     <div class="jf-card-badges">
-      {v.destaque && <span class="jf-badge jf-badge-accent">EM ALTA</span>}
       {v.lancamento && <span class="jf-badge jf-badge-dark">NOVO</span>}
     </div>
     <button type="button" class="jf-card-fav" data-fav-btn data-vehicle-id={vehicle.id} aria-label="Favoritar veículo">
@@ -57,7 +63,7 @@ const placeholderAngle = hashAngle(vehicle.id);
   <div class="jf-card-body">
     <div>
       <span class="jf-card-eyebrow">{v.categoria ? `${v.marca} · ${v.categoria}` : v.marca}</span>
-      <h3 class="jf-card-title">{v.nome}</h3>
+      <h3 class="jf-card-title">{nomeCurto}</h3>
     </div>
     <div class="jf-card-chips">
       <span class="jf-chip">{v.ano}/{v.anoModelo}</span>
@@ -66,8 +72,7 @@ const placeholderAngle = hashAngle(vehicle.id);
       <span class="jf-chip">{v.combustivel}</span>
     </div>
     <div class="jf-card-price-wrap">
-      <div class="jf-card-price">{brl(v.preco)}</div>
-      <div class="jf-card-sub">Financie em até 60x</div>
+      <div class="jf-card-price">{v.preco > 0 ? brl(v.preco) : 'Consulte'}</div>
     </div>
   </div>
 </a>
@@ -104,7 +109,10 @@ const placeholderAngle = hashAngle(vehicle.id);
     position: absolute; top: 50%; transform: translateY(-50%); width: 40px; height: 40px;
     border-radius: var(--radius-full); background: var(--surface-overlay); border: none;
     display: flex; align-items: center; justify-content: center; cursor: pointer; box-shadow: var(--shadow-card);
+    opacity: 0; transition: opacity var(--dur-fast) var(--ease-standard);
   }
+  /* Setas só aparecem ao passar o mouse ou focar com o teclado, para não poluir a grade. */
+  .jf-card:hover .jf-card-arrow, .jf-card-arrow:focus-visible { opacity: 1; }
   .jf-card-arrow-prev { left: 8px; }
   .jf-card-arrow-next { right: 8px; }
   .jf-card-photo-label { font: 600 11px var(--font-display); letter-spacing: 2px; color: var(--text-secondary); }

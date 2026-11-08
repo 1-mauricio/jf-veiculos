@@ -12,6 +12,8 @@ function goTo(el: HTMLElement, fotos: string[], idx: number) {
   el.dataset.idx = String(next);
   const img = el.querySelector<HTMLImageElement>('[data-gallery-img]');
   if (img) img.src = fotos[next];
+  // Fundo desfocado da foto atual (ver .jf-galeria::before em [slug].astro).
+  el.style.setProperty('--bg', `url('${fotos[next]}')`);
 
   const thumbs = document.querySelectorAll<HTMLElement>('[data-thumb]');
   thumbs.forEach((t, i) => t.classList.toggle('is-active', i === next));

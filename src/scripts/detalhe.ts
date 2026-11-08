@@ -1,9 +1,4 @@
-function brl(n: number): string {
-  return 'R$ ' + Math.round(n).toLocaleString('pt-BR');
-}
-function brlDec(n: number): string {
-  return 'R$ ' + n.toLocaleString('pt-BR', { minimumFractionDigits: 2, maximumFractionDigits: 2 });
-}
+import { brl, brlDec, parcela } from '../lib/format';
 
 export function initSimulador(preco: number) {
   const root = document.getElementById('jf-sim');
@@ -21,17 +16,15 @@ export function initSimulador(preco: number) {
   let parcelas = Number(chips.find((c) => c.classList.contains('is-active'))?.dataset.parcelas ?? 48);
 
   function recalc() {
-    const i = 0.0159;
     const entradaValor = preco * entradaPct / 100;
-    const fin = preco - entradaValor;
-    const parcela = (fin * (i * Math.pow(1 + i, parcelas))) / (Math.pow(1 + i, parcelas) - 1);
-    const total = entradaValor + parcela * parcelas;
+    const valorParcela = parcela(preco - entradaValor, undefined, parcelas);
+    const total = entradaValor + valorParcela * parcelas;
 
     if (entradaPctEl) entradaPctEl.textContent = entradaPct + '%';
     if (entradaValorEl) entradaValorEl.textContent = brl(entradaValor);
-    if (parcelaValorEl) parcelaValorEl.textContent = brlDec(parcela) + ` em ${parcelas}x`;
+    if (parcelaValorEl) parcelaValorEl.textContent = brlDec(valorParcela) + ` em ${parcelas}x`;
     if (totalEl) totalEl.textContent = brl(total);
-    if (priceParcelaEl) priceParcelaEl.textContent = `ou ${brlDec(parcela)} em ${parcelas}x`;
+    if (priceParcelaEl) priceParcelaEl.textContent = `ou ${brlDec(valorParcela)} em ${parcelas}x`;
   }
 
   entradaRange?.addEventListener('input', () => {

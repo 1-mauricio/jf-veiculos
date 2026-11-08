@@ -1,3 +1,5 @@
+import { brl } from '../lib/format';
+
 interface Filtros {
   tipo: string;
   marca: string;
@@ -26,10 +28,6 @@ const DEFAULTS: Filtros = {
 
 function initialNumber(el: HTMLInputElement | null, fallback: number): number {
   return el ? Number(el.value) : fallback;
-}
-
-function brl(n: number): string {
-  return 'R$ ' + Math.round(n).toLocaleString('pt-BR');
 }
 
 export function initListagem() {
