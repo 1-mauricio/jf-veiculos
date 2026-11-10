@@ -20,3 +20,7 @@ Consult these guides before working on related tasks:
 - [Adding or managing content](https://docs.astro.build/en/guides/content-collections/)
 - [Adding styles or using Tailwind](https://docs.astro.build/en/guides/styling/)
 - [Supporting multiple languages](https://docs.astro.build/en/guides/internationalization/)
+
+## Web platform baseline
+
+Target Baseline **Widely available** for HTML/CSS/JS features. Newer features (e.g. `closedby`, cross-document view transitions, Speculation Rules, `interpolate-size`) are allowed only as progressive enhancement with a fallback. Consult the `modern-web-guidance` skill before UI work.
