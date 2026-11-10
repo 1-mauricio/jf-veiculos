@@ -4,10 +4,12 @@ import Icon from './Icon.astro';
 import { brl, km as fmtKm, parcelaEstimada } from '../lib/format';
 
 interface Props {
+  /** Cards acima da dobra: carregam sem lazy (candidatos a LCP). */
+  priority?: boolean;
   vehicle: CollectionEntry<'veiculos'>;
 }
 
-const { vehicle } = Astro.props;
+const { vehicle, priority = false } = Astro.props;
 const v = vehicle.data;
 const href = `/veiculos/${vehicle.id}`;
 
@@ -30,7 +32,7 @@ const placeholderAngle = hashAngle(vehicle.id);
     style={fotos.length === 0 ? `background: repeating-linear-gradient(${placeholderAngle}deg, var(--surface-muted) 0 15px, var(--border-default) 15px 30px);` : undefined}
   >
     {fotos.length > 0 ? (
-      <img data-gallery-img src={fotos[0]} alt={v.nome} loading="lazy" decoding="async" />
+      <img data-gallery-img src={fotos[0]} alt={v.nome} loading={priority ? undefined : "lazy"} fetchpriority={priority ? "high" : undefined} decoding="async" />
     ) : (
       <span class="jf-card-photo-label">SEM FOTO</span>
     )}

@@ -109,7 +109,7 @@ const jsonLd = {
           style={!temFotos ? `background: repeating-linear-gradient(${placeholderAngle}deg, var(--surface-muted) 0 20px, var(--border-default) 20px 40px);` : undefined}
         >
           {temFotos ? (
-            <img id="jf-galeria-hero" data-gallery-img src={fotos[0]} alt={v.nome} />
+            <img id="jf-galeria-hero" data-gallery-img src={fotos[0]} alt={v.nome} fetchpriority="high" />
           ) : (
             <span class="jf-galeria-label">SEM FOTO</span>
           )}

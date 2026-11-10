@@ -127,7 +127,7 @@ const nomeSite = siteEntries[0]?.data.nomeSite ?? 'JF Veículos';
       <!-- GRID -->
       <div>
         <div class="jf-g3" id="jf-grid">
-          {[...veiculos].sort((a, b) => b.data.criadoEm.getTime() - a.data.criadoEm.getTime()).map((v) => (
+          {[...veiculos].sort((a, b) => b.data.criadoEm.getTime() - a.data.criadoEm.getTime()).map((v, i) => (
             <div
               class="jf-grid-item"
               data-vehicle-card
@@ -142,7 +142,7 @@ const nomeSite = siteEntries[0]?.data.nomeSite ?? 'JF Veículos';
               data-cor={v.data.cor}
               data-busca={`${v.data.nome} ${v.data.marca}`.toLowerCase()}
             >
-              <VehicleCard vehicle={v} />
+              <VehicleCard vehicle={v} priority={i === 0} />
             </div>
           ))}
         </div>
