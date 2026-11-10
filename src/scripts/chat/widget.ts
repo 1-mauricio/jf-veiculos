@@ -122,6 +122,7 @@ export function initChatWidget() {
     opened = !opened;
     panel.classList.toggle('is-open', opened);
     toggle.classList.toggle('is-open', opened);
+    toggle.setAttribute('aria-expanded', String(opened));
     if (opened) {
       input.focus();
       if (log.children.length === 0) {
@@ -132,10 +133,18 @@ export function initChatWidget() {
     }
   });
 
-  closeBtn?.addEventListener('click', () => {
+  const closePanel = () => {
     opened = false;
     panel.classList.remove('is-open');
     toggle.classList.remove('is-open');
+    toggle.setAttribute('aria-expanded', 'false');
+  };
+  closeBtn?.addEventListener('click', closePanel);
+  panel.addEventListener('keydown', (e) => {
+    if (e.key === 'Escape' && opened) {
+      closePanel();
+      toggle.focus();
+    }
   });
 
   form.addEventListener('submit', (e) => {

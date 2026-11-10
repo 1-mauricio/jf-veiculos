@@ -40,7 +40,11 @@
   overflow: hidden;
   border: 1px solid var(--border-default);
 }
-[data-chat-panel].is-open .jf-chat-window { display: flex; }
+[data-chat-panel].is-open .jf-chat-window {
+  display: flex;
+  @starting-style { opacity: 0; translate: 0 12px; }
+}
+.jf-chat-window { transition: opacity 0.2s ease-out, translate 0.2s ease-out; }
 
 .jf-chat-header {
   background: var(--black-900);
