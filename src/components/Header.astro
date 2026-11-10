@@ -159,12 +159,17 @@ const anunciarHref = loja
 
     .jf-mobile-nav {
       display: flex; flex-direction: column; gap: 2px;
-      max-height: 0; overflow: hidden; padding: 0 16px;
+      /* interpolate-size anima até a altura natural; visibility tira os links do Tab quando fechado. */
+      interpolate-size: allow-keywords;
+      height: 0; overflow: hidden; padding: 0 16px; visibility: hidden;
       border-top: 1px solid transparent;
-      transition: max-height var(--dur-base) var(--ease-standard), padding var(--dur-base) var(--ease-standard);
+      transition-property: height, padding, visibility;
+      transition-duration: var(--dur-base);
+      transition-timing-function: var(--ease-standard);
+      transition-behavior: allow-discrete;
     }
     .jf-header.is-menu-open .jf-mobile-nav {
-      max-height: 320px; padding: 10px 16px 16px; border-top-color: var(--border-default);
+      height: auto; padding: 10px 16px 16px; visibility: visible; border-top-color: var(--border-default);
     }
     .jf-mobile-nav-link {
       padding: 12px 10px; border-radius: var(--radius-md); font-weight: 600; font-size: 15px; color: var(--text-primary);

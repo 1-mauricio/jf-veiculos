@@ -9,6 +9,13 @@ export function initMobileMenu() {
     toggle.setAttribute('aria-expanded', String(isOpen));
   });
 
+  document.addEventListener('keydown', (e) => {
+    if (e.key !== 'Escape' || !header.classList.contains('is-menu-open')) return;
+    header.classList.remove('is-menu-open');
+    toggle.setAttribute('aria-expanded', 'false');
+    toggle.focus();
+  });
+
   mobileNav.querySelectorAll('a').forEach((link) => {
     link.addEventListener('click', () => {
       header.classList.remove('is-menu-open');
