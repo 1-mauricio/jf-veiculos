@@ -53,6 +53,23 @@ const fontTheme = FONT_THEMES[aparencia?.fonteTema ?? DEFAULT_FONT_THEME];
     } catch {}
   </script>
 
+  <!-- Speculation Rules: prefetch ao passar o mouse/tocar em links internos (Chromium; ignorado nos demais). -->
+  <script is:inline type="speculationrules">
+    {
+      "prefetch": [{
+        "where": {
+          "and": [
+            { "href_matches": "/*" },
+            { "not": { "href_matches": "/admin/*" } },
+            { "not": { "href_matches": "/api/*" } },
+            { "not": { "selector_matches": "[target=_blank], [rel~=nofollow]" } }
+          ]
+        },
+        "eagerness": "moderate"
+      }]
+    }
+  </script>
+
   <!-- Google tag (gtag.js) -->
   <script is:inline async src="https://www.googletagmanager.com/gtag/js?id=G-MMPV9XEFQL"></script>
   <script is:inline>
