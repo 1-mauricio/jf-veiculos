@@ -52,24 +52,26 @@ export function initListagem() {
   const anoVal = document.getElementById('jf-ano-val');
   const kmVal = document.getElementById('jf-km-val');
   const limparBtns = [document.getElementById('jf-limpar'), document.getElementById('jf-limpar-2')];
-  const filtersAside = document.getElementById('jf-filters');
-  const backdrop = document.getElementById('jf-backdrop');
+  const filtersDialog = document.getElementById('jf-filters') as HTMLDialogElement | null;
   const filtrarBtn = document.getElementById('jf-filtrar');
+  const closeFilters = () => { if (filtersDialog?.open) filtersDialog.close(); };
 
-  function setDrawer(open: boolean) {
-    filtersAside?.classList.toggle('is-open', open);
-    if (backdrop) backdrop.hidden = !open;
-    document.body.style.overflow = open ? 'hidden' : '';
-    if (open) filtersAside?.querySelector<HTMLElement>('button, select, input')?.focus();
-    else filtrarBtn?.focus();
+  // <dialog>.showModal() cuida de Esc, foco preso, inert no resto da página e
+  // devolve o foco ao botão Filtrar ao fechar. closedby="any" dá light-dismiss.
+  filtrarBtn?.addEventListener('click', () => filtersDialog?.showModal());
+  document.getElementById('jf-filters-close')?.addEventListener('click', closeFilters);
+  document.getElementById('jf-filters-apply')?.addEventListener('click', closeFilters);
+  if (filtersDialog && !('closedBy' in HTMLDialogElement.prototype)) {
+    // Fallback (Safari): fecha ao clicar no ::backdrop.
+    filtersDialog.addEventListener('click', (e) => {
+      if (e.target !== filtersDialog) return;
+      const r = filtersDialog.getBoundingClientRect();
+      const inside = r.top <= e.clientY && e.clientY <= r.bottom && r.left <= e.clientX && e.clientX <= r.right;
+      if (!inside) closeFilters();
+    });
   }
-  filtrarBtn?.addEventListener('click', () => setDrawer(true));
-  document.getElementById('jf-filters-close')?.addEventListener('click', () => setDrawer(false));
-  document.getElementById('jf-filters-apply')?.addEventListener('click', () => setDrawer(false));
-  backdrop?.addEventListener('click', () => setDrawer(false));
-  document.addEventListener('keydown', (e) => {
-    if (e.key === 'Escape' && filtersAside?.classList.contains('is-open')) setDrawer(false);
-  });
+  // Se a tela crescer até o layout de sidebar, sai do modo modal.
+  matchMedia('(min-width: 621px)').addEventListener('change', (e) => { if (e.matches) closeFilters(); });
 
   const INITIAL: Filtros = {
     ...DEFAULTS,
