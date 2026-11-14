@@ -1,0 +1,34 @@
+{
+  "nome": "XRE 300",
+  "marca": "Honda",
+  "modelo": "XRE 300",
+  "tipo": "moto",
+  "categoria": "",
+  "ano": 2019,
+  "anoModelo": 2019,
+  "preco": 23990,
+  "km": 61000,
+  "cambio": "Manual",
+  "combustivel": "Flex",
+  "cor": "Prata",
+  "cidade": "Recife",
+  "uf": "PE",
+  "destaque": true,
+  "lancamento": false,
+  "fotos": [
+    "/images/veiculos/0791ef69-17cb-4584-8400-1a4d1f74d023.jpeg",
+    "/images/veiculos/c94fafaa-7ef8-4c7d-b6b9-341def29251d.jpeg",
+    "/images/veiculos/2f9c5f1b-923c-4481-bc41-813f4eaadb6c.jpeg",
+    "/images/veiculos/ee3a3f9d-d6c0-4f63-8bda-5e0de1e8d5b7.jpeg"
+  ],
+  "descricao": "A Honda XRE 300 é uma motocicleta do segmento trail/crossover de média cilindrada que recebeu uma grande renovação visual, de peso e de equipamentos.\nDesign Renovado: Bico frontal redesenhado (mais curto), novas carenagens laterais e grafismos atualizados.",
+  "opcionais": [
+    "Único dono.",
+    "Manual e Chave reserva."
+  ],
+  "motor": "",
+  "potencia": "",
+  "portas": null,
+  "cilindrada": "",
+  "criadoEm": ""
+}
