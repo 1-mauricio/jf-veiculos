@@ -115,7 +115,7 @@ const nomeCurto = v.nome.replace(marcaRe, '') || v.nome;
   .jf-card:hover .jf-card-arrow, .jf-card-arrow:focus-visible { opacity: 1; }
   .jf-card-arrow-prev { left: 8px; }
   .jf-card-arrow-next { right: 8px; }
-  .jf-card-photo-label { font: 600 11px var(--font-display); letter-spacing: 2px; color: var(--text-secondary); }
+  .jf-card-photo-label { font: 600 11px var(--font-display); letter-spacing: 1px; color: var(--text-secondary); }
 
   .jf-card-badges { position: absolute; top: 12px; left: 12px; display: flex; gap: 6px; }
 
@@ -147,7 +147,7 @@ const nomeCurto = v.nome.replace(marcaRe, '') || v.nome;
   @media (max-width: 620px) {
     .jf-card { flex-direction: row; }
     .jf-card-photo { height: auto; width: 128px; min-height: 168px; flex-shrink: 0; }
-    .jf-card-photo-label { font-size: 9px; letter-spacing: 1px; text-align: center; padding: 0 8px; }
+    .jf-card-photo-label { font-size: 11px; letter-spacing: .5px; text-align: center; padding: 0 8px; }
     .jf-card-photo img { position: absolute; inset: 0; object-fit: cover; }
     .jf-card-arrow { display: none; }
     .jf-card-body { padding: 12px 14px; gap: 8px; min-width: 0; }
