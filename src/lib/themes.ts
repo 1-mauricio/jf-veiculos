@@ -30,10 +30,10 @@ export const COLOR_THEMES: Record<string, ColorTheme> = {
   },
   vermelho: {
     label: 'Vermelho',
-    accent: '#DC2626',
-    accentStrong: '#991B1B',
-    accentSoft: '#FEE2E2',
-    accentOnDark: '#F87171',
+    accent: '#D91528',
+    accentStrong: '#A50F1E',
+    accentSoft: '#FBE3E5',
+    accentOnDark: '#EF3B4B',
   },
   roxo: {
     label: 'Roxo',
@@ -52,6 +52,13 @@ export interface FontTheme {
 }
 
 export const FONT_THEMES: Record<string, FontTheme> = {
+  jf: {
+    label: 'JF (Barlow Condensed + Source Sans 3)',
+    display: "'Barlow Condensed', ui-sans-serif, sans-serif",
+    body: "'Source Sans 3', ui-sans-serif, sans-serif",
+    googleFontsUrl:
+      'https://fonts.googleapis.com/css2?family=Barlow+Condensed:wght@600;700&family=Source+Sans+3:wght@400;600;700&display=swap',
+  },
   moderno: {
     label: 'Moderno (Space Grotesk + Inter)',
     display: "'Space Grotesk', ui-sans-serif, sans-serif",
@@ -76,4 +83,4 @@ export const FONT_THEMES: Record<string, FontTheme> = {
 };
 
 export const DEFAULT_COLOR_THEME = 'ambar';
-export const DEFAULT_FONT_THEME = 'moderno';
+export const DEFAULT_FONT_THEME = 'jf';
