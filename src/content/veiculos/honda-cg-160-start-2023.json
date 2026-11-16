@@ -1,0 +1,33 @@
+{
+  "nome": "CG 160 START",
+  "marca": "Honda",
+  "modelo": "CG 160 START",
+  "tipo": "moto",
+  "categoria": "",
+  "ano": 2023,
+  "anoModelo": 2023,
+  "preco": 14990,
+  "km": 40000,
+  "cambio": "Manual",
+  "combustivel": "Gasolina",
+  "cor": "Preta",
+  "cidade": "Recife",
+  "uf": "PE",
+  "destaque": true,
+  "lancamento": false,
+  "fotos": [
+    "/images/veiculos/3f9ee488-4da8-41b0-8d2f-a95ce7a8653c.jpeg",
+    "/images/veiculos/b4b325d9-e897-4eeb-9d79-1594daa0e9ce.jpeg",
+    "/images/veiculos/c837ba2c-1e16-42f1-8086-43353db6388f.jpeg"
+  ],
+  "descricao": "A Honda CG 160 Start é a versão de entrada da linha CG, voltada para economia, simplicidade e uso urbano diário.",
+  "opcionais": [
+    "Único dono.",
+    "Manual e Chave Reserva."
+  ],
+  "motor": "",
+  "potencia": "",
+  "portas": null,
+  "cilindrada": "",
+  "criadoEm": ""
+}
