@@ -2,181 +2,77 @@
 import { getCollection } from 'astro:content';
 import BaseLayout from '../layouts/BaseLayout.astro';
 import ComoChegar from '../components/ComoChegar.astro';
-import Button from '../components/Button.astro';
-import Icon from '../components/Icon.astro';
-import Logo from '../components/Logo.astro';
-import { whatsappLink } from '../lib/format';
+import { whatsappLink, formatPhone } from '../lib/format';
 
 const veiculos = await getCollection('veiculos');
-const depoimentos = await getCollection('depoimentos');
-const lojaEntries = await getCollection('loja');
-const loja = lojaEntries[0]?.data;
-const siteEntries = await getCollection('site');
-const site = siteEntries[0]?.data;
-const nomeSite = site?.nomeSite ?? 'JF Veículos';
-
-const totalVeiculos = veiculos.length;
+const motos = veiculos.filter((veiculo) => veiculo.data.tipo === 'moto').length;
+const depoimentos = (await getCollection('depoimentos')).slice(0, 3);
+const loja = (await getCollection('loja'))[0]?.data;
+const nomeSite = (await getCollection('site'))[0]?.data.nomeSite ?? 'JF Veículos';
 const whatsappHref = loja ? whatsappLink(loja.whatsapp, `Olá! Vim pelo site da ${nomeSite}.`) : '#';
 const instagramHref = loja?.instagram ? `https://instagram.com/${loja.instagram}` : null;
-const cidadeUf = loja ? `${loja.cidade.trim()} · ${loja.uf}` : '';
 ---
 
-<BaseLayout title="Nossa loja" description={`Conheça a ${nomeSite}: seminovos revisados e as melhores condições de financiamento.`}>
-  <!-- HERO LOJA -->
-  <section class="jf-loja-hero">
-    <div class="jf-loja-hero-inner">
-      <div class="jf-loja-head">
-        <Logo size={96} radius="var(--radius-lg)" />
-        <div class="jf-loja-head-text">
-          <div class="jf-loja-title-row">
-            <h1 class="jf-loja-title">{nomeSite}</h1>
-          </div>
-          {loja && (
-            <div class="jf-loja-meta">
-              <span>{cidadeUf}</span>
-              <span>·</span>
-              <span>Desde {loja.anoFundacao}</span>
-            </div>
-          )}
-        </div>
-        <div class="jf-loja-actions">
-          <Button href={whatsappHref} target="_blank" variant="whatsapp" data-wa-track="loja_hero">
-            <Icon name="whatsapp" size={17} color="var(--white)" /> WhatsApp
-          </Button>
-          {instagramHref && (
-            <a href={instagramHref} target="_blank" rel="noopener" class="jf-loja-instagram" aria-label={`Instagram da ${nomeSite}`}>
-              <Icon name="instagram" size={18} color="var(--white)" /> @{loja?.instagram}
-            </a>
-          )}
-        </div>
-      </div>
-
-      <div class="jf-g4stat">
-        <div class="jf-stat"><div class="jf-stat-value">{totalVeiculos}</div><div class="jf-stat-label">anúncios ativos</div></div>
-      </div>
-    </div>
-  </section>
-
-  <!-- SOBRE -->
-  <section class="jf-loja-section">
-    <div class="jf-sobre">
-      <div>
-        <h2 class="jf-h2b">Sobre a {nomeSite}</h2>
-        <p class="jf-sobre-text">{loja?.sobre}</p>
-        {loja?.historia && (
-          <>
-            <button type="button" id="jf-historia-toggle" class="jf-historia-toggle" aria-expanded="false" aria-controls="jf-historia-text">
-              Conheça nossa história →
-            </button>
-            <p class="jf-sobre-text jf-historia-text" id="jf-historia-text" hidden>{loja.historia}</p>
-          </>
-        )}
-      </div>
-      <div class="jf-sobre-card">
-        <div class="jf-sobre-item"><span class="jf-check"><Icon name="check" size={16} /></span> Financiamento próprio e via bancos</div>
-        <div class="jf-sobre-item"><span class="jf-check"><Icon name="check" size={16} /></span> Aceitamos seu usado na troca</div>
-        <div class="jf-sobre-item"><span class="jf-check"><Icon name="check" size={16} /></span> Garantia de motor e câmbio</div>
-        <div class="jf-sobre-item"><span class="jf-check"><Icon name="check" size={16} /></span> Entrega em todo o estado</div>
-      </div>
-    </div>
-  </section>
-
-  <!-- AVALIACOES -->
-  {depoimentos.length > 0 && (
-    <section class="jf-loja-section">
-      <h2 class="jf-h2b">O que dizem os clientes</h2>
-      <div class="jf-g3">
-        {depoimentos.map((d) => (
-          <div class="jf-avaliacao">
-            <p class="jf-avaliacao-text">"{d.data.texto}"</p>
-            <div class="jf-avaliacao-author">
-              <div class="jf-avaliacao-avatar">{d.data.nome[0]}</div>
-              <div>
-                <div class="jf-avaliacao-name">{d.data.nome}</div>
-                <div class="jf-avaliacao-local">{d.data.local}</div>
-              </div>
-            </div>
-          </div>
-        ))}
-      </div>
+<BaseLayout title="Nossa loja" description={`Conheça a ${nomeSite} em Recife.`}>
+  <div class="loja-conteudo">
+    <section class="loja-abertura">
+      <h1>{nomeSite}</h1>
+      {loja && <p class="loja-local">Desde {loja.anoFundacao} em {loja.cidade.trim()}</p>}
+      {loja?.sobre && <p class="loja-sobre">{loja.sobre}</p>}
+      {loja?.historia?.trim() && <p class="loja-sobre">{loja.historia}</p>}
+      <a class="loja-link" href="/veiculos?tipo=moto">Ver {motos === 1 ? 'a moto' : `as ${motos} motos`} na loja →</a>
     </section>
-  )}
 
-  <!-- COMO CHEGAR -->
-  {loja && (
-    <section class="jf-loja-section jf-loja-last">
-      <ComoChegar titleClass="jf-h2b" />
-    </section>
-  )}
+    <figure class="loja-foto">
+      <img src="/images/site/background.jpeg" alt={`Fachada da ${nomeSite}`} />
+      <figcaption>{nomeSite} em {loja?.cidade.trim()}</figcaption>
+    </figure>
+
+    {loja && <section class="loja-secao">
+      <h2>Visite ou fale com a gente</h2>
+      <dl class="loja-contatos">
+        <div><dt>Endereço</dt><dd>{loja.endereco}, {loja.cidade.trim()} - {loja.uf}</dd></div>
+        <div><dt>Horário</dt><dd>{loja.horarios}</dd></div>
+        <div><dt>WhatsApp</dt><dd><a href={whatsappHref} target="_blank" rel="noopener" data-wa-track="loja_contato">{formatPhone(loja.whatsapp)}</a></dd></div>
+        {instagramHref && <div><dt>Instagram</dt><dd><a href={instagramHref} target="_blank" rel="noopener">@{loja.instagram}</a></dd></div>}
+      </dl>
+    </section>}
+
+    {depoimentos.length > 0 && <section class="loja-secao">
+      <h2>O que dizem os clientes</h2>
+      <div class="loja-depoimentos">
+        {depoimentos.map((d) => <figure class="loja-citacao"><blockquote>“{d.data.texto}”</blockquote><figcaption>{d.data.nome} · {d.data.local}</figcaption></figure>)}
+      </div>
+      {loja?.mapsLink && <a class="loja-link" href={loja.mapsLink} target="_blank" rel="noopener">Ver avaliações no Google →</a>}
+    </section>}
+
+    {loja && <section class="loja-secao"><ComoChegar titleClass="loja-titulo-mapa" /></section>}
+  </div>
 </BaseLayout>
 
-<script>
-  const historiaToggle = document.getElementById('jf-historia-toggle');
-  const historiaText = document.getElementById('jf-historia-text');
-  historiaToggle?.addEventListener('click', () => {
-    const isHidden = historiaText?.hidden;
-    if (historiaText) historiaText.hidden = !isHidden;
-    historiaToggle.setAttribute('aria-expanded', String(!!isHidden));
-    historiaToggle.textContent = isHidden ? 'Conheça nossa história ↑' : 'Conheça nossa história →';
-  });
-</script>
-
 <style>
-  .jf-loja-hero { position: relative; background: linear-gradient(180deg, var(--black-950), var(--black-900)); }
-  .jf-loja-hero-inner { max-width: 1240px; margin: 0 auto; padding: 48px 24px 0; }
-  .jf-loja-head { display: flex; gap: 24px; align-items: flex-end; flex-wrap: wrap; }
-  .jf-loja-head-text { flex: 1; padding-bottom: 6px; }
-  .jf-loja-title-row { display: flex; align-items: center; gap: 10px; flex-wrap: wrap; }
-  .jf-loja-title { font: 700 30px var(--font-display); color: var(--text-on-dark); letter-spacing: -.7px; margin: 0; }
-  .jf-loja-meta { display: flex; align-items: center; gap: 16px; margin-top: 8px; flex-wrap: wrap; color: var(--text-on-dark-secondary); font-size: 14px; }
-  .jf-loja-actions { display: flex; gap: 10px; padding-bottom: 6px; flex-wrap: wrap; }
-  .jf-loja-actions :global(.jf-btn) { height: 44px; padding-top: 0; padding-bottom: 0; }
-  .jf-loja-instagram {
-    display: flex; align-items: center; gap: 8px; height: 44px; padding: 0 18px;
-    background: transparent; border: 1px solid rgba(255, 255, 255, .24); border-radius: var(--radius-full);
-    color: var(--white); font-weight: 700; font-size: 14px;
-  }
-  .jf-loja-instagram:hover { border-color: rgba(255, 255, 255, .5); color: var(--white); }
-
-  .jf-g4stat { margin: 34px 0 0; padding-bottom: 34px; max-width: 220px; }
-  .jf-stat { background: rgba(255, 255, 255, .06); border-radius: var(--radius-md); padding: 18px; }
-  .jf-stat-value { font: 700 24px var(--font-display); color: var(--white); }
-  .jf-stat-label { font-size: 13px; color: var(--text-on-dark-secondary); margin-top: 2px; }
-
-  .jf-loja-section { max-width: 1240px; margin: 0 auto; padding: 40px 24px 0; }
-  .jf-h2b { font: 700 21px var(--font-display); margin: 0 0 18px; color: var(--text-primary); }
-
-  .jf-sobre { display: grid; grid-template-columns: 1.7fr 1fr; gap: 26px; align-items: start; }
-  .jf-sobre-text { font: var(--text-body-lg); color: var(--text-secondary); line-height: 1.75; margin: 0; }
-  .jf-historia-toggle {
-    display: inline-flex; margin-top: 14px; background: none; border: none; padding: 0; cursor: pointer;
-    font-weight: 700; font-size: 15px; color: var(--accent-strong);
-  }
-  .jf-historia-toggle:hover { color: var(--accent); }
-  .jf-historia-text { margin-top: 14px; }
-  .jf-sobre-card {
-    background: var(--surface-card); border: 1px solid var(--border-default); border-radius: var(--radius-lg);
-    box-shadow: var(--shadow-card); padding: 22px; display: flex; flex-direction: column; gap: 14px;
-  }
-  .jf-sobre-item { display: flex; gap: 10px; align-items: center; font-size: 14px; color: var(--text-secondary); }
-  .jf-check { color: var(--success); display: inline-flex; }
-  .jf-loja-last { padding-bottom: 8px; }
-
-  .jf-g3 { display: grid; grid-template-columns: repeat(3, 1fr); gap: 18px; }
-  .jf-avaliacao { background: var(--surface-card); border: 1px solid var(--border-default); border-radius: var(--radius-lg); box-shadow: var(--shadow-card); padding: 24px; display: flex; flex-direction: column; height: 100%; }
-  .jf-avaliacao-text { font: var(--text-body); color: var(--text-secondary); line-height: 1.7; margin: 0 0 18px; }
-  .jf-avaliacao-author { display: flex; align-items: center; gap: 11px; margin-top: auto; }
-  .jf-avaliacao-avatar { width: 40px; height: 40px; border-radius: 50%; background: var(--surface-muted); display: flex; align-items: center; justify-content: center; font-weight: 800; color: var(--text-secondary); }
-  .jf-avaliacao-name { font-weight: 700; font-size: 14px; }
-  .jf-avaliacao-local { font-size: 12.5px; color: var(--text-secondary); }
-
-  @media (max-width: 980px) {
-    .jf-sobre { grid-template-columns: 1fr; }
-    .jf-g3 { grid-template-columns: repeat(2, 1fr); }
-  }
+  .loja-conteudo { max-width: 1240px; margin: 0 auto; padding: 0 var(--space-6) var(--space-8); }
+  .loja-abertura { max-width: 760px; padding: var(--space-12) 0 var(--space-8); }
+  h1 { font: var(--text-display); color: var(--text-primary); margin: 0; }
+  h2, :global(.loja-titulo-mapa) { font: var(--text-h2); color: var(--text-primary); margin: 0 0 var(--space-5); }
+  .loja-local { font: var(--text-h3); color: var(--text-secondary); margin: var(--space-2) 0 var(--space-6); }
+  .loja-sobre { font: var(--text-body-lg); color: var(--text-secondary); margin: 0 0 var(--space-4); }
+  .loja-link { display: inline-flex; align-items: center; min-height: 44px; font-weight: 600; }
+  .loja-foto { margin: 0; }
+  .loja-foto img { display: block; width: 100%; max-height: 520px; object-fit: cover; border-radius: var(--radius-md); }
+  .loja-foto figcaption { font: var(--text-small); color: var(--text-secondary); margin-top: var(--space-2); }
+  .loja-secao { padding-top: var(--space-12); }
+  .loja-contatos { margin: 0; max-width: 760px; border-top: 1px solid var(--border-default); }
+  .loja-contatos div { display: grid; grid-template-columns: 150px 1fr; gap: var(--space-4); align-items: center; min-height: 52px; border-bottom: 1px solid var(--border-default); }
+  .loja-contatos dt { font-weight: 600; }
+  .loja-contatos dd { margin: 0; color: var(--text-secondary); }
+  .loja-contatos a { display: inline-flex; align-items: center; min-height: 44px; }
+  .loja-depoimentos { display: grid; grid-template-columns: repeat(3, 1fr); gap: var(--space-8); }
+  .loja-citacao { border-top: 1px solid var(--border-default); margin: 0; padding-top: var(--space-4); }
+  .loja-citacao blockquote { margin: 0 0 var(--space-4); color: var(--text-secondary); line-height: 1.5; }
+  .loja-citacao figcaption { font-weight: 600; }
   @media (max-width: 620px) {
-    .jf-g3 { grid-template-columns: 1fr; }
-    .jf-loja-actions { width: 100%; }
-    .jf-g4stat { max-width: none; }
+    .loja-depoimentos { grid-template-columns: 1fr; gap: var(--space-5); }
+    .loja-contatos div { grid-template-columns: 1fr; gap: 0; padding: var(--space-3) 0; }
   }
 </style>

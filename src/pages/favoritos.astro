@@ -23,7 +23,7 @@ const veiculos = await getCollection('veiculos');
     <div class="jf-g3" id="jf-fav-grid" hidden>
       {veiculos.map((v) => (
         <div class="jf-grid-item" data-vehicle-card data-id={v.id} hidden>
-          <VehicleCard vehicle={v} />
+          <VehicleCard vehicle={v} headingLevel={2} />
         </div>
       ))}
     </div>

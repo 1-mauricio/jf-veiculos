@@ -78,6 +78,7 @@ const site = defineCollection({
     heroTituloInicio: z.string(),
     heroTituloDestaque: z.string(),
     heroSubtitulo: z.string(),
+    heroVeiculo: z.string().optional(),
     vantagem1Titulo: z.string(),
     vantagem1Desc: z.string(),
     vantagem2Titulo: z.string(),
@@ -97,7 +98,7 @@ const aparencia = defineCollection({
   loader: glob({ pattern: '**/*.json', base: './src/content/aparencia' }),
   schema: z.object({
     corTema: z.enum(['ambar', 'azul', 'verde', 'vermelho', 'roxo']).default('ambar'),
-    fonteTema: z.enum(['moderno', 'amigavel', 'classico']).default('moderno'),
+    fonteTema: z.enum(['jf', 'moderno', 'amigavel', 'classico']).default('jf'),
   }),
 });
 

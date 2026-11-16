@@ -32,8 +32,7 @@ input[type=range]::-webkit-slider-thumb {
   border-radius: 50%;
   background: var(--accent);
   cursor: pointer;
-  box-shadow: 0 2px 8px rgba(200, 134, 43, .45);
-  border: 3px solid var(--white);
+    border: 3px solid var(--white);
 }
 input[type=range]::-moz-range-thumb {
   width: 20px;
@@ -55,6 +54,7 @@ input[type=range]::-moz-range-thumb {
 }
 
 h1, h2, h3 { text-wrap: balance; }
+.jf-price { font-variant-numeric: tabular-nums; }
 p { text-wrap: pretty; }
 
 .jf-scroll { scrollbar-width: thin; scrollbar-color: var(--gray-300) transparent; }
