@@ -1,0 +1,188 @@
+{
+ "schemaVersion": 2,
+ "generatedAt": "2026-11-17T17:48:21.780416Z",
+ "title": "Design System: JF Veículos",
+ "extensions": {
+  "colorMeta": {
+   "posca-yellow": {
+    "role": "primary",
+    "displayName": "Posca Amarela",
+    "canonical": "#F6E23A",
+    "tonalRamp": [
+     "#3D3700",
+     "#5C5000",
+     "#8A7B00",
+     "#C2AE12",
+     "#F6E23A",
+     "#F9EA74",
+     "#FBF3B8",
+     "#FDF9DE"
+    ]
+   },
+   "asphalt-900": {
+    "role": "neutral",
+    "displayName": "Asfalto",
+    "canonical": "#16191B",
+    "tonalRamp": [
+     "#101214",
+     "#16191B",
+     "#1E2225",
+     "#262D31",
+     "#4A565C",
+     "#9AA0A3",
+     "#DDDAD3",
+     "#F4F3EF"
+    ]
+   },
+   "concrete-100": {
+    "role": "neutral",
+    "displayName": "Concreto",
+    "canonical": "#E9E7E2"
+   },
+   "posca-white": {
+    "role": "neutral",
+    "displayName": "Posca Branca",
+    "canonical": "#F7F7F2"
+   }
+  },
+  "typographyMeta": {
+   "hand": {
+    "displayName": "Caneta",
+    "purpose": "Preço, modelo e recados curtos escritos no vidro."
+   },
+   "display": {
+    "displayName": "Letreiro",
+    "purpose": "Títulos em caixa alta condensada."
+   }
+  },
+  "shadows": [],
+  "motion": [
+   {
+    "name": "ease-standard",
+    "value": "cubic-bezier(.2,.7,.2,1)",
+    "purpose": "Transições de estado."
+   },
+   {
+    "name": "jfwrite",
+    "value": "clip-path inset 100%→0, .55s, scroll-driven onde suportado",
+    "purpose": "O preço é escrito ao entrar na tela."
+   }
+  ],
+  "breakpoints": [
+   {
+    "name": "phone",
+    "value": "620px"
+   },
+   {
+    "name": "tablet",
+    "value": "980px"
+   },
+   {
+    "name": "desktop-3col",
+    "value": "1100px"
+   }
+  ]
+ },
+ "components": [
+  {
+   "name": "WhatsApp Bar",
+   "kind": "button",
+   "refersTo": "button-whatsapp",
+   "description": "Ação principal, barra de posca.",
+   "html": "<a class=\"ds-zap\" href=\"#\">Perguntar dessa no WhatsApp</a>",
+   "css": ".ds-zap{display:flex;align-items:center;justify-content:center;min-height:58px;padding:0 22px;border-radius:6px;background:var(--accent,#F6E23A);color:var(--on-accent,#16191B);font:800 17px/1.1 Archivo,sans-serif;text-transform:uppercase;letter-spacing:.02em;text-decoration:none}.ds-zap:hover{background:color-mix(in srgb,var(--accent,#F6E23A) 88%,#fff)}.ds-zap:focus-visible{outline:2px solid #16191B;outline-offset:2px}"
+  },
+  {
+   "name": "Outline Button",
+   "kind": "button",
+   "refersTo": "button-outline",
+   "description": "Ação secundária.",
+   "html": "<button class=\"ds-out\">Ver todos</button>",
+   "css": ".ds-out{min-height:48px;padding:0 22px;border:2px solid #16191B;border-radius:6px;background:transparent;color:#16191B;font:800 15px Archivo,sans-serif;text-transform:uppercase;cursor:pointer}.ds-out:hover{background:#16191B;color:#E9E7E2}"
+  },
+  {
+   "name": "Vehicle Card",
+   "kind": "card",
+   "refersTo": "vehicle-card",
+   "description": "Foto como vidro com o preço escrito à mão.",
+   "html": "<article class=\"ds-card\"><div class=\"ds-ph\"><span class=\"ds-pr\">R$ 9.990</span></div><div class=\"ds-b\"><h3><span>HONDA</span> BIZ 125</h3><p>2015/2015 · Manual</p></div></article>",
+   "css": ".ds-card{width:280px;background:#F4F3EF;border:1px solid #C9C7C1;border-radius:8px;overflow:hidden}.ds-ph{aspect-ratio:4/3;background:linear-gradient(115deg,rgba(255,255,255,.1) 0 18%,transparent 18%),linear-gradient(to top,rgba(16,18,20,.8),rgba(16,18,20,.2)),#4A565C;display:flex;align-items:flex-end;padding:14px 16px}.ds-pr{font:34px/1 'Permanent Marker',cursive;color:#F7F7F2;transform:rotate(-3deg)}.ds-b{padding:12px 14px 14px}.ds-b h3{margin:0;font:800 18px Archivo,sans-serif;text-transform:uppercase}.ds-b h3 span{color:#4E5559}.ds-b p{margin:4px 0 0;font:500 14px Archivo,sans-serif;color:#4E5559}"
+  },
+  {
+   "name": "Search",
+   "kind": "input",
+   "refersTo": "search-field",
+   "description": "Busca do estoque.",
+   "html": "<form class=\"ds-s\"><input placeholder=\"Qual moto você procura?\"><button>Buscar</button></form>",
+   "css": ".ds-s{display:flex;gap:10px;padding:6px 6px 6px 16px;background:#F4F3EF;border:2px solid #16191B;border-radius:6px}.ds-s:focus-within{outline:3px solid #F6E23A;outline-offset:2px}.ds-s input{flex:1;border:0;background:none;font:500 16px Archivo,sans-serif;min-height:48px;outline:0}.ds-s button{border:0;border-radius:4px;background:#16191B;color:#E9E7E2;font:800 14px Archivo,sans-serif;text-transform:uppercase;padding:0 20px}"
+  },
+  {
+   "name": "Shortcut Tab",
+   "kind": "chip",
+   "refersTo": "shortcut-tab",
+   "description": "Atalho de estoque com contagem.",
+   "html": "<a class=\"ds-tab\" href=\"#\">Motos <span>12</span></a>",
+   "css": ".ds-tab{display:inline-flex;gap:8px;align-items:center;min-height:44px;padding:0 14px;border:1px solid #A9A6A0;border-radius:6px;font:700 14px Archivo,sans-serif;text-transform:uppercase;color:#16191B;text-decoration:none}.ds-tab span{color:#4E5559;font-variant-numeric:tabular-nums}.ds-tab:hover{border-color:#16191B}"
+  },
+  {
+   "name": "Header",
+   "kind": "nav",
+   "refersTo": "header",
+   "description": "Cabeçalho de asfalto com faixa de posca.",
+   "html": "<header class=\"ds-h\"><b>JF VEÍCULOS</b><nav><a href=\"#\">Motos</a><a href=\"#\">Estoque</a></nav></header>",
+   "css": ".ds-h{display:flex;gap:24px;align-items:center;padding:12px 20px;background:#16191B;border-bottom:3px solid #F6E23A;color:#F7F7F2;font:800 18px Archivo,sans-serif}.ds-h nav a{color:rgba(247,247,242,.72);font:700 14px Archivo,sans-serif;text-transform:uppercase;margin-right:14px;text-decoration:none}.ds-h nav a:hover{color:#F7F7F2}"
+  }
+ ],
+ "narrative": {
+  "northStar": "Preço no Para-brisa",
+  "overview": "O site é o pátio da loja: cada moto tem o preço escrito à mão, com caneta posca, sobre a foto, como no vidro da revenda. Tudo o mais é letreiro de loja em caixa alta condensada.",
+  "keyCharacteristics": [
+   "O preço de cada veículo é escrito à mão sobre a foto, nunca num rótulo cinza abaixo.",
+   "Uma tinta só (posca), sempre sobre escuro ou como fundo inteiro com texto escuro.",
+   "Títulos em Archivo 800 condensado e em caixa alta. A letra de pincel fica só para preço, modelo e recados curtos.",
+   "Cantos secos (4–8px), sem sombra difusa e sem pílulas.",
+   "O botão principal é sempre a barra de posca do WhatsApp, larga e alta."
+  ],
+  "rules": [
+   {
+    "name": "The One Ink Rule",
+    "body": "A tela tem uma tinta só: a cor de posca do tema. Use sempre --accent e --on-accent, nunca um hex fixo, ou a troca de tema no CMS quebra.",
+    "section": "colors"
+   },
+   {
+    "name": "The Ink Needs Dark Rule",
+    "body": "A posca nunca vira texto sobre o concreto claro. Ou ela é o fundo, ou é texto sobre asfalto ou vidro.",
+    "section": "colors"
+   },
+   {
+    "name": "The Price Is Handwritten Rule",
+    "body": "Todo preço visível de veículo é escrito em --font-hand, levemente torto.",
+    "section": "typography"
+   },
+   {
+    "name": "The Pen Is Rare Rule",
+    "body": "A letra de pincel só aparece em preço, modelo, recado curto e numeração.",
+    "section": "typography"
+   },
+   {
+    "name": "The Glass Not Shadow Rule",
+    "body": "Para destacar algo, use vidro escuro ou borda de 1–2px, nunca box-shadow difuso.",
+    "section": "elevation"
+   }
+  ],
+  "dos": [
+   "Do escrever o preço à mão sobre a foto em todo lugar onde um veículo aparece.",
+   "Do usar --accent / --on-accent / --accent-strong para a tinta, nunca um hex fixo.",
+   "Do manter a barra de WhatsApp em posca como a ação mais visível de cada tela.",
+   "Do manter alvos de toque de 44px ou mais.",
+   "Do respeitar prefers-reduced-motion: o traço do preço aparece sem animação."
+  ],
+  "donts": [
+   "Don't colocar selo pequeno acima de título (eyebrow).",
+   "Don't fazer fileiras de cartões iguais com ícone, título e texto.",
+   "Don't usar pílulas, sombras difusas, gradientes decorativos ou glifos (✓, ★) no lugar de ícones.",
+   "Don't usar a letra de pincel em parágrafos, botões ou menus.",
+   "Don't colocar texto em posca sobre o concreto claro."
+  ]
+ }
+}
