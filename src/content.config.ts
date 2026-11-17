@@ -96,8 +96,8 @@ const site = defineCollection({
 const aparencia = defineCollection({
   loader: glob({ pattern: '**/*.json', base: './src/content/aparencia' }),
   schema: z.object({
-    corTema: z.enum(['ambar', 'azul', 'verde', 'vermelho', 'roxo']).default('ambar'),
-    fonteTema: z.enum(['moderno', 'amigavel', 'classico']).default('moderno'),
+    corTema: z.enum(['amarelo', 'ambar', 'azul', 'verde', 'vermelho', 'roxo']).default('amarelo'),
+    fonteTema: z.enum(['parabrisa', 'moderno', 'amigavel', 'classico']).default('parabrisa'),
   }),
 });
 

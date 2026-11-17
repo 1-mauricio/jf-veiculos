@@ -41,7 +41,7 @@ const anunciarHref = loja
         <Icon name="heart" size={19} />
         <span class="jf-fav-count" data-fav-count>0</span>
       </a>
-      <a href={anunciarHref} target="_blank" rel="noopener" class="jf-btn-sell" data-wa-track="header_anunciar">Vender meu veículo</a>
+      <a href={anunciarHref} target="_blank" rel="noopener" class="jf-btn-sell" data-wa-track="header_anunciar">Vender o meu</a>
       <button type="button" id="jf-menu-toggle" class="jf-menu-toggle" aria-label="Abrir menu" aria-expanded="false" aria-controls="jf-mobile-nav">
         <span class="jf-menu-toggle-icon-open"><Icon name="menu" size={22} /></span>
         <span class="jf-menu-toggle-icon-close"><Icon name="x" size={22} /></span>
@@ -63,90 +63,77 @@ const anunciarHref = loja
     top: 0;
     z-index: 50;
     background: var(--surface-header);
-    backdrop-filter: blur(14px);
-    border-bottom: 1px solid var(--border-default);
+    color: var(--posca-white);
+    border-bottom: 3px solid var(--accent);
   }
   .jf-header-inner {
     max-width: 1240px;
     margin: 0 auto;
-    padding: 14px 24px;
+    padding: 10px 24px;
     display: flex;
     align-items: center;
     gap: 28px;
   }
-  .jf-brand {
-    display: flex;
-    align-items: center;
-    gap: 11px;
-    flex-shrink: 0;
-  }
-  .jf-brand-mark {
-    width: 40px;
-    height: 40px;
-    border-radius: var(--radius-md);
-    background: var(--accent);
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    font: 700 19px var(--font-display);
-    color: var(--white);
-    letter-spacing: -1px;
-  }
+  .jf-brand { display: flex; align-items: center; gap: 12px; flex-shrink: 0; color: var(--posca-white); }
+  .jf-brand:hover { color: var(--posca-white); }
   .jf-brand-text { line-height: 1; }
-  .jf-brand-name { font: 700 18px var(--font-display); letter-spacing: -.3px; color: var(--text-primary); }
-  .jf-brand-tag { font-size: 10.5px; letter-spacing: 1.5px; color: var(--text-secondary); text-transform: uppercase; margin-top: 3px; }
+  .jf-brand-name { font: 800 19px var(--font-display); font-stretch: 85%; text-transform: uppercase; letter-spacing: .01em; }
+  /* A tagline já é o título da vitrine; no cabeçalho ela só repetiria. */
+  .jf-brand-tag { display: none; }
 
-  .jf-nav { display: flex; gap: 4px; margin-left: 8px; }
+  .jf-nav { display: flex; gap: 2px; margin-left: 8px; }
   .jf-nav-link {
-    padding: 9px 14px;
-    border-radius: var(--radius-md);
-    font-weight: 600;
-    font-size: 14.5px;
-    color: var(--text-secondary);
-    transition: background var(--dur-base) var(--ease-standard), color var(--dur-base) var(--ease-standard);
+    padding: 10px 14px;
+    font: 700 14px var(--font-body);
+    letter-spacing: .04em;
+    text-transform: uppercase;
+    color: var(--text-on-dark-secondary);
+    border-bottom: 2px solid transparent;
+    transition: color var(--dur-fast) var(--ease-standard), border-color var(--dur-fast) var(--ease-standard);
   }
-  .jf-nav-link:hover { background: var(--surface-muted); color: var(--text-primary); }
+  .jf-nav-link:hover { color: var(--posca-white); border-bottom-color: var(--accent-on-dark); }
 
-  .jf-header-actions { margin-left: auto; display: flex; align-items: center; gap: 12px; }
+  .jf-header-actions { margin-left: auto; display: flex; align-items: center; gap: 8px; }
 
   .jf-icon-btn {
     position: relative; display: flex; align-items: center; justify-content: center;
-    width: 44px; height: 44px; border-radius: var(--radius-full); color: var(--text-secondary);
+    width: 44px; height: 44px; border-radius: var(--radius-md); color: var(--text-on-dark-secondary);
     border: none; background: none; cursor: pointer; padding: 0;
-    transition: background var(--dur-base) var(--ease-standard), color var(--dur-base) var(--ease-standard);
+    transition: background var(--dur-fast) var(--ease-standard), color var(--dur-fast) var(--ease-standard);
   }
-  .jf-icon-btn:hover { background: var(--surface-muted); color: var(--text-primary); }
+  .jf-icon-btn:hover { background: var(--glass-700); color: var(--posca-white); }
   .jf-icon-btn span { display: flex; }
   .jf-theme-sun { display: none !important; }
   :global(:root[data-theme="dark"]) .jf-theme-sun { display: flex !important; }
   :global(:root[data-theme="dark"]) .jf-theme-moon { display: none !important; }
   .jf-fav-nav :global(svg) { fill: none; stroke: currentColor; }
-  .jf-fav-nav.has-favs :global(svg) { fill: var(--accent); stroke: var(--accent); }
+  .jf-fav-nav.has-favs :global(svg) { fill: var(--accent-on-dark); stroke: var(--accent-on-dark); }
   .jf-fav-count {
-    position: absolute; top: -2px; right: -2px; min-width: 18px; height: 18px; padding: 0 4px;
-    border-radius: var(--radius-full); background: var(--accent); color: var(--white);
-    font-size: 11px; font-weight: 700; display: flex; align-items: center; justify-content: center;
+    position: absolute; top: 2px; right: 2px; min-width: 17px; height: 17px; padding: 0 4px;
+    border-radius: var(--radius-sm); background: var(--accent); color: var(--on-accent);
+    font: 800 10.5px/1 var(--font-body); display: flex; align-items: center; justify-content: center;
   }
   .jf-fav-nav:not(.has-favs) .jf-fav-count { display: none; }
   .jf-btn-sell {
-    padding: 11px 18px;
-    border-radius: var(--radius-full);
-    border: 1px solid var(--border-strong);
-    background: var(--surface-card);
-    color: var(--text-primary);
-    font-weight: 700;
-    font-size: 14px;
+    min-height: 44px; display: inline-flex; align-items: center;
+    padding: 0 16px;
+    border-radius: var(--radius-md);
+    border: 2px solid var(--glass-500);
+    color: var(--posca-white);
+    font: 800 13px var(--font-body);
+    letter-spacing: .04em;
+    text-transform: uppercase;
     white-space: nowrap;
-    transition: border-color var(--dur-base) var(--ease-standard);
+    transition: border-color var(--dur-fast) var(--ease-standard);
   }
-  .jf-btn-sell:hover { border-color: var(--text-primary); color: var(--text-primary); }
+  .jf-btn-sell:hover { border-color: var(--accent-on-dark); color: var(--posca-white); }
 
   .jf-menu-toggle {
     display: none; align-items: center; justify-content: center;
-    width: 44px; height: 44px; border-radius: var(--radius-full); border: none; background: none;
-    color: var(--text-primary); cursor: pointer; flex-shrink: 0;
+    width: 44px; height: 44px; border-radius: var(--radius-md); border: none; background: none;
+    color: var(--posca-white); cursor: pointer; flex-shrink: 0;
   }
-  .jf-menu-toggle:hover { background: var(--surface-muted); }
+  .jf-menu-toggle:hover { background: var(--glass-700); }
   .jf-menu-toggle-icon-close { display: none; }
 
   .jf-mobile-nav { display: none; }
@@ -158,32 +145,29 @@ const anunciarHref = loja
     .jf-header.is-menu-open .jf-menu-toggle-icon-close { display: block; }
 
     .jf-mobile-nav {
-      display: flex; flex-direction: column; gap: 2px;
+      display: flex; flex-direction: column;
       /* interpolate-size anima até a altura natural; visibility tira os links do Tab quando fechado. */
       interpolate-size: allow-keywords;
       height: 0; overflow: hidden; padding: 0 16px; visibility: hidden;
-      border-top: 1px solid transparent;
       transition-property: height, padding, visibility;
       transition-duration: var(--dur-base);
       transition-timing-function: var(--ease-standard);
       transition-behavior: allow-discrete;
     }
-    .jf-header.is-menu-open .jf-mobile-nav {
-      height: auto; padding: 10px 16px 16px; visibility: visible; border-top-color: var(--border-default);
-    }
+    .jf-header.is-menu-open .jf-mobile-nav { height: auto; padding: 4px 16px 16px; visibility: visible; }
     .jf-mobile-nav-link {
-      padding: 12px 10px; border-radius: var(--radius-md); font-weight: 600; font-size: 15px; color: var(--text-primary);
+      padding: 14px 4px; border-bottom: 1px solid var(--glass-700);
+      font: 800 17px var(--font-body); letter-spacing: .03em; text-transform: uppercase; color: var(--posca-white);
     }
-    .jf-mobile-nav-link:hover { background: var(--surface-muted); }
+    .jf-mobile-nav-link:hover { color: var(--accent-on-dark); }
   }
   @media (max-width: 620px) {
-    .jf-header-inner { gap: 8px; padding: 12px 16px; }
-    .jf-brand { gap: 8px; min-width: 0; }
+    .jf-header-inner { gap: 8px; padding: 8px 12px 8px 16px; }
+    .jf-brand { gap: 10px; min-width: 0; }
     .jf-brand-text { min-width: 0; }
-    .jf-brand-name { font-size: 15px; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+    .jf-brand-name { font-size: 17px; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
     .jf-brand-tag { display: none; }
-    .jf-header-actions { gap: 8px; flex-shrink: 0; }
     .jf-btn-sell { display: none; }
-    .jf-header-actions { gap: 4px; }
+    .jf-header-actions { gap: 2px; flex-shrink: 0; }
   }
 </style>

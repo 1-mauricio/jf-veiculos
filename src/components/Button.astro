@@ -27,28 +27,29 @@ const Tag = href ? 'a' : 'button';
     display: inline-flex;
     align-items: center;
     justify-content: center;
-    gap: 9px;
-    border: none;
-    border-radius: var(--radius-full);
-    font-weight: 700;
-    font-size: 15px;
-    padding: 13px 26px;
+    gap: 10px;
+    min-height: 48px;
+    border: 2px solid transparent;
+    border-radius: var(--radius-md);
+    font: 800 15px/1 var(--font-body);
+    letter-spacing: .02em;
+    text-transform: uppercase;
+    padding: 0 22px;
     cursor: pointer;
     white-space: nowrap;
-    transition: background var(--dur-base) var(--ease-standard), border-color var(--dur-base) var(--ease-standard);
+    transition: background var(--dur-fast) var(--ease-standard), border-color var(--dur-fast) var(--ease-standard), transform var(--dur-fast) var(--ease-standard);
   }
-  .jf-btn-accent { background: var(--accent); color: var(--white); }
-  .jf-btn-accent:hover { background: var(--accent-deep); color: var(--white); }
+  .jf-btn:active { transform: translateY(1px); }
+  .jf-btn[hidden] { display: none; }
+  .jf-btn-accent, .jf-btn-whatsapp { background: var(--accent); color: var(--on-accent); }
+  .jf-btn-accent:hover, .jf-btn-whatsapp:hover { background: color-mix(in srgb, var(--accent) 86%, var(--text-primary)); color: var(--on-accent); }
 
-  .jf-btn-dark { background: var(--black-900); color: var(--white); border: 1px solid var(--black-700); }
-  .jf-btn-dark:hover { background: var(--black-800); color: var(--white); }
+  .jf-btn-dark { background: var(--asphalt-900); color: var(--posca-white); border-color: var(--asphalt-900); }
+  .jf-btn-dark:hover { background: var(--glass-700); color: var(--posca-white); }
 
-  .jf-btn-outline { background: transparent; color: var(--text-primary); border: 1px solid var(--border-default); }
-  .jf-btn-outline:hover { border-color: var(--border-strong); }
+  .jf-btn-outline { background: transparent; color: var(--text-primary); border-color: var(--text-primary); }
+  .jf-btn-outline:hover { background: var(--text-primary); color: var(--surface-page); }
 
-  .jf-btn-white { background: var(--white); color: var(--black-900); }
-  .jf-btn-white:hover { background: var(--gray-100); color: var(--black-900); }
-
-  .jf-btn-whatsapp { background: #0F7A40; color: var(--white); }
-  .jf-btn-whatsapp:hover { background: #0B6534; color: var(--white); }
+  .jf-btn-white { background: var(--posca-white); color: var(--asphalt-900); }
+  .jf-btn-white:hover { background: var(--concrete-200); color: var(--asphalt-900); }
 </style>

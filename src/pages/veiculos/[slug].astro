@@ -106,13 +106,14 @@ const jsonLd = {
           ) : (
             <span class="jf-galeria-label">SEM FOTO</span>
           )}
+          <span class="jf-galeria-ink jf-hand" aria-hidden="true">{v.preco > 0 ? brl(v.preco) : 'consulte'}</span>
           {fotos.length > 1 && (
             <>
               <button type="button" class="jf-galeria-arrow jf-galeria-arrow-prev" data-gallery-prev aria-label="Foto anterior">
-                <Icon name="chevron-left" size={20} color="var(--text-primary)" />
+                <Icon name="chevron-left" size={20} color="currentColor" />
               </button>
               <button type="button" class="jf-galeria-arrow jf-galeria-arrow-next" data-gallery-next aria-label="Próxima foto">
-                <Icon name="chevron-right" size={20} color="var(--text-primary)" />
+                <Icon name="chevron-right" size={20} color="currentColor" />
               </button>
             </>
           )}
@@ -130,7 +131,7 @@ const jsonLd = {
           <h1 class="jf-det-title">{v.nome}</h1>
           <div class="jf-det-chips">
             <span class="jf-chip">{v.ano}/{v.anoModelo}</span>
-            <span class="jf-chip">{kmTexto}</span>
+            {v.km != null && <span class="jf-chip">{kmTexto}</span>}
             <span class="jf-chip">{v.cambio}</span>
             <span class="jf-chip">{v.combustivel}</span>
             <span class="jf-chip">{cidade} · {uf}</span>
@@ -145,7 +146,7 @@ const jsonLd = {
         <div class="jf-det-block">
           <h2 class="jf-det-h2">Ficha técnica</h2>
           <div class="jf-ficha-grid">
-            {fichas.map(([label, value]) => (
+            {fichas.filter(([, value]) => value && String(value).trim() && value !== '—').map(([label, value]) => (
               <div class="jf-ficha-item">
                 <span class="jf-ficha-label">{label}</span>
                 <span class="jf-ficha-value">{value}</span>
@@ -159,7 +160,7 @@ const jsonLd = {
             <h2 class="jf-det-h2">Itens e opcionais</h2>
             <div class="jf-opcionais-grid">
               {v.opcionais.map((op) => (
-                <div class="jf-opcional"><span class="jf-opcional-check">✓</span> {op}</div>
+                <div class="jf-opcional"><span class="jf-opcional-check" aria-hidden="true"><Icon name="check" size={16} color="currentColor" /></span> {op}</div>
               ))}
             </div>
           </div>
@@ -169,19 +170,19 @@ const jsonLd = {
           <h2 class="jf-det-h3">Histórico e procedência</h2>
           <div class="jf-procedencia-grid">
             <div class="jf-procedencia-item">
-              <span class="jf-procedencia-icon">✓</span>
+              <span class="jf-procedencia-icon" aria-hidden="true"><Icon name="check" size={18} color="currentColor" /></span>
               <div><div class="jf-procedencia-title">Laudo cautelar aprovado</div><div class="jf-procedencia-sub">Sem indícios de sinistro ou colisão grave.</div></div>
             </div>
             <div class="jf-procedencia-item">
-              <span class="jf-procedencia-icon">✓</span>
+              <span class="jf-procedencia-icon" aria-hidden="true"><Icon name="check" size={18} color="currentColor" /></span>
               <div><div class="jf-procedencia-title">Revisões em dia</div><div class="jf-procedencia-sub">Manutenção documentada e comprovada.</div></div>
             </div>
             <div class="jf-procedencia-item">
-              <span class="jf-procedencia-icon">✓</span>
+              <span class="jf-procedencia-icon" aria-hidden="true"><Icon name="check" size={18} color="currentColor" /></span>
               <div><div class="jf-procedencia-title">Sem débitos ou multas</div><div class="jf-procedencia-sub">IPVA e licenciamento quitados.</div></div>
             </div>
             <div class="jf-procedencia-item">
-              <span class="jf-procedencia-icon">✓</span>
+              <span class="jf-procedencia-icon" aria-hidden="true"><Icon name="check" size={18} color="currentColor" /></span>
               <div><div class="jf-procedencia-title">Inspeção de 220 itens</div><div class="jf-procedencia-sub">Checagem completa antes do anúncio.</div></div>
             </div>
           </div>
@@ -193,16 +194,16 @@ const jsonLd = {
         <div class="jf-price-card">
           <div class="jf-price-label">Valor à vista</div>
           <div class="jf-price-value">{brl(v.preco)}</div>
-          <div class="jf-price-parcela" id="jf-price-parcela">ou financie em até 60x · aprovação em minutos</div>
+          <div class="jf-price-parcela" id="jf-price-parcela">Financiamento sob consulta, direto no WhatsApp</div>
           <a href={whatsappHref} target="_blank" rel="noopener" class="jf-whatsapp-btn" data-wa-track="veiculo_detalhe" data-wa-vehicle={v.nome}>Falar no WhatsApp</a>
           <button type="button" class="jf-fav-btn" data-fav-btn data-vehicle-id={vehicle.id}>
             <Icon name="heart" size={16} />
             <span data-fav-label>Favoritar</span>
           </button>
           <ul class="jf-trust">
-            <li><span>✓</span> Laudo cautelar aprovado</li>
-            <li><span>✓</span> Garantia de motor e câmbio</li>
-            <li><span>✓</span> Revisão completa antes da entrega</li>
+            <li><span aria-hidden="true"><Icon name="check" size={16} color="currentColor" /></span> Laudo cautelar aprovado</li>
+            <li><span aria-hidden="true"><Icon name="check" size={16} color="currentColor" /></span> Garantia de motor e câmbio</li>
+            <li><span aria-hidden="true"><Icon name="check" size={16} color="currentColor" /></span> Revisão completa antes da entrega</li>
           </ul>
         </div>
 
@@ -278,7 +279,7 @@ const jsonLd = {
 
   .jf-galeria {
     position: relative; border-radius: var(--radius-lg); overflow: hidden; height: 420px;
-    display: flex; align-items: center; justify-content: center; background: var(--surface-muted);
+    display: flex; align-items: center; justify-content: center; background: var(--surface-glass);
     touch-action: pan-y; user-select: none; cursor: grab;
   }
   /* Fundo desfocado com a própria foto: preenche as laterais de fotos verticais sem cortar a imagem. */
@@ -287,14 +288,20 @@ const jsonLd = {
     filter: blur(22px) saturate(1.1); opacity: .45; pointer-events: none;
   }
   .jf-galeria img { position: relative; z-index: 1; width: 100%; height: 100%; object-fit: contain; pointer-events: none; }
+  .jf-galeria-ink {
+    position: absolute; z-index: 2; left: 20px; bottom: 16px; pointer-events: none;
+    font-size: clamp(40px, 7vw, 64px); line-height: 1; color: var(--posca-white);
+    transform: rotate(-4deg); transform-origin: left bottom; text-shadow: 0 2px 0 rgba(0,0,0,.35);
+  }
+  .jf-galeria::after { content: ''; position: absolute; inset: 0; z-index: 1; pointer-events: none; background: linear-gradient(to top, rgba(16,18,20,.7), rgba(16,18,20,0) 45%); }
   .jf-galeria-label { font: 600 13px var(--font-display); letter-spacing: 1px; color: var(--text-tertiary); }
   .jf-galeria-badge {
     position: absolute; top: 16px; left: 16px; background: rgba(18, 18, 20, .82); color: var(--white);
-    font-size: 12px; font-weight: 700; padding: 6px 12px; border-radius: var(--radius-full);
+    font-size: 12px; font-weight: 700; padding: 6px 12px; border-radius: var(--radius-md);
   }
   .jf-galeria-arrow {
-    position: absolute; top: 50%; transform: translateY(-50%); width: 44px; height: 44px;
-    border-radius: var(--radius-full); background: var(--surface-overlay); border: none;
+    position: absolute; z-index: 3; color: var(--posca-white); top: 50%; transform: translateY(-50%); width: 44px; height: 44px;
+    border-radius: var(--radius-md); background: var(--surface-overlay); border: none;
     display: flex; align-items: center; justify-content: center; cursor: pointer; box-shadow: var(--shadow-card);
   }
   .jf-galeria-arrow-prev { left: 14px; }
@@ -310,13 +317,13 @@ const jsonLd = {
 
   .jf-det-title-block { margin-top: 28px; }
   .jf-det-eyebrow { font-size: 13px; color: var(--text-tertiary); font-weight: 700; text-transform: uppercase; letter-spacing: .5px; }
-  .jf-det-title { font: 700 32px var(--font-display); letter-spacing: -.8px; margin: 6px 0 14px; }
+  .jf-det-title { font: 800 38px/1.02 var(--font-display); font-stretch: 80%; text-transform: uppercase; margin: 6px 0 14px; }
   .jf-det-chips { display: flex; gap: 8px; flex-wrap: wrap; }
   .jf-chip { font-size: 12px; color: var(--text-secondary); background: var(--surface-muted); padding: 4px 9px; border-radius: var(--radius-md); }
 
   .jf-det-block { margin-top: 30px; }
-  .jf-det-h2 { font: 700 20px var(--font-display); margin: 0 0 12px; }
-  .jf-det-h3 { font: 700 18px var(--font-display); margin: 0 0 16px; }
+  .jf-det-h2 { font: 800 22px var(--font-display); font-stretch: 85%; text-transform: uppercase; margin: 0 0 12px; }
+  .jf-det-h3 { font: 800 18px var(--font-display); font-stretch: 85%; text-transform: uppercase; margin: 0 0 16px; }
   .jf-det-desc { font: var(--text-body-lg); color: var(--text-secondary); line-height: 1.75; margin: 0; }
 
   .jf-ficha-grid {
@@ -347,17 +354,17 @@ const jsonLd = {
     box-shadow: var(--shadow-card); padding: 24px;
   }
   .jf-price-label { font-size: 13px; color: var(--text-secondary); }
-  .jf-price-value { font: 700 32px var(--font-display); letter-spacing: -.6px; margin: 4px 0 3px; }
+  .jf-price-value { font: 400 46px/1 var(--font-hand); transform: rotate(-3deg); transform-origin: left; margin: 10px 0 8px; }
   .jf-price-parcela { font-size: 13.5px; color: var(--text-secondary); margin-bottom: 18px; }
   .jf-whatsapp-btn {
-    display: flex; align-items: center; justify-content: center; gap: 10px; background: var(--wa); color: var(--white);
-    font-weight: 700; font-size: 16px; padding: 15px; border-radius: var(--radius-full); margin-bottom: 10px;
+    display: flex; align-items: center; justify-content: center; gap: 10px; background: var(--accent); color: var(--on-accent); text-transform: uppercase; font-weight: 800;
+    font-weight: 700; font-size: 16px; padding: 15px; border-radius: var(--radius-md); margin-bottom: 10px;
   }
-  .jf-whatsapp-btn:hover { filter: brightness(1.1); color: var(--white); }
+  .jf-whatsapp-btn:hover { background: color-mix(in srgb, var(--accent) 86%, var(--text-primary)); color: var(--on-accent); }
   .jf-fav-btn {
     width: 100%; display: flex; align-items: center; justify-content: center; gap: 8px;
     background: var(--surface-card); border: 1px solid var(--border-default); color: var(--text-secondary);
-    font-weight: 700; font-size: 14px; padding: 12px; min-height: 44px; border-radius: var(--radius-full); cursor: pointer;
+    font-weight: 700; font-size: 14px; padding: 12px; min-height: 44px; border-radius: var(--radius-md); cursor: pointer;
   }
   .jf-fav-btn :global(svg) { fill: none; stroke: currentColor; transition: fill var(--dur-fast) var(--ease-standard); }
   .jf-fav-btn.is-active { color: var(--accent); border-color: var(--accent-soft); background: var(--accent-soft); }
@@ -382,7 +389,7 @@ const jsonLd = {
   .jf-sim-result-row strong { color: var(--text-primary); }
   .jf-sim-cta {
     display: flex; justify-content: center; align-items: center; min-height: 44px; margin-top: 14px; padding: 13px;
-    border: 1px solid var(--text-primary); border-radius: var(--radius-full); font-size: 15px; font-weight: 700; color: var(--text-primary);
+    border: 1px solid var(--text-primary); border-radius: var(--radius-md); font-size: 15px; font-weight: 700; color: var(--text-primary);
   }
   .jf-trust { list-style: none; margin: 18px 0 0; padding: 16px 0 0; border-top: 1px solid var(--border-default); display: flex; flex-direction: column; gap: 10px; font-size: 14px; color: var(--text-secondary); }
   .jf-trust span { color: var(--success); font-weight: 800; margin-right: 8px; }
@@ -390,7 +397,7 @@ const jsonLd = {
   .jf-sim-disclaimer { font-size: 12px; color: var(--text-tertiary); margin: 14px 0 0; line-height: 1.5; }
 
   .jf-similares { margin-top: 50px; }
-  .jf-similares-h2 { font: 700 24px var(--font-display); letter-spacing: -.6px; margin: 0 0 20px; }
+  .jf-similares-h2 { font: 800 30px var(--font-display); font-stretch: 82%; text-transform: uppercase; margin: 0 0 20px; }
   .jf-g4 { display: grid; grid-template-columns: repeat(4, 1fr); gap: 18px; }
 
   @media (max-width: 980px) {
@@ -410,8 +417,8 @@ const jsonLd = {
     }
     .jf-mbar-info { flex: 1; min-width: 0; }
     .jf-mbar-name { font-size: 12px; color: var(--text-secondary); white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
-    .jf-mbar-price { font: 700 20px var(--font-display); }
-    .jf-mbar-btn { background: var(--wa); color: var(--white); border-radius: var(--radius-full); padding: 0 22px; min-height: 48px; display: flex; align-items: center; font-size: 15px; font-weight: 700; }
+    .jf-mbar-price { font: 400 24px var(--font-hand); }
+    .jf-mbar-btn { background: var(--accent); color: var(--on-accent); text-transform: uppercase; border-radius: var(--radius-md); padding: 0 22px; min-height: 48px; display: flex; align-items: center; font-size: 15px; font-weight: 700; }
     .jf-ficha-grid, .jf-opcionais-grid, .jf-procedencia-grid, .jf-g4 { grid-template-columns: 1fr; }
   }
 </style>

@@ -140,7 +140,8 @@ collections:
             name: "corTema"
             widget: "select"
             options:
-              - { label: "Âmbar (padrão)", value: "ambar" }
+              - { label: "Amarelo posca (padrão)", value: "amarelo" }
+              - { label: "Âmbar", value: "ambar" }
               - { label: "Azul", value: "azul" }
               - { label: "Verde", value: "verde" }
               - { label: "Vermelho", value: "vermelho" }
@@ -149,6 +150,7 @@ collections:
             name: "fonteTema"
             widget: "select"
             options:
+              - { label: "Para-brisa (padrão)", value: "parabrisa" }
               - { label: "Moderno (Space Grotesk + Inter)", value: "moderno" }
               - { label: "Amigável (Poppins + Inter)", value: "amigavel" }
               - { label: "Clássico (Playfair Display + Source Sans 3)", value: "classico" }

@@ -1,18 +1,19 @@
-/* A fonte é carregada dinamicamente pelo BaseLayout, conforme o tema escolhido em /admin > Aparência. */
+/* A família é carregada pelo BaseLayout conforme o tema de /admin > Aparência. A letra de pincel é fixa: é a caneta da loja. */
 :root {
-  --font-display: 'Space Grotesk', ui-sans-serif, sans-serif;
-  --font-body: 'Inter', ui-sans-serif, sans-serif;
+  --font-display: 'Archivo', ui-sans-serif, sans-serif;
+  --font-body: 'Archivo', ui-sans-serif, sans-serif;
+  --font-hand: 'Permanent Marker', 'Marker Felt', cursive;
 
-  --text-display: 600 40px/1.08 var(--font-display);
-  --text-h1: 600 28px/1.2 var(--font-display);
-  --text-h2: 600 22px/1.25 var(--font-display);
-  --text-h3: 600 18px/1.3 var(--font-display);
-  --text-body-lg: 400 16px/1.5 var(--font-body);
-  --text-body: 400 16px/1.5 var(--font-body);
+  --text-display: 800 44px/1.02 var(--font-display);
+  --text-h1: 800 30px/1.1 var(--font-display);
+  --text-h2: 800 24px/1.15 var(--font-display);
+  --text-h3: 700 18px/1.25 var(--font-display);
+  --text-body-lg: 400 17px/1.5 var(--font-body);
+  --text-body: 400 15px/1.5 var(--font-body);
   --text-small: 400 13px/1.4 var(--font-body);
-  --text-caption: 500 12px/1.3 var(--font-body);
-  --text-button: 600 15px/1 var(--font-body);
+  --text-caption: 700 12px/1.3 var(--font-body);
+  --text-button: 800 15px/1 var(--font-body);
 
   --tracking-tight: -0.01em;
-  --tracking-wide: 0.02em;
+  --tracking-wide: 0.06em;
 }

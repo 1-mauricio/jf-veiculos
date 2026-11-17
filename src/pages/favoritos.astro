@@ -31,7 +31,7 @@ const veiculos = await getCollection('veiculos');
     <div id="jf-fav-empty" class="jf-empty" hidden>
       <div class="jf-empty-icon"><Icon name="heart" size={40} color="var(--text-tertiary)" /></div>
       <div class="jf-empty-title">Você ainda não favoritou nenhum veículo</div>
-      <div class="jf-empty-sub">Clique no coração de um anúncio para salvá-lo aqui.</div>
+      <div class="jf-empty-sub">Toque no coração de um anúncio para salvá-lo aqui.</div>
       <Button href="/veiculos">Ver todos os veículos</Button>
     </div>
   </div>
@@ -48,7 +48,7 @@ const veiculos = await getCollection('veiculos');
   .jf-breadcrumb a { color: var(--text-tertiary); display: inline-flex; align-items: center; min-height: 44px; }
 
   .jf-fav-head { display: flex; align-items: flex-end; justify-content: space-between; gap: 16px; margin-bottom: 24px; flex-wrap: wrap; }
-  .jf-h1 { font: 700 28px var(--font-display); letter-spacing: -.6px; margin: 0 0 4px; }
+  .jf-h1 { font: 800 34px/1.05 var(--font-display); font-stretch: 80%; text-transform: uppercase; margin: 0 0 4px; }
   .jf-fav-count { font-size: 14px; color: var(--text-secondary); }
 
   .jf-g3 { display: grid; grid-template-columns: repeat(3, 1fr); gap: 18px; }

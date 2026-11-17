@@ -1,77 +1,95 @@
+/*
+ * Mundo "Preço no Para-brisa": chão de asfalto/concreto, vidro escuro e tinta de posca.
+ * O acento (a cor da posca) vem do tema escolhido em /admin > Aparência; o padrão é amarelo.
+ */
 :root {
-  --black-950: #0E0E10;
-  --black-900: #121214;
-  --black-800: #1C1C1F;
-  --black-700: #2A2A2E;
+  --asphalt-950: #101214;
+  --asphalt-900: #16191B;
+  --asphalt-800: #1E2225;
+  --glass-700: #262D31;
+  --glass-600: #2F383D;
+  --glass-500: #4A565C;
 
-  --gray-600: #52525B;
-  --gray-500: #6B7280;
-  --gray-400: #9CA3AF;
-  --gray-300: #D4D4D8;
-  --gray-200: #E4E4E7;
-  --gray-100: #F1F1F3;
-  --gray-50: #F7F7F8;
+  --concrete-400: #9AA0A3;
+  --concrete-300: #C9C7C1;
+  --concrete-200: #DDDAD3;
+  --concrete-100: #E9E7E2;
+  --concrete-50: #F4F3EF;
 
+  --posca-white: #F7F7F2;
   --white: #FFFFFF;
 
-  --amber-700: #96631E;
-  --amber-600: #C8862B;
-  --amber-500: #DA9F4A;
-  --amber-100: #F6E7D2;
+  /* Nomes antigos mantidos para o widget de chat e páginas internas. */
+  --black-950: var(--asphalt-950);
+  --black-900: var(--asphalt-900);
+  --black-800: var(--asphalt-800);
+  --black-700: var(--glass-700);
+  --gray-600: #4E5559;
+  --gray-500: #646B6F;
+  --gray-400: var(--concrete-400);
+  --gray-300: var(--concrete-300);
+  --gray-200: var(--concrete-200);
+  --gray-100: var(--concrete-100);
+  --gray-50: var(--concrete-50);
 
   --red-600: #C4463A;
   --green-600: #2E7D51;
+  --whatsapp: #0F7A40;
 
-  --surface-page: var(--white);
-  --surface-page-dark: var(--black-950);
-  --surface-card: var(--white);
-  --surface-sunken: var(--gray-50);
-  --surface-inverse: var(--black-900);
-  --surface-muted: var(--gray-100);
-  --surface-header: rgba(255, 255, 255, 0.88);
-  --surface-overlay: rgba(255, 255, 255, 0.92);
-  --surface-band: var(--white);
+  /* Dia: concreto claro. O vidro (fotos, destaque) continua escuro nos dois temas. */
+  --surface-page: var(--concrete-100);
+  --surface-page-dark: var(--asphalt-900);
+  --surface-card: var(--concrete-50);
+  --surface-sunken: var(--concrete-100);
+  --surface-inverse: var(--asphalt-900);
+  --surface-muted: var(--concrete-200);
+  --surface-header: var(--asphalt-900);
+  --surface-overlay: rgba(22, 25, 27, 0.78);
+  --surface-band: var(--concrete-50);
+  --surface-glass: var(--glass-700);
 
-  --border-default: var(--gray-200);
-  --border-strong: var(--gray-300);
+  --border-default: var(--concrete-300);
+  --border-strong: #A9A6A0;
 
-  --text-primary: var(--black-900);
-  --text-secondary: var(--gray-600);
-  --text-tertiary: var(--gray-600);
-  --text-label: var(--gray-500);
-  --text-on-dark: var(--white);
-  --text-on-dark-secondary: rgba(255, 255, 255, 0.64);
+  --text-primary: var(--asphalt-900);
+  --text-secondary: #4E5559;
+  --text-tertiary: #4E5559;
+  --text-label: #5A6064;
+  --text-on-dark: var(--posca-white);
+  --text-on-dark-secondary: rgba(247, 247, 242, 0.72);
 
-  --accent: var(--amber-600);
-  --accent-strong: var(--amber-700);
-  --accent-deep: var(--amber-700);
-  --accent-soft: var(--amber-100);
-  --accent-on-dark: var(--amber-500);
-  --focus-ring: var(--amber-600);
+  --accent: #F6E23A;
+  --accent-strong: #5C5000;
+  --accent-deep: #5C5000;
+  --accent-soft: #FBF3B8;
+  --accent-on-dark: #F6E23A;
+  --on-accent: var(--asphalt-900);
+  --focus-ring: var(--asphalt-900);
 
   --danger: var(--red-600);
   --success: var(--green-600);
 }
 
-/* Tema escuro: ativado por data-theme="dark" no <html> (toggle do Header). */
+/* Noite: asfalto. Ativado por data-theme="dark" no <html> (toggle do Header). */
 :root[data-theme="dark"] {
   color-scheme: dark;
-  --surface-page: var(--black-950);
-  --surface-card: #18181B;
-  --surface-sunken: var(--black-950);
-  --surface-muted: #26262B;
-  --surface-header: rgba(14, 14, 16, 0.85);
-  --surface-overlay: rgba(24, 24, 27, 0.92);
-  --surface-band: #141417;
+  --surface-page: var(--asphalt-900);
+  --surface-card: var(--asphalt-800);
+  --surface-sunken: var(--asphalt-900);
+  --surface-muted: var(--glass-700);
+  --surface-header: var(--asphalt-950);
+  --surface-overlay: rgba(16, 18, 20, 0.8);
+  --surface-band: var(--asphalt-950);
 
-  --border-default: #2E2E33;
-  --border-strong: #3F3F46;
+  --border-default: #30373B;
+  --border-strong: var(--glass-500);
 
-  --text-primary: #F4F4F5;
-  --text-secondary: #A1A1AA;
-  --text-tertiary: #A1A1AA;
-  --text-label: #A1A1AA;
+  --text-primary: var(--posca-white);
+  --text-secondary: #AEB3B5;
+  --text-tertiary: #AEB3B5;
+  --text-label: #AEB3B5;
 
-  /* Vermelho escuro some no fundo preto: textos de destaque usam a versão clara. */
+  /* Texto de destaque usa a própria posca no escuro. */
   --accent-strong: var(--accent-on-dark);
+  --focus-ring: var(--accent-on-dark);
 }
