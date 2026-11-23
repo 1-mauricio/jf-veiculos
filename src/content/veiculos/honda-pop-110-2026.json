@@ -1,0 +1,33 @@
+{
+  "nome": "POP 110",
+  "marca": "Honda",
+  "modelo": "POP 110",
+  "tipo": "moto",
+  "categoria": "",
+  "ano": 2026,
+  "anoModelo": 2026,
+  "preco": 13990,
+  "km": 6900,
+  "cambio": "Manual",
+  "combustivel": "Gasolina",
+  "cor": "Branca",
+  "cidade": "Recife",
+  "uf": "PE",
+  "destaque": true,
+  "lancamento": false,
+  "fotos": [
+    "/images/veiculos/4badbc90-9797-4a5a-b553-39c8023fc2b8.jpeg",
+    "/images/veiculos/98c96928-91e3-407c-b672-3d2fa9b8dc8b.jpeg",
+    "/images/veiculos/a49a5a2d-29c5-4ee5-91af-e72f093c5622.jpeg"
+  ],
+  "descricao": "A Honda Pop 110i ES é uma motocicleta urbana de entrada focada em economia, leveza e praticidade, equipada com motor de 109,5 cc, partida elétrica e câmbio semiautomático de 4 marchas.",
+  "opcionais": [
+    "Único dono.",
+    "Manual e Chave reserva."
+  ],
+  "motor": "",
+  "potencia": "",
+  "portas": null,
+  "cilindrada": "",
+  "criadoEm": ""
+}
