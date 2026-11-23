@@ -1,0 +1,32 @@
+{
+  "nome": "CG 160 FAN",
+  "marca": "Honda",
+  "modelo": "CG 160 FAN",
+  "tipo": "moto",
+  "categoria": "",
+  "ano": 2025,
+  "anoModelo": 2025,
+  "preco": 19990,
+  "km": 37000,
+  "cambio": "Manual",
+  "combustivel": "Flex",
+  "cor": "Azul",
+  "cidade": "Recife",
+  "uf": "PE",
+  "destaque": true,
+  "lancamento": false,
+  "fotos": [
+    "/images/veiculos/22d7445c-0687-4027-8bcc-a5dc1b944cb9.jpeg",
+    "/images/veiculos/eed3ed79-b29e-4416-91d1-71e8c895b309.jpeg",
+    "/images/veiculos/85c5c2cd-7cca-4611-9062-ce670237fc97.jpeg"
+  ],
+  "descricao": "A Honda CG 160 Fan é uma motocicleta street voltada ao uso urbano e diário, com visual renovado, motor flex, farol e lanterna em LED e painel digital blackout.\nChassi e freios: Rodas de liga leve, pneus sem câmara, suspensão dianteira aprimorada e freios CBS (disco na dianteira e tambor na traseira).",
+  "opcionais": [
+    "Chave reserva e Manual."
+  ],
+  "motor": "",
+  "potencia": "",
+  "portas": null,
+  "cilindrada": "",
+  "criadoEm": ""
+}
