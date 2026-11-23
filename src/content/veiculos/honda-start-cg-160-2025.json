@@ -1,0 +1,34 @@
+{
+  "nome": "CG 160 Start",
+  "marca": "Honda",
+  "modelo": "Start CG 160",
+  "tipo": "moto",
+  "categoria": "",
+  "ano": 2024,
+  "anoModelo": 2025,
+  "preco": 17990,
+  "km": 14670,
+  "cambio": "Manual",
+  "combustivel": "Gasolina",
+  "cor": "Prata",
+  "cidade": "Recife",
+  "uf": "PE",
+  "destaque": true,
+  "lancamento": false,
+  "fotos": [
+    "/images/veiculos/a9f16941-578e-4cef-a4f9-971ee095523f.jpeg",
+    "/images/veiculos/9343411b-5a00-4235-8dbb-c38da4b11775.jpeg",
+    "/images/veiculos/b0cc088f-918e-468c-b341-0f5921d46c49.jpeg",
+    "/images/veiculos/0eeba0a3-119b-46f4-91ba-56138fde82cb.jpeg"
+  ],
+  "descricao": "A Honda CG 160 Start é a versão de entrada da linha CG 160 no Brasil, voltada para o uso urbano diário com foco em economia e praticidade. Na linha 2025, o modelo recebeu visual atualizado, freio a disco dianteiro com sistema CBS, painel 100% digital e ajustes no motor para atender às normas de emissões Promot M5.",
+  "opcionais": [
+    "Único dono.",
+    "Manual e Chave reserva."
+  ],
+  "motor": "",
+  "potencia": "",
+  "portas": null,
+  "cilindrada": "",
+  "criadoEm": ""
+}
