@@ -34,7 +34,7 @@ export function initListagem() {
   const grid = document.getElementById('jf-grid');
   const empty = document.getElementById('jf-empty');
   const count = document.getElementById('jf-count');
-  const titulo = document.getElementById('jf-titulo');
+  const titulo = document.getElementById('jf-titulo') as HTMLElement | null;
   const tituloCrumb = document.getElementById('jf-titulo-crumb');
   if (!grid || !empty || !count) return;
 
@@ -51,6 +51,7 @@ export function initListagem() {
   const kmVal = document.getElementById('jf-km-val');
   const limparBtns = [document.getElementById('jf-limpar'), document.getElementById('jf-limpar-2')];
   const filtersDialog = document.getElementById('jf-filters') as HTMLDialogElement | null;
+  const applyBtn = document.getElementById('jf-filters-apply');
   const filtrarBtn = document.getElementById('jf-filtrar');
   const closeFilters = () => { if (filtersDialog?.open) filtersDialog.close(); };
 
@@ -120,7 +121,7 @@ export function initListagem() {
   }
 
   function updateTitulo() {
-    const label = state.tipo === 'carro' ? 'Carros seminovos' : state.tipo === 'moto' ? 'Motos seminovas' : 'Todos os veículos';
+    const label = state.tipo === 'carro' ? 'Carros disponíveis' : state.tipo === 'moto' ? 'Motos disponíveis' : (titulo?.dataset.padrao ?? 'Veículos disponíveis');
     if (titulo) titulo.textContent = label;
     if (tituloCrumb) tituloCrumb.textContent = label;
   }
@@ -152,7 +153,11 @@ export function initListagem() {
     visible.forEach((card) => grid?.appendChild(card));
 
     const n = visible.length;
-    count!.textContent = n + (n === 1 ? ' veículo encontrado' : ' veículos encontrados');
+    const tipos = new Set(visible.map((c) => c.dataset.tipo));
+    const [um, varios] = tipos.size === 1 && tipos.has('moto') ? ['moto', 'motos'] : tipos.size === 1 && tipos.has('carro') ? ['carro', 'carros'] : ['veículo', 'veículos'];
+    const texto = `${n} ${n === 1 ? um : varios}`;
+    count!.textContent = texto;
+    if (applyBtn) applyBtn.textContent = n === 0 ? 'Nenhum resultado' : `Ver ${texto}`;
     empty!.hidden = n !== 0;
 
     updateTitulo();

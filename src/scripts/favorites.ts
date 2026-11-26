@@ -19,6 +19,7 @@ function syncButton(btn: HTMLElement, favs: Set<string>) {
   if (!id) return;
   const isFav = favs.has(id);
   btn.classList.toggle('is-active', isFav);
+  if (btn.hasAttribute('aria-pressed')) btn.setAttribute('aria-pressed', String(isFav));
   const label = btn.querySelector('[data-fav-label]');
   if (label) label.textContent = isFav ? 'Salvo' : 'Favoritar';
 }
@@ -42,6 +43,25 @@ export function pruneFavorites(validIds: Iterable<string>): Set<string> {
   return pruned;
 }
 
+let toast: HTMLElement | null = null;
+let toastTimer: number | undefined;
+
+function announce(text: string) {
+  if (!toast) {
+    toast = document.createElement('div');
+    toast.setAttribute('role', 'status');
+    toast.setAttribute('aria-live', 'polite');
+    toast.style.cssText =
+      'position:fixed;left:50%;bottom:24px;translate:-50% 0;z-index:100;padding:10px 18px;border-radius:var(--radius-md);' +
+      'background:var(--text-primary);color:var(--surface-card);font:600 14px var(--font-body);pointer-events:none;transition:opacity 150ms;opacity:0';
+    document.body.appendChild(toast);
+  }
+  toast.textContent = text;
+  toast.style.opacity = '1';
+  clearTimeout(toastTimer);
+  toastTimer = window.setTimeout(() => { if (toast) toast.style.opacity = '0'; }, 1600);
+}
+
 export function initFavorites() {
   const favs = readFavorites();
   syncCountBadges(favs);
@@ -57,8 +77,9 @@ export function initFavorites() {
       const id = btn.dataset.vehicleId;
       if (!id) return;
       const current = readFavorites();
-      if (current.has(id)) current.delete(id);
-      else current.add(id);
+      const removed = current.delete(id);
+      if (!removed) current.add(id);
+      announce(removed ? 'Removido' : 'Salvo');
       writeFavorites(current);
       document
         .querySelectorAll<HTMLElement>(`[data-fav-btn][data-vehicle-id="${id}"]`)

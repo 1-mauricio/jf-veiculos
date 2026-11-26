@@ -117,6 +117,7 @@ collections:
           - { label: "Título do banner (início da frase)", name: "heroTituloInicio", widget: "string", hint: "Ex: Seu próximo carro começa" }
           - { label: "Título do banner (palavra em destaque)", name: "heroTituloDestaque", widget: "string", hint: "Ex: aqui" }
           - { label: "Subtítulo do banner", name: "heroSubtitulo", widget: "text" }
+          - { label: "Veículo em destaque no banner", name: "heroVeiculo", widget: "relation", collection: "veiculos", search_fields: ["nome"], value_field: "{{slug}}", display_fields: ["nome"], required: false, hint: "Em branco, o site usa o primeiro veículo marcado como destaque." }
           - { label: "Vantagem 1 — título", name: "vantagem1Titulo", widget: "string" }
           - { label: "Vantagem 1 — descrição", name: "vantagem1Desc", widget: "text" }
           - { label: "Vantagem 2 — título", name: "vantagem2Titulo", widget: "string" }
@@ -149,6 +150,7 @@ collections:
             name: "fonteTema"
             widget: "select"
             options:
+              - { label: "JF (Barlow Condensed + Source Sans 3)", value: "jf" }
               - { label: "Moderno (Space Grotesk + Inter)", value: "moderno" }
               - { label: "Amigável (Poppins + Inter)", value: "amigavel" }
               - { label: "Clássico (Playfair Display + Source Sans 3)", value: "classico" }

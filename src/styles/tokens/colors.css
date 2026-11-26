@@ -1,6 +1,6 @@
 :root {
   --black-950: #0E0E10;
-  --black-900: #121214;
+  --black-900: #191919;
   --black-800: #1C1C1F;
   --black-700: #2A2A2E;
 
@@ -13,6 +13,10 @@
   --gray-50: #F7F7F8;
 
   --white: #FFFFFF;
+  --warm-100: #F4F1EB;
+  --warm-200: #E6E1D8;
+  --warm-300: #D3CDC1;
+  --charcoal: #191919;
 
   --amber-700: #96631E;
   --amber-600: #C8862B;
@@ -25,15 +29,15 @@
   --surface-page: var(--white);
   --surface-page-dark: var(--black-950);
   --surface-card: var(--white);
-  --surface-sunken: var(--gray-50);
+  --surface-sunken: var(--warm-100);
   --surface-inverse: var(--black-900);
-  --surface-muted: var(--gray-100);
-  --surface-header: rgba(255, 255, 255, 0.88);
-  --surface-overlay: rgba(255, 255, 255, 0.92);
+  --surface-muted: var(--warm-200);
+  --surface-header: var(--white);
+  --surface-overlay: var(--white);
   --surface-band: var(--white);
 
-  --border-default: var(--gray-200);
-  --border-strong: var(--gray-300);
+  --border-default: var(--warm-200);
+  --border-strong: var(--warm-300);
 
   --text-primary: var(--black-900);
   --text-secondary: var(--gray-600);
@@ -60,8 +64,8 @@
   --surface-card: #18181B;
   --surface-sunken: var(--black-950);
   --surface-muted: #26262B;
-  --surface-header: rgba(14, 14, 16, 0.85);
-  --surface-overlay: rgba(24, 24, 27, 0.92);
+  --surface-header: var(--black-950);
+  --surface-overlay: #18181B;
   --surface-band: #141417;
 
   --border-default: #2E2E33;

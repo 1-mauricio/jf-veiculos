@@ -1,14 +1,11 @@
 ---
 import { getCollection } from 'astro:content';
-import Icon from './Icon.astro';
 import Logo from './Logo.astro';
 import { whatsappLink, formatPhone } from '../lib/format';
 
-const lojaEntries = await getCollection('loja');
-const loja = lojaEntries[0]?.data;
-const siteEntries = await getCollection('site');
-const site = siteEntries[0]?.data;
-const nomeSite = site?.nomeSite ?? 'JF Veículos';
+const loja = (await getCollection('loja'))[0]?.data;
+const nomeSite = (await getCollection('site'))[0]?.data.nomeSite ?? 'JF Veículos';
+const temCarros = (await getCollection('veiculos')).some((veiculo) => veiculo.data.tipo === 'carro');
 const whatsappHref = loja ? whatsappLink(loja.whatsapp, `Olá! Vim pelo site da ${nomeSite}.`) : '#';
 const instagramHref = loja?.instagram ? `https://instagram.com/${loja.instagram}` : null;
 const year = new Date().getFullYear();
@@ -17,88 +14,37 @@ const year = new Date().getFullYear();
 <footer class="jf-footer">
   <div class="jf-foot">
     <div>
-      <div class="jf-foot-brand">
-        <Logo size={34} radius="var(--radius-sm)" />
-        <span class="jf-foot-name">{nomeSite}</span>
-      </div>
-      <p class="jf-foot-desc">{site?.footerDescricao}</p>
-      {instagramHref && (
-        <a href={instagramHref} target="_blank" rel="noopener" class="jf-foot-social" aria-label={`Instagram da ${nomeSite}`}>
-          <Icon name="instagram" size={18} />
-          <span>@{loja?.instagram}</span>
-        </a>
-      )}
+      <div class="jf-foot-brand"><Logo size={30} /></div>
+      {loja && <address class="jf-foot-contact">
+        <span>{loja.endereco}<br />{loja.cidade.trim()} - {loja.uf}</span>
+        <span>{loja.horarios}</span>
+        <a href={whatsappHref} target="_blank" rel="noopener" data-wa-track="footer">WhatsApp: {formatPhone(loja.whatsapp)}</a>
+        {instagramHref && <a href={instagramHref} target="_blank" rel="noopener">Instagram: @{loja.instagram}</a>}
+      </address>}
     </div>
-    <div>
-      <div class="jf-foot-title">Comprar</div>
+    <nav aria-label="Links do rodapé">
+      <h2 class="jf-foot-title">Links úteis</h2>
       <div class="jf-foot-links">
-        <a href="/veiculos?tipo=carro">Carros usados</a>
-        <a href="/veiculos?tipo=moto">Motos</a>
-        <a href="/veiculos">Ofertas da semana</a>
+        <a href="/veiculos">Estoque</a>
+        {temCarros && <a href="/veiculos?tipo=carro">Carros</a>}
+        <a href="/loja">Nossa loja</a>
+        <a href="/favoritos">Favoritos</a>
       </div>
-    </div>
-    <div>
-      <div class="jf-foot-title">Institucional</div>
-      <div class="jf-foot-links">
-        <a href="/loja">Sobre a loja</a>
-      </div>
-    </div>
-    <div>
-      <div class="jf-foot-title">Atendimento</div>
-      <div class="jf-foot-links">
-        {loja && <span>{loja.horarios}</span>}
-        {loja?.whatsapp && <span class="jf-foot-phone">{formatPhone(loja.whatsapp)}</span>}
-        <a href={whatsappHref} target="_blank" rel="noopener" class="jf-foot-whatsapp" data-wa-track="footer">WhatsApp</a>
-      </div>
-    </div>
+    </nav>
   </div>
-  <div class="jf-foot-bottom-wrap">
-    <div class="jf-foot-bottom">
-      <span>© {year} {nomeSite}. Todos os direitos reservados. {loja && `CNPJ ${loja.cnpj}.`}</span>
-    </div>
-  </div>
+  <div class="jf-foot-bottom-wrap"><div class="jf-foot-bottom">© {year} {nomeSite}. {loja && `CNPJ ${loja.cnpj}.`}</div></div>
 </footer>
 
 <style>
-  .jf-footer {
-    border-top: 1px solid var(--black-700);
-    background: var(--black-900);
-    margin-top: 40px;
-  }
-  .jf-foot {
-    max-width: 1240px;
-    margin: 0 auto;
-    padding: 52px 24px 30px;
-    display: grid;
-    grid-template-columns: 1.6fr 1fr 1fr 1fr;
-    gap: 40px;
-  }
-  .jf-foot-brand { display: flex; align-items: center; gap: 10px; margin-bottom: 16px; }
-  .jf-foot-name { font: 700 17px var(--font-display); color: var(--white); }
-  .jf-foot-desc { color: var(--gray-400); font-size: 14px; line-height: 1.7; max-width: 300px; margin: 0 0 16px; }
-  .jf-foot-social {
-    display: inline-flex; align-items: center; gap: 8px; color: var(--gray-400); font-size: 14px; font-weight: 600;
-  }
-  .jf-foot-social:hover { color: var(--white); }
-  .jf-foot-title { font: 700 14px var(--font-display); color: var(--white); margin-bottom: 16px; }
-  .jf-foot-links { display: flex; flex-direction: column; gap: 11px; font-size: 14px; color: var(--gray-400); }
-  .jf-foot-links a { color: var(--gray-400); }
-  .jf-foot-links a:hover { color: var(--white); }
-  .jf-foot-phone { color: var(--white); font-weight: 700; font-size: 16px; }
-  .jf-foot-whatsapp { color: var(--accent-on-dark) !important; font-weight: 700; }
-
+  .jf-footer { border-top: 1px solid var(--black-700); background: var(--black-900); margin-top: var(--space-10); }
+  .jf-foot { max-width: 1240px; margin: 0 auto; padding: var(--space-12) var(--space-6) var(--space-8); display: grid; grid-template-columns: 2fr 1fr; gap: var(--space-10); }
+  .jf-foot-brand { display: flex; align-items: center; gap: var(--space-3); margin-bottom: var(--space-4); }
+  .jf-foot-contact, .jf-foot-links { display: flex; flex-direction: column; align-items: flex-start; color: var(--gray-400); font: var(--text-body); }
+  .jf-foot-contact { font-style: normal; gap: var(--space-2); }
+  .jf-foot a { color: var(--gray-400); display: inline-flex; align-items: center; min-height: 44px; }
+  .jf-foot a:hover { color: var(--white); }
+  .jf-foot-title { font: var(--text-h3); color: var(--white); margin: 0 0 var(--space-2); }
   .jf-foot-bottom-wrap { border-top: 1px solid var(--black-700); }
-  .jf-foot-bottom {
-    max-width: 1240px; margin: 0 auto; padding: 20px 24px;
-    display: flex; justify-content: space-between; flex-wrap: wrap; gap: 12px;
-    font-size: 12.5px; color: var(--gray-400);
-  }
-
-  @media (max-width: 980px) {
-    .jf-foot { grid-template-columns: 1fr 1fr; }
-  }
-  @media (max-width: 620px) {
-    .jf-foot { grid-template-columns: 1fr 1fr; gap: 28px; }
-    .jf-foot > div:first-child { grid-column: 1 / -1; }
-  }
+  .jf-foot-bottom { max-width: 1240px; margin: 0 auto; padding: var(--space-5) var(--space-6); font: var(--text-small); color: var(--gray-400); }
+  @media (max-width: 620px) { .jf-foot { grid-template-columns: 1fr !important; gap: var(--space-8); } }
 </style>
